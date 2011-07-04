@@ -50,6 +50,27 @@ Views.remote = function(win) {
 	});
 	
 	return_button.addEventListener('click', Xbmc.sendKey('return'));
+	
+	var keyboard_field = Titanium.UI.createTextField({  
+	    width:0,
+	    height:0,
+	    keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+	    returnKeyType:Titanium.UI.RETURNKEY_DONE
+	});
+	
+	keyboard_field.addEventListener('change', Xbmc.keyboard);
+	
+	var keyboard_button = Titanium.UI.createButton({
+		title:'keyboard',
+		height:20,
+		width:80,
+		top:80,
+		right:5
+	});
+	
+	keyboard_button.addEventListener('click', function(){
+		keyboard_field.focus();
+	});
 
 	var arrow_controls = Titanium.UI.createView({
 		top:40,
@@ -160,6 +181,8 @@ Views.remote = function(win) {
 	win.add(facebook_like);
 	win.add(home_button);
 	win.add(return_button);
+	win.add(keyboard_field);
+	win.add(keyboard_button);
 
 
 	arrow_controls.add(up_button);

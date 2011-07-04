@@ -9,6 +9,12 @@ beforeEach(function() {
 			this.actual();
 			expect(fake_client.get).toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function)});
 			return true;
+   	},
+
+    notToCallCommand: function(command) {
+			this.actual();
+			expect(fake_client.get).not.toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function)});
+			return true;
    	}
 	});
 });
