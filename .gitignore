@@ -2,3 +2,4 @@ tmp
 build/iphone/*
 build/android/*
 build.log
+Resources/config/environments.js
