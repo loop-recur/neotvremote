@@ -197,4 +197,4 @@ Views.remote = function(win) {
 	color_buttons.add(green_button);
 	color_buttons.add(yellow_button);
 	win.add(color_buttons);
-}
+};

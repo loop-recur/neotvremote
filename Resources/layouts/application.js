@@ -39,4 +39,4 @@ Layouts.application = function() {
 	tabGroup.addTab(tab3);  
 
 	tabGroup.open();
-}
+};

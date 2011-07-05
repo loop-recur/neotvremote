@@ -45,4 +45,4 @@ Views.settings = function(win) {
 	win.add(ip);
 	win.add(username);
 	win.add(password);
-}
+};

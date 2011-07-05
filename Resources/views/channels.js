@@ -1,2 +1,2 @@
 Views.channels = function(win) {
-}
+};
