@@ -2,12 +2,13 @@ Layouts.application = function() {
 	var tabGroup = Titanium.UI.createTabGroup();
 
 	var win1 = Titanium.UI.createWindow({  
-	    backgroundColor:'#fff',
+	    backgroundImage:'images/remote_view/remote_bg.png',
 			navBarHidden: true
 	});
 	win1.addEventListener('open', Views.remote.partial(win1));
+	
 	var tab1 = Titanium.UI.createTab({  
-	    icon:'KS_nav_views.png',
+	    icon:'images/remote_view/tab_icon_remote_active.png',
 	    title:'Remote',
 	    window:win1
 	});
@@ -17,6 +18,7 @@ Layouts.application = function() {
 			navBarHidden: true
 	});
 	win2.addEventListener('open', Views.channels.partial(win2));
+	
 	var tab2 = Titanium.UI.createTab({  
 	    icon:'KS_nav_ui.png',
 	    title:'Channels',
@@ -28,6 +30,7 @@ Layouts.application = function() {
 			navBarHidden: true
 	});
 	win3.addEventListener('open', Views.settings.partial(win3));
+	
 	var tab3 = Titanium.UI.createTab({
 	    icon:'KS_nav_ui.png',
 	    title:'Settings',
