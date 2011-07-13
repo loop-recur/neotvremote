@@ -22,7 +22,7 @@ var Xbmc = function() {
 		var code = (key.length === 1) ? getAscii(key) : codes[key];
 		
 		return function() {
-			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":"SendKey("+code+")"}, {success: function(){}});
+			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":"SendKey("+code+")"}, {success: function(r){ Ti.API.info(r);}, error: function(e){alert(e)}});
 		}
 	}
 	
