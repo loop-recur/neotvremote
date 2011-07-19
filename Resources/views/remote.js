@@ -37,6 +37,8 @@ Views.remote = function(win) {
 		top:5,
 		right:5
 	});
+	
+	home_button.addEventListener('click', Xbmc.sendKey('return'));
 
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',
@@ -47,6 +49,8 @@ Views.remote = function(win) {
 		left:10
 	});
 	
+	return_button.addEventListener('click', Xbmc.sendKey('return'));
+	
 	var power_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_powerbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_powerbtn_down.png',
@@ -56,17 +60,21 @@ Views.remote = function(win) {
 		left:15
 	});
 	
-	return_button.addEventListener('click', Xbmc.sendKey('return'));
+	power_button.addEventListener('click', Xbmc.sendKey('shutdown'));
 	
 	var keyboard_field = Titanium.UI.createTextField({  
     width:0,
     height:0,
 		top:0,
+		autocorrect:false,
     keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
     returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
+	if(Helpers.Application.isAndroid()) { keyboard_field.softKeyboardOnFocus = Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS }
 	
-	keyboard_field.addEventListener('change', Xbmc.keyboard);
+	keyboard_field.addEventListener('change', function(e) {
+		Xbmc.keyboard(e.value);
+	});
 	
 	var keyboard_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_keyboardbtn.png',
@@ -74,8 +82,7 @@ Views.remote = function(win) {
 		height:35,
 		width:65,
 		top:210,
-		right:10,
-		softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
+		right:10
 	});
 	
 	keyboard_button.addEventListener('click', function(){
@@ -97,7 +104,7 @@ Views.remote = function(win) {
 		top:22
 	});
 	
-	up_button.addEventListener('click', Xbmc.sendKey('up'));
+	up_button.addEventListener('click', Xbmc.action('up'));
 
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
@@ -107,7 +114,7 @@ Views.remote = function(win) {
 		bottom:22
 	});
 
-	down_button.addEventListener('click', Xbmc.sendKey('down'));
+	down_button.addEventListener('click', Xbmc.action('down'));
 
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
@@ -117,7 +124,7 @@ Views.remote = function(win) {
 		left:24
 	});
 	
-	left_button.addEventListener('click', Xbmc.sendKey('left'));
+	left_button.addEventListener('click', Xbmc.action('left'));
 
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
@@ -127,7 +134,7 @@ Views.remote = function(win) {
 		right:24
 	});
 	
-	right_button.addEventListener('click', Xbmc.sendKey('right'));
+	right_button.addEventListener('click', Xbmc.action('right'));
 
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',

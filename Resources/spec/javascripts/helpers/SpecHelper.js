@@ -7,13 +7,13 @@ beforeEach(function() {
 	this.addMatchers({
     toCallCommand: function(command) {
 			this.actual();
-			expect(fake_client.get).toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function)});
+			expect(fake_client.get).toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function), error: jasmine.any(Function)});
 			return true;
    	},
 
     notToCallCommand: function(command) {
 			this.actual();
-			expect(fake_client.get).not.toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function)});
+			expect(fake_client.get).not.toHaveBeenCalledWith("/xbmcCmds/xbmcHttp", {"command":command}, {success: jasmine.any(Function), error: jasmine.any(Function)});
 			return true;
    	}
 	});

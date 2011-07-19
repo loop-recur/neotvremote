@@ -1,10 +1,45 @@
 var Xbmc = function() {
 	
+	var codes = {
+		"ok" : "61453",
+		"backspace" : "61448",
+		"menu" : "247",
+		"left" : "1",
+		"right" : "2",
+		"up" : "3",
+		"down" : "4",
+		"return" : "275",
+		"shutdown" : "277"
+	}
+	
+	function action(key) {
+		return _httpCall("Action", _getCode(key));
+	}
+
+	function sendKey(key) {
+		return _httpCall("SendKey", _getCode(key));
+	}
+	
+	function _httpCall(cmd, arg) {
+		var command = cmd + "("+arg+")";
+		
+		return function() {
+			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: function(r){ }, error: function(e){Ti.API.info(e)}});
+		}
+	}
+	
+	function _getCode(key) {
+		return (key.length === 1) ? _getAscii(key) : codes[key];
+	}
+	
+	function _getAscii(key) {
+		return key.charCodeAt(0) + 61696;
+	}
+	
 	var Keyboard = function() {
 		var old_length = 0;
 		
-		function type(e) {
-			var str = e.value;
+		function type(str) {
 			var new_length = str ? str.length : 0;
 			var val = (old_length > new_length) ? 'backspace' : lastChar(str);
 			sendKey(val)();
@@ -18,29 +53,5 @@ var Xbmc = function() {
 		return {type : type}
 	}();
 
-	function sendKey(key) {
-		var code = (key.length === 1) ? getAscii(key) : codes[key];
-		
-		return function() {
-			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":"SendKey("+code+")"}, {success: function(r){ }, error: function(e){Ti.API.info(e)}});
-		}
-	}
-	
-	function getAscii(key) {
-		return key.charCodeAt(0) + 61696;
-	}
-
-	var codes = {
-		"ok" : "61453",
-		"backspace" : "61448",
-		"menu" : "247",
-		"up" : "270",
-		"down" : "271",
-		"left" : "272",
-		"right" : "273",
-		"return" : "275",
-		"shutdown" : "277"
-	}
-
-	return {sendKey : sendKey, keyboard : Keyboard.type}
+	return {sendKey : sendKey, action : action, keyboard : Keyboard.type}
 }();
