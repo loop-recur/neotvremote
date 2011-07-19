@@ -74,7 +74,8 @@ Views.remote = function(win) {
 		height:35,
 		width:65,
 		top:210,
-		right:10
+		right:10,
+		softKeyboardOnFocus : Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS
 	});
 	
 	keyboard_button.addEventListener('click', function(){
