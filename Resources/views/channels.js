@@ -27,6 +27,8 @@ Views.channels = function(win) {
 		right:30		
 	});
 	
+	Views.channel_list(win);
+	
 	win.add(home_button);
 	win.add(keyboard_button);
 	win.add(channel_favorites);
