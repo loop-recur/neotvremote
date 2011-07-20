@@ -4,7 +4,7 @@ Views.channel_list = function(win) {
 		top:40,
 		height:365,
 		width:320,
-		contentWidth:320,
+		contentWidth:"auto",
 		contentHeight:'auto',
 		showHorizontalScrollIndicator:false,
 		showVerticalScrollIndicator:true
@@ -107,7 +107,7 @@ Views.channel_list = function(win) {
 	
 	function incrementColumn() {
 		column_counter += 1;
-		if (column_counter == 4) { 
+		if (column_counter == 3) { 
 			column_counter = 0;
 			rows_built += 1;
 		};
