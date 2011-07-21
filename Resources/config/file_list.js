@@ -1,5 +1,6 @@
 FileList = [
 	"helpers/application.js",
+	"lib/settings.js",
 	"lib/xbmc.js",
 	"layouts/application.js",
 	"views/channels.js",

@@ -9,3 +9,8 @@ App.action = function(win, controller_action, args) {
 	var view = (Views[controller] && Views[controller][action]) ? Views[controller][action] : {};
 	Controllers[controller][action](view, params);
 };
+
+App.loadSettings = function() {
+	App.base_url = Settings.url();
+	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(Settings.credentials()));
+};

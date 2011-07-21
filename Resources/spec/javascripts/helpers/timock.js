@@ -1,3 +1,5 @@
+Mocks = {};
+
 HttpClient = {
 	setTimeout:function(){},
 	setRequestHeader:function(){},
@@ -9,7 +11,7 @@ FakeView = {
 	render : jasmine.createSpy("render")
 };
 
-FakeFile = { write:function(){}, deleteFile:function(){} };
+Mocks.FakeFile = { write:jasmine.createSpy(), deleteFile:function(){}, exists:jasmine.createSpy()};
 FakeGroup = { addTab:function(){}, addEventListener:function(){}, setActiveTab:function(){}, open:function(){} };
 FakeiPhone = {AnimationStyle:function(){} };
 
@@ -17,7 +19,7 @@ Titanium = {
 	include: function(){},
 	Network: {createHTTPClient:function(){ return HttpClient; }},
 	Utils: {base64encode:function(){}},
-	Filesystem: {applicationDataDirectory: "", getFile: function(){ return FakeFile; }},
+	Filesystem: {applicationDataDirectory: "", getFile: function(){ return Mocks.FakeFile; }},
 	UI: {createTabGroup:function(){return FakeGroup; },createWindow:function(){},createTab:function(){},iPhone:FakeiPhone}
 };
 

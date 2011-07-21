@@ -1,4 +1,6 @@
 Views.settings = function(win) {
+	var settings = {};
+	
 	var port = Ti.UI.createTextField({
 		backgroundColor:'gray',
 		hintText:"Enter port...",
@@ -24,7 +26,7 @@ Views.settings = function(win) {
 	  top:100,
 	  width:250,  
 	  height:35, 
-	  hintText:'Email',  
+	  hintText:'username',  
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	  returnKeyType:Titanium.UI.RETURNKEY_NEXT
 	});
@@ -45,4 +47,10 @@ Views.settings = function(win) {
 	win.add(ip);
 	win.add(username);
 	win.add(password);
+	
+	win.addEventListener("close", function(){
+		var settings = {host: ip.value, port: port.value, username: username.value, password: password.value}
+		Settings.save(settings);
+		App.loadSettings();
+	});
 };

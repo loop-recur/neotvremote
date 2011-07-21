@@ -1,5 +1,4 @@
 describe("XbmcSpec", function() {	
-	// var Xbmc = require('Xbmc');
 
 	it("sends the corresponding key to the http client", function() {
 		expect(Xbmc.action('up')).toCallCommand("Action(3)");
