@@ -14,7 +14,7 @@ var Settings = function() {
 	
 	function url() {
 		var settings = _getSettings();
-		return settings ? [settings.host, settings.port].join(":") : "http://192.168.1.3:8080";
+		return [settings.host, settings.port].join(":");
 	}
 	
 	function _validate(new_settings) {
@@ -27,7 +27,6 @@ var Settings = function() {
 		var settings_file = _getFile();
 		
 		if(settings_file.exists()) {
-			console.log(settings_file);
 			return JSON.parse(settings_file.read().toString());
 		}
 	}

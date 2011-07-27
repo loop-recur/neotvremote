@@ -1,20 +1,20 @@
 Views.settings = function(win) {
 	var settings = {};
 	
-	var port = Ti.UI.createTextField({
+	var ip = Ti.UI.createTextField({
 		backgroundColor:'gray',
-		hintText:"Enter port...",
-		top:10,
+		hintText:"Enter ip...",
+		top:55,
 		height:35,
 		width:100,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT
 	});
-
-	var ip = Ti.UI.createTextField({
+	
+	var port = Ti.UI.createTextField({
 		backgroundColor:'gray',
-		hintText:"Enter ip...",
-		top:55,
+		hintText:"Enter port...",
+		top:10,
 		height:35,
 		width:100,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
@@ -41,16 +41,27 @@ Views.settings = function(win) {
 	  keyboardType:Titanium.UI.DEFAULT,  
 	  returnKeyType:Titanium.UI.RETURNKEY_GO
 	});
+	
+	var save_button = Titanium.UI.createButton({
+		backgroundColor:'gray',
+	  top:160,
+	  width:40,
+	  height:35,
+		title: "Save"
+	});
+	
+	save_button.addEventListener("click", save);
 
 
 	win.add(port);
 	win.add(ip);
 	win.add(username);
 	win.add(password);
+	win.add(save_button);
 	
-	win.addEventListener("close", function(){
+	function save(){
 		var settings = {host: ip.value, port: port.value, username: username.value, password: password.value}
 		Settings.save(settings);
 		App.loadSettings();
-	});
+	}
 };

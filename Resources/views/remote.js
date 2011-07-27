@@ -38,7 +38,7 @@ Views.remote = function(win) {
 		right:5
 	});
 	
-	home_button.addEventListener('click', Xbmc.sendKey('return'));
+	home_button.addEventListener('click', Xbmc.action('menu'));
 
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',
@@ -49,7 +49,7 @@ Views.remote = function(win) {
 		left:10
 	});
 	
-	return_button.addEventListener('click', Xbmc.sendKey('return'));
+	return_button.addEventListener('click', Xbmc.action('back'));
 	
 	var power_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_powerbtn.png',
@@ -143,7 +143,7 @@ Views.remote = function(win) {
 		width:62
 	});
 	
-	ok_button.addEventListener('click', Xbmc.sendKey('ok'));
+	ok_button.addEventListener('click', Xbmc.action('select'));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:0,

@@ -1,14 +1,14 @@
 var Xbmc = function() {
 	
 	var codes = {
-		"ok" : "61453",
+		"select" : "7",
 		"backspace" : "61448",
-		"menu" : "247",
+		"menu" : "18",
 		"left" : "1",
 		"right" : "2",
 		"up" : "3",
 		"down" : "4",
-		"return" : "275",
+		"back" : "10",
 		"shutdown" : "277"
 	}
 	
