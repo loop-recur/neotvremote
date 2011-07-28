@@ -29,7 +29,9 @@ Layouts.application = function() {
 	    backgroundColor:'#fff',
 			navBarHidden: true
 	});
-	win3.addEventListener('open', Views.settings.partial(win3));
+	win3.addEventListener('open', function(){
+		App.action(win3, "settings#index");
+	});
 	
 	var tab3 = Titanium.UI.createTab({
 	    icon:'KS_nav_ui.png',

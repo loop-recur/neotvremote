@@ -34,7 +34,7 @@ Functional.invoke=function(methodName){var args=Array.slice(arguments,1);return 
 Functional.pluck=function(name){return function(object){return object[name];}}
 Functional.until=function(pred,fn){fn=Function.toFunction(fn);pred=Function.toFunction(pred);return function(value){while(!pred.call(null,value))
 value=fn.call(null,value);return value;}}
-Functional.zip=function(){var n=Math.min.apply(null,Functional.map('.length',arguments));var results=new Array(n);for(var i=0;i<n;i++){var key=String(i);results[key]=Functional.map(pluck(key),arguments);};return results;}
+Functional.zip=function(){var n=Math.min.apply(null,Functional.map('.length',arguments));var results=new Array(n);for(var i=0;i<n;i++){var key=String(i);results[key]=Functional.map(Functional.pluck(key),arguments);};return results;}
 Functional._startRecordingMethodChanges=function(object){var initialMethods={};for(var name in object)
 initialMethods[name]=object[name];return{getChangedMethods:function(){var changedMethods={};for(var name in object)
 if(object[name]!=initialMethods[name])

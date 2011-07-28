@@ -1,4 +1,5 @@
 LoopRecur = {};
+Functional.install();
 
 // No files for defining yet so just dump them here.
 Controllers = {};

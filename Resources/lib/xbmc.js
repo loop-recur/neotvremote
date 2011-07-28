@@ -2,14 +2,20 @@ var Xbmc = function() {
 	
 	var codes = {
 		"select" : "7",
-		"backspace" : "61448",
+		"backspace" : "61704",
 		"menu" : "18",
 		"left" : "1",
 		"right" : "2",
 		"up" : "3",
 		"down" : "4",
 		"back" : "10",
-		"shutdown" : "277"
+		"shutdown" : "277",
+		"play" : "63",
+		"pause" : "12",
+		"skip_forward" : "14",
+		"skip_backward" : "15",
+		"forward" : "16",
+		"reverse" : "17"
 	}
 	
 	function action(key) {

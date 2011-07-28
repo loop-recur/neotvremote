@@ -1,19 +1,44 @@
 var Settings = function() {
-	var settings;
+	var defaults = {username: "xbmc", password: "xbmc", port:8080, host: "http://192.168.1.1"};
 	
 	function save(new_settings) {
-		settings = _validate(new_settings);
-		var settings_file = _getFile();
-		settings_file.write(JSON.stringify(settings));
+		var settings = _validate(new_settings);
+		App.db.save('settings', settings);
 	}
 	
-	function credentials() {
-		var settings = _getSettings();
+	function destroy(id) {
+		App.db.destroy('settings', {id : id});
+	}
+	
+	function setCurrent(settings) {
+		var _setCurrent = function(s) { s.current = 0 ; App.db.save('settings', s); }
+		App.db.find('settings', {}, Functional.map.partial(_setCurrent));
+		settings.current = 1;
+		App.db.save('settings', settings);
+	}
+	
+	function load(fun) {
+		App.db.find('settings', {current : 1}, _setSetting.partial(fun, _firstSetting.curry(fun)));
+	}
+	
+	function _firstSetting(fun) {
+		App.db.find('settings', {}, _setSetting.partial(fun, fun.curry(_url(defaults), _credentials(defaults))));
+	}
+	
+	function _setSetting(fun, elsfun, all_current_settings) {
+		if(all_current_settings.length > 0) {
+			var settings = all_current_settings[0];
+			fun(_url(settings), _credentials(settings));
+		} else {
+			elsfun();
+		}
+	}
+	
+	function _credentials(settings) {
 		return [settings.username, settings.password].join(":");
 	}
 	
-	function url() {
-		var settings = _getSettings();
+	function _url(settings) {
 		return [settings.host, settings.port].join(":");
 	}
 	
@@ -23,33 +48,5 @@ var Settings = function() {
 		return new_settings;
 	}
 	
-	function _load() {
-		var settings_file = _getFile();
-		
-		if(settings_file.exists()) {
-			return JSON.parse(settings_file.read().toString());
-		}
-	}
-	
-	function _getFile() {
-		return Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory, 'settings');
-	}
-	
-	function _getSettings() {
-		return _setDefaults(settings || _load());
-	}
-	
-	function _setDefaults(settings) {
-		var defaults = {username: "xbmc", password: "xbmc", port:8080, host: "http://192.168.1.1"};
-		return _copyObject(defaults, (settings || {}));
-	}
-	
-	function _copyObject(ob1, ob2) {
-		for (var attr in ob1) {
-    	if (ob1.hasOwnProperty(attr) && !ob2[attr]) ob2[attr] = ob1[attr];
-    }
-		return ob2;
-	}
-	
-	return {save : save, credentials: credentials, url: url}
+	return {save: save, destroy: destroy, setCurrent: setCurrent, load: load}
 }();

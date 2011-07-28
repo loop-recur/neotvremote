@@ -4,7 +4,7 @@ Titanium.include('../lib/framework/lib/bootstrap.js');
 Titanium.include('../lib/framework/lib/app.js');
 Titanium.include('../lib/framework/lib/views.js');
 Titanium.include('../lib/framework/lib/layouts.js');
-Titanium.include('../lib/framework/support/http_client_with_cache.js');
 Titanium.include('../lib/framework/lib/http_client.js');
+Titanium.include('../lib/framework/lib/db.js');
 Titanium.include('../config/file_list.js');
 Titanium.include('../config/environments.js');

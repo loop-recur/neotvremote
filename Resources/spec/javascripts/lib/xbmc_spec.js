@@ -13,7 +13,7 @@ describe("XbmcSpec", function() {
 	});
 	
 	it("works with backspace", function() {
-		expect(function(){ Xbmc.keyboard(""); }).toCallCommand("SendKey(61448)");
+		expect(function(){ Xbmc.keyboard(""); }).toCallCommand("SendKey(61704)");
 	});
 	
 });

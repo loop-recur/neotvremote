@@ -7,11 +7,12 @@ App.action = function(win, controller_action, args) {
 	var controller = names[0];
 	var action = names[1];
 	var view = (Views[controller] && Views[controller][action]) ? Views[controller][action] : {};
-	Controllers[controller][action](view, params);
+	Controllers[controller][action](view.partial(win), params);
 };
 
 App.loadSettings = function() {
-	App.base_url = Settings.url();
-	Ti.API.info(App.base_url);
-	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(Settings.credentials()));
+	Settings.load(function(url, credentials) {
+		App.base_url = url;
+		App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+	})	
 };

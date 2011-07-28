@@ -1,38 +1,62 @@
 describe("SettingsSpec", function() {
+	beforeEach(function() {
+	  App.db = Mocks.db;
+	});
 	
-	it("writes settings to disk", function() {
+	it("writes settings to the db", function() {
 		Settings.save({port:8080});
-		expect(Mocks.FakeFile.write).toHaveBeenCalledWith('{"port":8080}');
+		expect(Mocks.db.save).toHaveBeenCalledWith('settings', {"port":8080});
 	});
 	
-	describe("previous file", function() {
-		var settings = {host:"192.168.1.3", port:8080, username:"xbmc", password:"x"};
+	describe("previous settings", function() {
+		var settings = [{host:"http://192.168.1.3", port:8080, username:"xbmc", password:"x"},
+										{host:"http://192.168.2.7", port:9090, username:"abc", password:"def"}];
+										
+		beforeEach(function() {
+		  App.db.find = jasmine.createSpy().andCallFake(function(x,y,z){
+				var current = Functional.select('.current', settings);
+				return y['current'] ? z(current) : z(settings);
+			});
+		});		
 		
-		it("returns credentials", function() {
-			Settings.save(settings);
-			expect(Settings.credentials()).toEqual("xbmc:x");
+		it("sets the settings to current", function() {
+		  Settings.setCurrent(settings[0]);
+			expect(App.db.save).toHaveBeenCalledWith('settings', settings[0]);
+			expect(settings[0].current).toBeTruthy();
 		});
 		
-		it("returns default credentials", function() {
-			Settings.save({});
-			expect(Settings.credentials()).toEqual("xbmc:xbmc");
+		it("sets all the other settings to not current", function() {
+		  Settings.setCurrent(settings[0]);
+			expect(App.db.save).toHaveBeenCalledWith('settings', settings[1]);
+			expect(settings[1].current).toEqual(0);
+		});
+
+		it("fixes the url", function() {
+			var settings = {host:"192.168.1.1"};
+		  Settings.save(settings);
+			expect(settings.host).toEqual("http://192.168.1.1");
 		});
 		
-		it("returns full url", function() {
-			Settings.save(settings);
-			expect(Settings.url()).toEqual("http://192.168.1.3:8080");
+		it("doesn't fix the url when there's an http", function() {
+			var settings = {host:"http://192.168.1.1"};
+		  Settings.save(settings);
+			expect(settings.host).toEqual("http://192.168.1.1");
+		});
+
+		it("finds the first settings when none are current", function() {
+		  Settings.load(function(url, credentials) {
+				expect(url).toEqual("http://192.168.1.3:8080");
+				expect(credentials).toEqual("xbmc:x");
+			});
 		});
 		
-		it("returns default host in url", function() {
-			Settings.save({host:"", port:""});
-			expect(Settings.url()).toEqual("http://192.168.1.1:8080");
+		it("finds the current settings when there is one", function() {
+			Settings.setCurrent(settings[1]);
+		  Settings.load(function(url, credentials) {
+				expect(App.db.find).toHaveBeenCalledWith("settings", {current : 1}, jasmine.any(Function))
+				expect(url).toEqual("http://192.168.2.7:9090");
+				expect(credentials).toEqual("abc:def");
+			});
 		});
-		
-		it("returns default port in url", function() {
-			Settings.save({host:"http://123.1.1", port:""});
-			expect(Settings.url()).toEqual("http://123.1.1:8080");
-		});
-	});
-	
-	
+	});	
 });
