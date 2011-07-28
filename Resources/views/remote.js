@@ -10,13 +10,12 @@ Views.remote = function(win) {
 	});
 
 	var favorites = Titanium.UI.createButton({
-		title:'Favorites',
-		backgroundImage:'images/remote_view/',
-		backgroundSelectedImage:'images/remote_view/',
+		backgroundImage:'images/channel_view/channel_fav.png',
+		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
 		height:20,
-		width:80,
+		width:20,
 		top:5,
-		right:70
+		right:30		
 	});
 
 	var facebook_like = Titanium.UI.createButton({

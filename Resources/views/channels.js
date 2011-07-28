@@ -24,11 +24,39 @@ Views.channels = function(win) {
 		height:20,
 		width:20,
 		top:5,
-		right:30		
+		right:30, 
+		on:false
 	});
 	
-	Views.channel_list(win);
+	channel_favorites.addEventListener('click', function() {
+		toggleFavorites();
+		switchView();
+	});
 	
+	function toggleFavorites() {
+		channel_favorites.on = !channel_favorites.on;
+	};
+	
+	function buildViews() {
+		if (channel_favorites.on == false) {
+			Views.channel_list(win);
+		} else {
+			Views.channel_favorites(win);
+		};
+	};
+	
+	function switchView() {
+		if (channel_favorites.on == false) {
+			Views.channel_favorites.hideList();
+			Views.channel_list(win);
+		} else {
+			Views.channel_list.hideList();
+			Views.channel_favorites(win);
+		};
+	};
+	
+	buildViews();
+			
 	win.add(home_button);
 	win.add(keyboard_button);
 	win.add(channel_favorites);

@@ -1,4 +1,4 @@
-Views.channel_list = function(win) {
+Views.channel_favorites = function(win) {
 	
 	var scrollview = Titanium.UI.createScrollView({
 		top:40,
@@ -121,11 +121,13 @@ Views.channel_list = function(win) {
 			top:top + rows_built*height + rows_built*row_separation,
 			left:left + column_counter*width + column_counter*column_separation,
 			id:name,
-			value:name
+			value:name,
+			favorite:false
 		});
 		
 		name.addEventListener('click', function() {
 			alert(name.value + " clicked!");
+			name.enabled = true;
 		});
 		
 		return name;
@@ -136,10 +138,25 @@ Views.channel_list = function(win) {
 		incrementColumn();
 	};
 	
-	Views.channel_list.hideList = function() {
+	Views.channel_favorites.hideList = function() {
 		scrollview.visible = false;
+		edit_favorites.visible = false;
 	};
 	
+	var edit_favorites = Titanium.UI.createButton({
+		title:'Edit',
+		height:20,
+		width:50,
+		top:5,
+		right:60,
+		visible:true
+	});
+	
+	edit_favorites.addEventListener('click', function() {
+		
+	});
+	
+	win.add(edit_favorites); 
 	win.add(scrollview);
 	
 };

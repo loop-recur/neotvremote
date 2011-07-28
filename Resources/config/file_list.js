@@ -5,6 +5,7 @@ FileList = [
 	"layouts/application.js",
 	"views/channels.js",
 	"views/channel_list.js",
+	"views/channel_favorites.js",
 	"views/remote.js",
 	"views/settings.js"
 ];
