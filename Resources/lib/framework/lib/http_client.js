@@ -1,10 +1,4 @@
-LoopRecur.HttpClient = function() {
-	var current_client;
-	
-	function getClient() {
-		current_client = Titanium.Network.createHTTPClient();
-		return current_client;
-	}
+LoopRecur.HttpClient = function(client) {
 		
 	function post(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
@@ -29,10 +23,6 @@ LoopRecur.HttpClient = function() {
 		prepare("DELETE", url, call_backs).send();
 	}
 	
-	function expireCache() {
-		(current_client || getClient()).prune_cache(1);
-	}
-	
 // private
 
 	function fixArgs(params_or_call_backs, call_backs) {
@@ -48,7 +38,6 @@ LoopRecur.HttpClient = function() {
 	}
 
 	function prepare(method, url, call_backs) {
-		client = getClient();
 		client.onload = call_backs.success;
 		client.onerror = call_backs.error;
 		client.open(method, App.base_url+url);
@@ -73,6 +62,6 @@ LoopRecur.HttpClient = function() {
 		client.setRequestHeader("content-type", "application/json");
 	}
 	
-	var priv_obj = {post: post, get: get, destroy : destroy, expireCache : expireCache};
+	var priv_obj = {post: post, get: get, destroy : destroy};
 	return priv_obj;
 };

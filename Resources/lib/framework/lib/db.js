@@ -1,4 +1,4 @@
-LoopRecur.Db = function(_db) {
+LoopRecur.Db = function(_db, isAndroid) {
 	var db_name;
 
 	function use(name) {
@@ -65,8 +65,9 @@ LoopRecur.Db = function(_db) {
 	}
 	
 	function _makeObjects(results) {
+		if(!results) return;
 		var objs = [];
-		var count = Helpers.Application.isAndroid() ? results.fieldCount : results.fieldCount();
+		var count = isAndroid ? results.fieldCount : results.fieldCount();
 		
 		
 		_mapRows(function(){

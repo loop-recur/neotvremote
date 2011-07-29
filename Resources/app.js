@@ -8,7 +8,7 @@ App.loadSettings();
 Layouts.application();
 
 function setupDb(redo) {
-	App.db = LoopRecur.Db(Titanium.Database);
+	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());
 	App.db.use("netgear");
 	
 	if(redo) Functional.map(App.db.drop, ['settings', 'likes', 'favorites']);

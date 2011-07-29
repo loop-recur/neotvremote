@@ -8,7 +8,7 @@ Views.settings.show = function(win, settings) {
 		value: (settings.host || null),
 		top:10,
 		height:35,
-		width:100,
+		width:250,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT
 	});
@@ -17,10 +17,10 @@ Views.settings.show = function(win, settings) {
 		id: "port",
 		backgroundColor:'gray',
 		hintText:"Enter port...",
-		value: settings.port,
+		value: (settings.port || null),
 		top:55,
 		height:35,
-		width:100,
+		width:250,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT
 	});
@@ -28,7 +28,7 @@ Views.settings.show = function(win, settings) {
 	var username = Titanium.UI.createTextField({  
 		id: "username",
 		backgroundColor:'gray',
-		value: settings.username,
+		value: (settings.username || null),
 	  top:100,
 	  width:250,  
 	  height:35, 
@@ -40,7 +40,7 @@ Views.settings.show = function(win, settings) {
 	var password = Titanium.UI.createTextField({ 
 		id: "password",
 		backgroundColor:'gray',
-		value: settings.password,
+		value: (settings.password || null),
 	  top:140,  
 	  width:250,  
 	  height:35,
@@ -51,7 +51,7 @@ Views.settings.show = function(win, settings) {
 	
 	var save_button = Titanium.UI.createButton({
 		backgroundColor:'gray',
-	  top:180,
+	  top:200,
 	  width:100,
 	  height:35,
 		title: "Save"
@@ -59,7 +59,7 @@ Views.settings.show = function(win, settings) {
 	
 	var delete_button = Titanium.UI.createButton({
 		backgroundColor:'gray',
-	  top:210,
+	  top:240,
 	  width:100,
 	  height:35,
 		title: "Delete"
@@ -67,7 +67,7 @@ Views.settings.show = function(win, settings) {
 	
 	var close_button = Titanium.UI.createButton({
 		backgroundColor:'gray',
-	  top:280,
+	  top:290,
 	  width:100,
 	  height:35,
 		title: "Close"

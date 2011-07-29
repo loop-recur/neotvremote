@@ -2,7 +2,7 @@ describe("HttpClient", function() {
 	var http_client, call_backs;
 
   beforeEach(function() {
-		http_client = LoopRecur.HttpClient();
+		http_client = LoopRecur.HttpClient(Mocks.HttpClient);
 		App.base_url = "http://myurl.com";
 		call_backs = {success: function(){}, error: function(){} };
   });

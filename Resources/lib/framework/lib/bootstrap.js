@@ -3,7 +3,7 @@ Bootstrap = {};
 Bootstrap.run = function() {
 	includeAllFiles();
 	runEnvironment();
-	App.http_client = LoopRecur.HttpClient();
+	App.http_client = LoopRecur.HttpClient(Titanium.Network.createHTTPClient());
 	
 	function includeAllFiles() {
 		Functional.map(includeFile, FileList);

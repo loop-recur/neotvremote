@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-<id>com.looprecur.neotvremote</id>
+<id>com.webcapsule.webcapsule</id>
 <name>neotvremote</name>
 <version>.1</version>
 <publisher>not specified</publisher>

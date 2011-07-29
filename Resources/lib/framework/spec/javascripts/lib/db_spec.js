@@ -2,7 +2,7 @@ describe("db", function() {
 	var db;
 	
   beforeEach(function() {
-		db = LoopRecur.Db(Titanium.Database);
+		db = LoopRecur.Db(Titanium.Database, true);
 		Titanium.Database.open = function() { return Mocks.Database };
 	  db.use("tests");
 	});
