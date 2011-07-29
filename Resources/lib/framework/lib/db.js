@@ -7,6 +7,8 @@ LoopRecur.Db = function(_db) {
 	
 	function _execute(args, replace, cb) {
 		var instance = _db.open(db_name);
+		Ti.API.info(args);
+		Ti.API.info(replace);
 		var rows = replace ? instance.execute(args, replace) : instance.execute(args);
 		if(typeof cb == "function") cb(_makeObjects(rows));
 		if(rows) rows.close();
@@ -63,11 +65,13 @@ LoopRecur.Db = function(_db) {
 	}
 	
 	function _makeObjects(results) {
-		objs = [];
+		var objs = [];
+		var count = Helpers.Application.isAndroid() ? results.fieldCount : results.fieldCount();
+		
 		
 		_mapRows(function(){
 			var newObject = {};
-			for(var i=0; i<results.fieldCount(); i++){ newObject[results.fieldName(i)] = results.field(i); }
+			for(var i=0; i<count; i++){ newObject[results.fieldName(i)] = results.field(i); }
 			objs.push(newObject);
 		}, results);
 		

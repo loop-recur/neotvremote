@@ -1,13 +1,12 @@
 Views.settings.show = function(win, settings) {
-	
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
-	
+
 	var ip = Ti.UI.createTextField({
 		id: "host",
 		backgroundColor:'gray',
 		hintText:"Enter ip...",
-		value: settings.host,
-		top:55,
+		value: (settings.host || null),
+		top:10,
 		height:35,
 		width:100,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
@@ -19,7 +18,7 @@ Views.settings.show = function(win, settings) {
 		backgroundColor:'gray',
 		hintText:"Enter port...",
 		value: settings.port,
-		top:10,
+		top:55,
 		height:35,
 		width:100,
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
@@ -46,7 +45,7 @@ Views.settings.show = function(win, settings) {
 	  width:250,  
 	  height:35,
 	  hintText:'Password',
-	  keyboardType:Titanium.UI.DEFAULT,  
+	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	  returnKeyType:Titanium.UI.RETURNKEY_GO
 	});
 	

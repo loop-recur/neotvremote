@@ -14,6 +14,6 @@ function setupDb(redo) {
 	if(redo) Functional.map(App.db.drop, ['settings', 'likes', 'favorites']);
 	
 	App.db.create("settings", {host:"string", port:"string", username:"string", password:"string", current:"integer"});
-	App.db.create("likes", {channel_id:"integer"});
-	App.db.create("favorites", {channel_id:"integer"});
+	// App.db.create("likes", {channel_id:"integer"});
+	// App.db.create("favorites", {channel_id:"integer"});
 }

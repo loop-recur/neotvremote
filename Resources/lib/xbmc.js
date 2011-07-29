@@ -2,7 +2,7 @@ var Xbmc = function() {
 	
 	var codes = {
 		"select" : "7",
-		"backspace" : "61704",
+		"backspace" : "61448",
 		"menu" : "18",
 		"left" : "1",
 		"right" : "2",
