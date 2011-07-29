@@ -35,6 +35,7 @@ Views.channels = function(win) {
 	
 	function toggleFavorites() {
 		channel_favorites.on = !channel_favorites.on;
+		channel_favorites.on == true ? channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png' : channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
 	};
 	
 	function buildViews() {
