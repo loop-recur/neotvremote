@@ -2,6 +2,7 @@ FileList = [
 	"config/channels.js",
 	"controllers/settings.js",
 	"helpers/application.js",
+	"lib/fb_graph.js",
 	"lib/settings.js",
 	"lib/xbmc.js",
 	"layouts/application.js",

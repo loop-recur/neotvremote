@@ -7,8 +7,6 @@ LoopRecur.Db = function(_db, isAndroid) {
 	
 	function _execute(args, replace, cb) {
 		var instance = _db.open(db_name);
-		Ti.API.info(args);
-		Ti.API.info(replace);
 		var rows = replace ? instance.execute(args, replace) : instance.execute(args);
 		if(typeof cb == "function") cb(_makeObjects(rows));
 		if(rows) rows.close();
