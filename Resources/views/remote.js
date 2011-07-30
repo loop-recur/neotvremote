@@ -8,6 +8,10 @@ Views.remote = function(win) {
 		top:5,
 		left:5
 	});
+	
+	search.addEventListener('click', function() {
+		App.action(win, "searches#index");
+	});
 
 	var favorites = Titanium.UI.createButton({
 		title:'Favorites',

@@ -30,7 +30,7 @@ Views.settings.show = function(win, settings) {
 		backgroundColor:'gray',
 		value: (settings.username || null),
 	  top:100,
-	  width:250,  
+	  width:250,
 	  height:35, 
 	  hintText:'username',  
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  

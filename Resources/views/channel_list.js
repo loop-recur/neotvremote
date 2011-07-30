@@ -1,4 +1,5 @@
-Views.channel_list = function(win) {
+Views.channel_list = function(win, channels) {
+	channels.reverse(); //hack
 	
 	var scrollview = Titanium.UI.createScrollView({
 		top:40,
@@ -9,8 +10,6 @@ Views.channel_list = function(win) {
 		showHorizontalScrollIndicator:false,
 		showVerticalScrollIndicator:true
 	});
-	
-	var listing = Channels.reverse();
 	
 	var height = 77;
 	var top = 2;
@@ -49,11 +48,12 @@ Views.channel_list = function(win) {
 		return name;
 	}
 	
-	for (var i = listing.length - 1; i >= 0; i--){
-		scrollview.add(makeChannel(listing[i]));
+	for (var i = channels.length - 1; i >= 0; i--){
+		scrollview.add(makeChannel(channels[i]));
 		incrementColumn();
 	};
 	
 	win.add(scrollview);
 	
+	return scrollview;
 };
