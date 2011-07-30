@@ -15,7 +15,7 @@ LoopRecur.Db = function(_db, isAndroid) {
 	
 	function create(table_name, fields) {
 		var start = "id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT NULL"
-		var sql_fields = Functional.reduce("y += ', '+ x[0] +' ' +x[1].toUpperCase()", start, _toArray(fields));
+		var sql_fields = reduce("y += ', '+ x[0] +' ' +x[1].toUpperCase()", start, _toArray(fields));
 		_execute('CREATE TABLE IF NOT EXISTS '+table_name+' ('+sql_fields+')');
 	}
 	
@@ -30,7 +30,7 @@ LoopRecur.Db = function(_db, isAndroid) {
 			_execute("SELECT * FROM "+table_name, null, cb);
 		} else {
 			_keysVals(query, function(keys, vals) {
-				var real_keys = Functional.map('x+"=?"',keys).join(" AND ");
+				var real_keys = map('x+"=?"',keys).join(" AND ");
 				_execute("SELECT * FROM "+table_name+" WHERE "+real_keys, vals, cb);
 			});
 		}
@@ -39,20 +39,20 @@ LoopRecur.Db = function(_db, isAndroid) {
 	function save(table_name, fields) {
 		_keysVals(fields, function(keys, vals) {
 			var keys = keys.join(", ");
-			var qmarks = Functional.map("'?'", vals).join(',');
+			var qmarks = map("'?'", vals).join(',');
 			_execute("INSERT OR REPLACE INTO "+table_name+" ("+keys+") VALUES ("+qmarks+")", vals);
 		});
 	}
 	
 	function destroy(table_name, query) {
 		_keysVals(query, function(keys, vals) {
-			var real_keys = Functional.map('x+"=?"',keys).join(" AND ");
+			var real_keys = map('x+"=?"',keys).join(" AND ");
 			_execute("DELETE FROM "+table_name+" WHERE "+real_keys, vals);
 		});		
 	}
 	
 	function _keysVals(fields, fun) {
-		var keys_and_vals = Functional.zip.apply(null, _toArray(fields));
+		var keys_and_vals = zip.apply(null, _toArray(fields));
 		fun(keys_and_vals[0], keys_and_vals[1]);
 	}
 	

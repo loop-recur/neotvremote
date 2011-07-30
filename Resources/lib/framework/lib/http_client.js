@@ -38,6 +38,8 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
+		// client.setTimeout(0);
+		client = Titanium.Network.createHTTPClient();
 		client.onload = call_backs.success;
 		client.onerror = call_backs.error;
 		client.open(method, App.base_url+url);
@@ -48,7 +50,7 @@ LoopRecur.HttpClient = function(client) {
 	function queryString(params) {
 		var keys = [];
 		for (var key in params) { keys.push([key, params[key]]); };
-		var qstring = Functional.reduce("y += x[0] + '=' + x[1] + '&'".lambda(), "", keys);
+		var qstring = reduce("y += x[0] + '=' + x[1] + '&'".lambda(), "", keys);
 		if (qstring !== "") qstring = '?'+qstring;
 		return qstring;
 	}

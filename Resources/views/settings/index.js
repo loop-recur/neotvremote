@@ -44,7 +44,7 @@ Views.settings.index = function(win, settings) {
 		return row;
 	}
 	
-	var rows = Functional.map(createTableViewRow, settings);
+	var rows = map(createTableViewRow, settings);
 	rows.unshift(newRow);
 	
 	var tableview = Titanium.UI.createTableView({ 

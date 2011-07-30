@@ -16,7 +16,7 @@ Helpers.array_funs.addInString = function(id, str) {
 
 Helpers.array_funs.removeById = function(id, array) {
 	var sameId = "id == x.id".lambda().partial(id);
-	var item = Functional.select(sameId, array)[0];
+	var item = select(sameId, array)[0];
 	Helpers.array_funs.remove(array, item);
 	return array;
 }

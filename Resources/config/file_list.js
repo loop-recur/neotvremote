@@ -1,8 +1,10 @@
 FileList = [
 	"config/channels.js",
+	"controllers/favorites.js",
 	"controllers/searches.js",
 	"controllers/settings.js",
 	"helpers/application.js",
+	"lib/favorites.js",
 	"lib/fb_graph.js",
 	"lib/settings.js",
 	"lib/xbmc.js",

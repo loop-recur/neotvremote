@@ -42,8 +42,6 @@ Layouts.application = function() {
 	tabGroup.addTab(tab1);
 	tabGroup.addTab(tab2);
 	tabGroup.addTab(tab3);
-	
-	win.addEventListener('close')
 
 	tabGroup.open();
 };

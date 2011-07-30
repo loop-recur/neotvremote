@@ -14,7 +14,7 @@ describe("SettingsSpec", function() {
 										
 		beforeEach(function() {
 		  App.db.find = jasmine.createSpy().andCallFake(function(x,y,z){
-				var current = Functional.select('.current', settings);
+				var current = select('.current', settings);
 				return y['current'] ? z(current) : z(settings);
 			});
 		});		

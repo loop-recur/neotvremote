@@ -1,8 +1,9 @@
 var Xbmc = function() {
+	var lastPlaying;
 	
 	var codes = {
 		"select" : "7",
-		"backspace" : "61448",
+		"backspace" : "61704",
 		"menu" : "18",
 		"left" : "1",
 		"right" : "2",
@@ -26,11 +27,34 @@ var Xbmc = function() {
 		return _httpCall("SendKey", _getCode(key));
 	}
 	
+	function currentPlaying(fun) {
+		var max = 8;
+		
+		function _getPlaying(tries) {
+			var currentPlaying = _httpCall("getCurrentlyPlaying", "");
+			
+			currentPlaying(function(){
+				try{ _setChannel(this.responseText); } catch(e){};
+			});
+			
+			(tries < max) ? setTimeout(_getPlaying.partial(tries+1), 1000) : fun(false);
+		}
+		
+		function _setChannel(text) {
+			var channel = text.match(/Filename:(\w+)/)[1];
+			if(channel) tries = max;
+			fun(channel);
+		}
+		
+		_getPlaying(0);
+	}
+	
 	function _httpCall(cmd, arg) {
 		var command = cmd + "("+arg+")";
 		
-		return function() {
-			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: function(r){ }, error: function(e){Ti.API.info(e)}});
+		return function(success) {
+			if(!success) success = function(){};
+			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: success, error: function(e){Ti.API.info(e)}});
 		}
 	}
 	
@@ -59,5 +83,5 @@ var Xbmc = function() {
 		return {type : type}
 	}();
 
-	return {sendKey : sendKey, action : action, keyboard : Keyboard.type}
+	return {sendKey : sendKey, action : action, keyboard : Keyboard.type, currentPlaying : currentPlaying}
 }();

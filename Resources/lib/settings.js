@@ -12,7 +12,7 @@ var Settings = function() {
 	
 	function setCurrent(settings) {
 		var _setCurrent = function(s) { s.current = 0 ; App.db.save('settings', s); }
-		App.db.find('settings', {}, Functional.map.partial(_setCurrent));
+		App.db.find('settings', {}, map.partial(_setCurrent));
 		settings.current = 1;
 		App.db.save('settings', settings);
 	}

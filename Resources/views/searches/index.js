@@ -28,7 +28,7 @@ Views.searches.index = function(win) {
 	
 	function foundChannels(val, channels) {
 		var isMatch = function(x) { return (x.indexOf(val) != -1); };
-		return Functional.select(isMatch, Channels);
+		return select(isMatch, Channels);
 	};
 	
 	function makeView(channels) {

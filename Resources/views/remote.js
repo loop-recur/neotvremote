@@ -1,4 +1,5 @@
 Views.remote = function(win) {
+	
 	var search = Titanium.UI.createButton({
 		title:'Search',
 		backgroundImage:'images/remote_view/',
@@ -32,7 +33,42 @@ Views.remote = function(win) {
 		top:5,
 		right:170
 	});
-
+	
+	var current_playing = Titanium.UI.createView({
+		visible: false,
+		top: 240,
+		height: 50,
+		width: 100,
+		backgroundColor: "#fff"
+	});
+	
+	var playing_image = Titanium.UI.createButton({
+		width: 50,
+		height: 50,
+		left:0
+	})
+	
+	var playing_label = Titanium.UI.createLabel({
+		text: "nothing",
+		width: 100,
+		height: 100,
+		color: "#000"
+	});
+	
+	var like_button = Titanium.UI.createButton({
+		title: "LIKE",
+		height:19,
+		width:40,
+		top:5,
+		right:5
+	});
+	
+	like_button.addEventListener('click', postToWall.partial(playing_label, playing_image));
+	
+	current_playing.add(playing_image);
+	current_playing.add(playing_label);
+	current_playing.add(like_button);
+	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
 		backgroundSelectedImage:'images/remote_view/remote_home_down.png',
@@ -147,7 +183,7 @@ Views.remote = function(win) {
 		width:62
 	});
 	
-	ok_button.addEventListener('click', Xbmc.action('select'));
+	ok_button.addEventListener('click', compose(Xbmc.action('select'), Xbmc.currentPlaying.curry(displayPlaying.partial(playing_label, playing_image))));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:0,
@@ -213,4 +249,22 @@ Views.remote = function(win) {
 	color_buttons.add(green_button);
 	color_buttons.add(yellow_button);
 	win.add(color_buttons);
+	win.add(current_playing);
+	
+	
+	function displayPlaying(label, image_view, playing) {
+		current_playing.visible = playing ? true : false;
+		label.text = playing;
+		
+		if(playing) {
+			var img = 'channel_' + playing.toLowerCase() + '.png';
+			image_view.img = img;
+			image_view.backgroundImage = 'images/channels/'+img;
+		}
+	}
+	
+	function postToWall(label, image_view) {
+		var channel = label.text;
+		FbGraph.wallPost("I'm watching "+ channel + " on my Netgear NeoTv.", 'http://looprecur.com/netgear/'+image_view.img);
+	}
 };

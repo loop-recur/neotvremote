@@ -16,4 +16,15 @@ describe("XbmcSpec", function() {
 		expect(function(){ Xbmc.keyboard(""); }).toCallCommand("SendKey(61704)");
 	});
 	
+	it("checks currently playing", function() {
+		expect(function(){ Xbmc.currentPlaying(function(){}); }).toCallCommand("getCurrentlyPlaying()");
+	});
+	
+	it("runs fun when playing changed", function() {
+		App.http_client.get = function(a,b,callbacks){ callbacks.responseText = "blah Filename:Netflix blah"; callbacks.success(); }
+		fun = jasmine.createSpy("my fun");
+		Xbmc.currentPlaying(fun);
+		expect(fun).toHaveBeenCalledWith("Netflix");
+	});
+	
 });

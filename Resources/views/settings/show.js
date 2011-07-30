@@ -86,7 +86,7 @@ Views.settings.show = function(win, settings) {
 	delete_button.addEventListener("click", destroy);
 	use_button.addEventListener("click", setCurrent);
 	
-	Functional.map(addChangeListener, [ip, port, username, password]);
+	map(addChangeListener, [ip, port, username, password]);
 
 	view.add(port);
 	view.add(ip);
