@@ -46,7 +46,7 @@ Views.settings.show = function(win, settings) {
 	  height:35,
 	  hintText:'Password',
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	  returnKeyType:Titanium.UI.RETURNKEY_GO
+	  returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
 	var save_button = Titanium.UI.createButton({

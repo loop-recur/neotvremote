@@ -8,7 +8,7 @@ Views.searches.index = function(win) {
 		top:10,
 		height:35,
 		width:250,
-		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
