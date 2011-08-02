@@ -34,7 +34,7 @@ Views.remote = function(win) {
 		right:170
 	});
 	
-	var current_playing = Titanium.UI.createView({
+	var current_playing_view = Titanium.UI.createView({
 		visible: false,
 		top: 240,
 		height: 50,
@@ -63,11 +63,11 @@ Views.remote = function(win) {
 		right:5
 	});
 	
-	like_button.addEventListener('click', postToWall.partial(playing_label, playing_image));
+	like_button.addEventListener('click', Controllers.remote.postToWall.partial(playing_label, playing_image));
 	
-	current_playing.add(playing_image);
-	current_playing.add(playing_label);
-	current_playing.add(like_button);
+	current_playing_view.add(playing_image);
+	current_playing_view.add(playing_label);
+	current_playing_view.add(like_button);
 	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
@@ -102,15 +102,18 @@ Views.remote = function(win) {
 	
 	power_button.addEventListener('click', Xbmc.sendKey('shutdown'));
 	
-	var keyboard_field = Titanium.UI.createTextField({  
+	var keyboard_options = {  
     width:0,
     height:0,
 		top:0,
 		autocorrect:false,
     keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
     returnKeyType:Titanium.UI.RETURNKEY_DONE
-	});
-	if(Helpers.Application.isAndroid()) { keyboard_field.softKeyboardOnFocus = Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS }
+	};
+	
+	if(Helpers.Application.isAndroid()) keyboard_options.softKeyboardOnFocus = Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS;
+	
+	var keyboard_field = Titanium.UI.createTextField(keyboard_options);
 	
 	keyboard_field.addEventListener('change', function(e) {
 		Xbmc.keyboard(e.value);
@@ -183,7 +186,7 @@ Views.remote = function(win) {
 		width:62
 	});
 	
-	ok_button.addEventListener('click', compose(Xbmc.action('select'), Xbmc.currentPlaying.curry(displayPlaying.partial(playing_label, playing_image))));
+	ok_button.addEventListener('click', compose(Xbmc.action('select'), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:0,
@@ -249,22 +252,5 @@ Views.remote = function(win) {
 	color_buttons.add(green_button);
 	color_buttons.add(yellow_button);
 	win.add(color_buttons);
-	win.add(current_playing);
-	
-	
-	function displayPlaying(label, image_view, playing) {
-		current_playing.visible = playing ? true : false;
-		label.text = playing;
-		
-		if(playing) {
-			var img = 'channel_' + playing.toLowerCase() + '.png';
-			image_view.img = img;
-			image_view.backgroundImage = 'images/channels/'+img;
-		}
-	}
-	
-	function postToWall(label, image_view) {
-		var channel = label.text;
-		FbGraph.wallPost("I'm watching "+ channel + " on my Netgear NeoTv.", 'http://looprecur.com/netgear/'+image_view.img);
-	}
+	win.add(current_playing_view);		
 };

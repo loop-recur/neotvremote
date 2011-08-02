@@ -32,7 +32,7 @@ Views.channel_list = function(win, channels) {
 	
 	function makeChannel(name) {
 		var name = Titanium.UI.createButton({
-			backgroundImage:'images/channels/channel_' + name + '.png',
+			backgroundImage: Channel.imagePath(name),
 			height:height,
 			width:width,
 			top:top + rows_built*height + rows_built*row_separation,
