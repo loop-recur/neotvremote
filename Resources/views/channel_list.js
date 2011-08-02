@@ -1,4 +1,5 @@
 Views.channel_list = function(win, channels) {
+	
 	channels.reverse(); //hack
 	
 	var scrollview = Titanium.UI.createScrollView({

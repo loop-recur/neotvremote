@@ -131,7 +131,44 @@ Views.remote = function(win) {
 	keyboard_button.addEventListener('click', function(){
 		keyboard_field.focus();
 	});
+	
+	var interface_button = Titanium.UI.createButton({
+		title:'Gesture',
+		height:35,
+		width:75,
+		top:40,
+		right:10
+	});
+	
+	interface_button.addEventListener('click', function(){
+		if(gesture_controls.visible == false) {
+			arrow_controls.visible = false;
+			gesture_controls.visible = true;
+			interface_button.title = "Gesture";
+		} else {
+			arrow_controls.visible = true;
+			gesture_controls.visible = false;
+			interface_button.title = "Arrow";
+		}
+	});
+	
+	// GESTURES SECTION
+	
+	var gesture_controls = Titanium.UI.createView({
+		backgroundImage:'images/remote_view/remote_mainbtns.png',
+		top:35,
+		width:188,
+		height:188,
+		visible:false
+	});
 
+	gesture_controls.addEventListener('swipe', function(e)
+	{
+		alert(e.direction);
+	});
+	
+	// ARROW CONTROL SECTION
+	
 	var arrow_controls = Titanium.UI.createView({
 		backgroundImage:'images/remote_view/remote_mainbtns.png',
 		top:35,
@@ -139,46 +176,82 @@ Views.remote = function(win) {
 		height:188
 	});
 
+	var up_clickable = Titanium.UI.createView({
+		top:22,
+		width:60,
+		height:37
+	});
+	
+	var down_clickable = Titanium.UI.createView({
+		bottom:22,
+		width:60,
+		height:37
+	});
+	
+	var left_clickable = Titanium.UI.createView({
+		left:24,
+		height:60,
+		width:37
+	});
+	
+	var right_clickable = Titanium.UI.createView({
+		right:24,
+		height:60,
+		width:37
+	});
+	
 	var up_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_upbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_upbtn_down.png',
 		height:17,
 		width:30,
-		top:22
+		top:0
 	});
 	
-	up_button.addEventListener('click', Xbmc.action('up'));
+	up_clickable.addEventListener('click', function() {
+		Feedback.buttonPress();
+		Xbmc.action('up');
+	});
 
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_downbtn_down.png',
 		height:17,
 		width:30,
-		bottom:22
+		bottom:0
 	});
-
-	down_button.addEventListener('click', Xbmc.action('down'));
+	
+	down_button.addEventListener('click', function() {
+		Feedback.buttonPress();
+		Xbmc.action('down');		
+	});
 
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_leftbtn_down.png',
 		height:30,
 		width:17,
-		left:24
+		left:0
 	});
 	
-	left_button.addEventListener('click', Xbmc.action('left'));
+	left_button.addEventListener('click', function() {
+		Feedback.buttonPress();
+		Xbmc.action('left');		
+	});
 
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_rightbtn_down.png',
 		height:30,
 		width:17,
-		right:24
+		right:0
 	});
 	
-	right_button.addEventListener('click', Xbmc.action('right'));
-
+	right_button.addEventListener('click', function() {
+		Feedback.buttonPress();
+		Xbmc.action('right');		
+	});
+	
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_okbtn_down.png',
@@ -220,7 +293,6 @@ Views.remote = function(win) {
 		bottom:2
 	});
 
-
 	var yellow_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_yellowbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_yellowbtn_down.png',
@@ -240,11 +312,20 @@ Views.remote = function(win) {
 	win.add(power_button);
 
 
-	arrow_controls.add(up_button);
-	arrow_controls.add(down_button);
-	arrow_controls.add(left_button);
-	arrow_controls.add(right_button);
+	up_clickable.add(up_button);
+	down_clickable.add(down_button);
+	left_clickable.add(left_button);
+	right_clickable.add(right_button);
+	
 	arrow_controls.add(ok_button);
+	arrow_controls.add(up_clickable);
+	arrow_controls.add(down_clickable);
+	arrow_controls.add(left_clickable);
+	arrow_controls.add(right_clickable);
+
+	win.add(gesture_controls);
+	win.add(interface_button);
+	
 	win.add(arrow_controls);
 
 	color_buttons.add(blue_button);

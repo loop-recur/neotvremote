@@ -27,6 +27,10 @@ Views.channels = function(win) {
 		right:30		
 	});
 	
+	channel_favorites.addEventListener('click', function() {		
+		
+	});
+	
 	Views.channel_list(win, Channels);
 	
 	win.add(home_button);
