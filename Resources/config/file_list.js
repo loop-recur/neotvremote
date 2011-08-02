@@ -9,6 +9,7 @@ FileList = [
 	"lib/channel.js",
 	"lib/favorites.js",
 	"lib/fb_graph.js",
+	"lib/feedback.js",
 	"lib/settings.js",
 	"lib/xbmc.js",
 	"layouts/application.js",

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
-<id>com.webcapsule.webcapsule</id>
+<id>com.looprecur.neotvremote</id>
 <name>neotvremote</name>
-<version>.1</version>
-<publisher>not specified</publisher>
-<url>not specified</url>
-<description>not specified</description>
-<copyright>not specified</copyright>
+<version>.3</version>
+<publisher>Netgear</publisher>
+<url>www.netgear.com</url>
+<description>NeoTV Remote</description>
+<copyright>2011</copyright>
 <icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
