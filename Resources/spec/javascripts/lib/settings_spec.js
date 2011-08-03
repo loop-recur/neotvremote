@@ -13,9 +13,9 @@ describe("SettingsSpec", function() {
 										{host:"http://192.168.2.7", port:9090, username:"abc", password:"def"}];
 										
 		beforeEach(function() {
-		  App.db.find = jasmine.createSpy().andCallFake(function(x,y,z){
+		  App.db.find = jasmine.createSpy().andCallFake(function(name,options,fun){
 				var current = select('.current', settings);
-				return y['current'] ? z(current) : z(settings);
+				return options['current'] ? fun(current) : fun(settings);
 			});
 		});		
 		

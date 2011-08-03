@@ -61,7 +61,7 @@ LoopRecur.HttpClient = function(client) {
 		} else {
 			client.setRequestHeader('Authorization', "not logged in"); //hack to get it to send json correctly
 		}
-		client.setRequestHeader("content-type", "application/json");
+		// client.setRequestHeader("content-type", "application/json");
 	}
 	
 	var priv_obj = {post: post, get: get, destroy : destroy};

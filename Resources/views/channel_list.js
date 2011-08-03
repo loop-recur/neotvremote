@@ -1,6 +1,6 @@
 Views.channel_list = function(win, channels) {
-	channels.reverse(); //hack
-	
+	var default_settings = {height: 77, width: 90, left: 12.5, column_separation: 12.5, top: 2, row_separation: 10, rows_built: 0};
+		
 	var scrollview = Titanium.UI.createScrollView({
 		top:40,
 		height:365,
@@ -10,49 +10,53 @@ Views.channel_list = function(win, channels) {
 		showHorizontalScrollIndicator:false,
 		showVerticalScrollIndicator:true
 	});
+
+	reduce(makeChannel, {settings: default_settings, amount: 0}, channels);
 	
-	var height = 77;
-	var top = 2;
-	var row_separation = 10;
-	
-	var width = 90;
-	var left = 12.5;
-	var column_separation = 12.5;
-	
-	var rows_built = 0;
-	var column_counter = 0;
-	
-	function incrementColumn() {
-		column_counter += 1;
-		if (column_counter == 3) { 
-			column_counter = 0;
-			rows_built += 1;
-		};
-	};
-	
-	function makeChannel(name) {
-		var name = Titanium.UI.createButton({
+	function makeChannel(config, name) {
+		var new_settings = getNewSettings(config.settings, config.amount);
+		
+		var channel_button = Titanium.UI.createButton({
 			backgroundImage: Channel.imagePath(name),
-			height:height,
-			width:width,
-			top:top + rows_built*height + rows_built*row_separation,
-			left:left + column_counter*width + column_counter*column_separation,
+			height:new_settings.height,
+			width:new_settings.width,
+			top:new_settings.top,
+			left:new_settings.left,
 			id:name,
 			value:name
 		});
-		
-		name.addEventListener('click', function() {
-			alert(name.value + " clicked!");
+				
+		channel_button.addEventListener('click', function() {
+			alert(channel_button.value + " clicked!");
 		});
 		
-		return name;
+		scrollview.add(channel_button);
+		
+		return {settings: new_settings, amount: config.amount+1};
 	}
 	
-	for (var i = channels.length - 1; i >= 0; i--){
-		scrollview.add(makeChannel(channels[i]));
-		incrementColumn();
-	};
-	
+	function getNewSettings(settings, amount) {
+		var top = settings.top;
+		var rows_built = settings.rows_built;
+		var left = settings.left+settings.width+settings.column_separation;
+		
+		if(amount % 3 == 0) {
+			rows_built = rows_built + 1;
+			top = settings.top + settings.rows_built+settings.height + settings.row_separation;
+			left = default_settings.left;
+		}
+		
+		return {
+			height: settings.height,
+			width: settings.width,
+			left: left,
+			column_separation: settings.column_separation,
+			top: top,
+			row_separation: settings.row_separation,
+			rows_built: settings.rows_built
+		};
+	}
+		
 	win.add(scrollview);
 	
 	return scrollview;
