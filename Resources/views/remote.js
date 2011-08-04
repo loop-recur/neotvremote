@@ -78,7 +78,7 @@ Views.remote = function(win) {
 		right:5
 	});
 	
-	home_button.addEventListener('click', Xbmc.action('menu'));
+	home_button.addEventListener('click', compose(Xbmc.action('menu'), Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null)));
 
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',

@@ -1,4 +1,4 @@
-Views.settings.index = function(win, settings) {	
+Views.settings.index = function(win, settings) {		
 	var newRow = Ti.UI.createTableViewRow({
 		height:80,
 		width:320
@@ -30,10 +30,10 @@ Views.settings.index = function(win, settings) {
 		});
 		
 		var current = Ti.UI.createLabel({
-			right:0,
+			right:80,
 			top:17,
 			height:20,
-			width:190,
+			width:10,
 			text:"*"
 		});
 		
@@ -52,7 +52,7 @@ Views.settings.index = function(win, settings) {
 	 });
 
 	tableview.addEventListener('click', function(e) {
-		Views.settings.show(win, e.rowData.owner);
+		Views.settings.show(win, tableview, e.rowData.owner);
 	});
 	
 	win.add(tableview);	
