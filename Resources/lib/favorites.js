@@ -2,7 +2,7 @@ var Favorites = function() {
 	
 	function toggleFavorite(id) {
 		_findFavorite(id, function(favorites){
-			(favorites.length > 1) ? _destroy(id) : _save(id);
+			(favorites.length > 0) ? _destroy(id) : _save(id);
 		})
 	}
 	

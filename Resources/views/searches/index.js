@@ -18,12 +18,15 @@ Views.searches.index = function(win) {
 	});
 	
 	view.add(search_field);
+	view.add(result_view);
 	win.add(view);
+	
 	
 	
 	function updateChannels(val) {
 		view.remove(result_view);
 		result_view = makeView(foundChannels(val));
+		view.add(result_view);
 	}
 	
 	function foundChannels(val, channels) {
@@ -32,6 +35,6 @@ Views.searches.index = function(win) {
 	};
 	
 	function makeView(channels) {
-		return Views.channel_list(view, channels);
+		return Views.channel_list(channels);
 	}
 };

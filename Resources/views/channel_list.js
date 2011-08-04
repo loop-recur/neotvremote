@@ -1,4 +1,5 @@
-Views.channel_list = function(win, channels) {
+Views.channel_list = function(channels, favorites) {
+	var clickFun = favorites ? toggleFav : launchChannel;
 	var default_settings = {height: 77, width: 90, left: 12.5, column_separation: 12.5, top: 2, row_separation: 10, rows_built: 0};
 		
 	var scrollview = Titanium.UI.createScrollView({
@@ -16,7 +17,7 @@ Views.channel_list = function(win, channels) {
 	function makeChannel(config, name) {
 		var new_settings = getNewSettings(config.settings, config.amount);
 		
-		var channel_button = Titanium.UI.createButton({
+		var channel_button = Titanium.UI.createView({
 			backgroundImage: Channel.imagePath(name),
 			height:new_settings.height,
 			width:new_settings.width,
@@ -25,10 +26,10 @@ Views.channel_list = function(win, channels) {
 			id:name,
 			value:name
 		});
+		
+		if(favorites) addMask(channel_button);
 				
-		channel_button.addEventListener('click', function() {
-			alert(channel_button.value + " clicked!");
-		});
+		channel_button.addEventListener('click', clickFun);
 		
 		scrollview.add(channel_button);
 		
@@ -42,9 +43,11 @@ Views.channel_list = function(win, channels) {
 		
 		if(amount % 3 == 0) {
 			rows_built = rows_built + 1;
-			top = settings.top + settings.rows_built+settings.height + settings.row_separation;
+			top = settings.top + settings.rows_built + settings.height + settings.row_separation;
 			left = default_settings.left;
 		}
+		
+		if(amount == 0) top = 0;
 		
 		return {
 			height: settings.height,
@@ -56,8 +59,25 @@ Views.channel_list = function(win, channels) {
 			rows_built: settings.rows_built
 		};
 	}
-		
-	win.add(scrollview);
+	
+	function addMask(channel_button) {
+		channel_button.opacity = getOpacity(channel_button);
+	}
+	
+	function getOpacity(channel_button) {
+		return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 0.2;
+	}
+	
+	function launchChannel(e) {
+		alert(e.source.value + " clicked!");
+	}
+	
+	function toggleFav(e) {
+		var channel = e.source.value;
+		var index = Channels.indexOf(channel);
+		Favorites.toggleFavorite(index);
+		e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
+	}
 	
 	return scrollview;
 };
