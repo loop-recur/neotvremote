@@ -1,4 +1,4 @@
-Views.settings.show = function(win, table, settings) {
+Views.settings.show = function(win, settings) {
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
 
 	var ip_row = Ti.UI.createTableViewRow({
@@ -114,11 +114,6 @@ Views.settings.show = function(win, table, settings) {
 
 	map(addChangeListener, [ip, port, username, password]);
 
-	// view.add(port);
-	// view.add(ip);
-	// view.add(username);
-	// view.add(password);
-	
 	win.add(view);
 	
 	function addChangeListener(field) {
@@ -129,7 +124,7 @@ Views.settings.show = function(win, table, settings) {
 	
 	function close() {
 		App.loadSettings();
-		table.data = [];
+		// table.data = [];
 		App.action(win, "settings#index");
 		win.remove(view);
 	}
