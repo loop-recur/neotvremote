@@ -11,7 +11,7 @@ Views.channel_list = function(win, channels) {
 		showHorizontalScrollIndicator:false,
 		showVerticalScrollIndicator:true
 	});
-	
+
 	var height = 77;
 	var top = 2;
 	var row_separation = 10;
