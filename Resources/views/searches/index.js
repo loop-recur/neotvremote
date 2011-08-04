@@ -33,6 +33,7 @@ Views.searches.index = function(win) {
 	function updateChannels(val) {
 		view.remove(result_view);
 		result_view = makeView(foundChannels(val));
+		view.add(result_view);
 	}
 	
 	function foundChannels(val, channels) {
@@ -41,6 +42,6 @@ Views.searches.index = function(win) {
 	};
 	
 	function makeView(channels) {
-		return Views.channel_list(view, channels);
+		return Views.channel_list(channels);
 	}
 };
