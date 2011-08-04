@@ -39,7 +39,7 @@ Views.settings.index = function(win, settings) {
 	
 	tableView.addEventListener('click', function(e)
 	{
-		Views.settings.show(win, e.rowData.owner);
+		Views.settings.show(win, tableView, e.rowData.owner);
 	});
 
 	win.add(tableView);	

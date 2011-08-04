@@ -1,4 +1,4 @@
-Views.settings.show = function(win, settings) {
+Views.settings.show = function(win, table, settings) {
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
 
 	var ip_row = Ti.UI.createTableViewRow({
@@ -124,7 +124,7 @@ Views.settings.show = function(win, settings) {
 	
 	function close() {
 		App.loadSettings();
-		// table.data = [];
+		table.data = [];
 		App.action(win, "settings#index");
 		win.remove(view);
 	}
