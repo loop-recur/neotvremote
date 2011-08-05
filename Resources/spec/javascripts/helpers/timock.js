@@ -11,7 +11,7 @@ FakeView = {
 	render : jasmine.createSpy("render")
 };
 
-Mocks.db = { save:jasmine.createSpy(), delete:function(){}, find:jasmine.createSpy()};
+Mocks.db = { save:jasmine.createSpy(), destroy:function(){}, find:jasmine.createSpy()};
 
 Mocks.FakeFile = { write:jasmine.createSpy(), deleteFile:function(){}, exists:jasmine.createSpy()};
 FakeGroup = { addTab:function(){}, addEventListener:function(){}, setActiveTab:function(){}, open:function(){} };
