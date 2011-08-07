@@ -193,10 +193,7 @@ Views.remote = function(win) {
 		top:0
 	});
 	
-	up_clickable.addEventListener('click', function() {
-		Feedback.buttonPress();
-		Xbmc.action('up');
-	});
+	up_clickable.addEventListener('click', compose(Xbmc.action('up'), Feedback.buttonPress));
 
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
@@ -206,10 +203,7 @@ Views.remote = function(win) {
 		bottom:0
 	});
 	
-	down_button.addEventListener('click', function() {
-		Feedback.buttonPress();
-		Xbmc.action('down');		
-	});
+	down_button.addEventListener('click', compose(Xbmc.action('down'), Feedback.buttonPress));
 
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
@@ -219,10 +213,7 @@ Views.remote = function(win) {
 		left:0
 	});
 	
-	left_button.addEventListener('click', function() {
-		Feedback.buttonPress();
-		Xbmc.action('left');		
-	});
+	left_button.addEventListener('click', compose(Xbmc.action('left'), Feedback.buttonPress));
 
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
@@ -232,10 +223,7 @@ Views.remote = function(win) {
 		right:0
 	});
 	
-	right_button.addEventListener('click', function() {
-		Feedback.buttonPress();
-		Xbmc.action('right');		
-	});
+	right_button.addEventListener('click', compose(Xbmc.action('right'), Feedback.buttonPress));
 	
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',
