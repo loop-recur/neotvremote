@@ -4,10 +4,10 @@ Views.remote = function(win) {
 		title:'Search',
 		backgroundImage:'images/remote_view/',
 		backgroundSelectedImage:'images/remote_view/',
-		height:20,
-		width:70,
-		top:5,
-		left:5
+		height:"20dp",
+		width:"70dp",
+		top:"5dp",
+		left:"5dp"
 	});
 	
 	search.addEventListener('click', function() {

@@ -1,5 +1,5 @@
 Views.channels = function(win) {
-	var view = Titanium.UI.createView({top: 30});
+	var view = Titanium.UI.createView({top: "30dp"});
 	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_home.png',
