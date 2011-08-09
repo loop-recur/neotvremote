@@ -8,9 +8,9 @@ Views.settings.show = function(win, table, settings) {
 		color:'#336699',
 		id:"host",
 		value:(settings.host || null),
-		left:107,
-		width:180,
-		height:35,
+		left:"107dp",
+		width:"180dp",
+		height:"35dp",
 		hintText:'Enter ip...',
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
@@ -18,9 +18,9 @@ Views.settings.show = function(win, table, settings) {
 	});
 	var ip_label = Titanium.UI.createLabel({
 		text:"IP Address:",
-		font:{fontFamily:'Helvetica Neue',fontSize:16,fontWeight:'bold'},
-		left:10, 
-		width:90
+		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
+		left:"10dp", 
+		width:"90dp"
 	});
 	ip_row.add(ip_label);
 	ip_row.add(ip);
@@ -31,18 +31,18 @@ Views.settings.show = function(win, table, settings) {
 		id: "port",
 		hintText:"Enter port...",
 		value: (settings.port || null),
-		left:107,
-		width:180,
-		height:35,
+		left:"107dp",
+		width:"180dp",
+		height:"35dp",
 		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
 	});
 	var port_label = Titanium.UI.createLabel({
 		text:"Port:",
-		font:{fontFamily:'Helvetica Neue',fontSize:16,fontWeight:'bold'},
-		left:10, 
-		width:90
+		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
+		left:"10dp", 
+		width:"90dp"
 	});
 	port_row.add(port_label);
 	port_row.add(port);
@@ -51,9 +51,9 @@ Views.settings.show = function(win, table, settings) {
 	var username = Titanium.UI.createTextField({  
 		id: "username",
 		value: (settings.username || null),
-		left:107,
-		width:180,
-		height:35,
+		left:"107dp",
+		width:"180dp",
+		height:"35dp",
 	  hintText:'username',  
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	  returnKeyType:Titanium.UI.RETURNKEY_NEXT,
@@ -61,9 +61,9 @@ Views.settings.show = function(win, table, settings) {
 	});
 	var username_label = Titanium.UI.createLabel({
 		text:"Username:",
-		font:{fontFamily:'Helvetica Neue',fontSize:16,fontWeight:'bold'},
-		left:10, 
-		width:90
+		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
+		left:"10dp", 
+		width:"90dp"
 	});
 	username_row.add(username_label);
 	username_row.add(username);
@@ -72,9 +72,9 @@ Views.settings.show = function(win, table, settings) {
 	var password = Titanium.UI.createTextField({ 
 		id: "password",
 		value: (settings.password || null),
-		left:107,
-		width:180,
-		height:35,
+		left:"107dp",
+		width:"180dp",
+		height:"35dp",
 	  hintText:'Password',
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE,
@@ -82,9 +82,9 @@ Views.settings.show = function(win, table, settings) {
 	});
 	var password_label = Titanium.UI.createLabel({
 		text:"Password:",
-		font:{fontFamily:'Helvetica Neue',fontSize:16,fontWeight:'bold'},
-		left:10, 
-		width:90
+		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
+		left:"10dp", 
+		width:"90dp"
 	});
 	password_row.add(password_label);
 	password_row.add(password);

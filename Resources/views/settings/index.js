@@ -21,9 +21,9 @@ Views.settings.index = function(win, settings) {
 		});
 		
 		var title = Ti.UI.createLabel({
-			height:20,
-			left:10,
-			width:190,
+			height:"20dp",
+			left:"10dp",
+			width:"190dp",
 			text:r.host
 		});
 

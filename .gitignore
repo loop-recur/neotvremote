@@ -3,3 +3,6 @@ build/iphone/*
 build/android/*
 build.log
 Resources/config/environments.js
+.fastdev.lock
+.settings/
+api.jsca

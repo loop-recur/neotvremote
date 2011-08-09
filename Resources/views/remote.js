@@ -4,10 +4,10 @@ Views.remote = function(win) {
 		title:'Search',
 		backgroundImage:'images/remote_view/',
 		backgroundSelectedImage:'images/remote_view/',
-		height:20,
-		width:70,
-		top:5,
-		left:5
+		height:"20dp",
+		width:"70dp",
+		top:"5dp",
+		left:"5dp"
 	});
 	
 	search.addEventListener('click', function() {
@@ -18,49 +18,49 @@ Views.remote = function(win) {
 		title:'Favorites',
 		backgroundImage:'images/remote_view/',
 		backgroundSelectedImage:'images/remote_view/',
-		height:20,
-		width:80,
-		top:5,
-		right:70
+		height:"20dp",
+		width:"80dp",
+		top:"5dp",
+		right:"70dp"
 	});
 
 	var facebook_like = Titanium.UI.createButton({
 		title:'Like',
 		backgroundImage:'images/remote_view/',
 		backgroundSelectedImage:'images/remote_view/',
-		height:20,
-		width:60,
-		top:5,
-		right:170
+		height:"20dp",
+		width:"60dp",
+		top:"5dp",
+		right:"170dp"
 	});
 	
 	var current_playing_view = Titanium.UI.createView({
 		visible: false,
-		top: 240,
-		height: 50,
-		width: 100,
+		top: "240dp",
+		height: "50dp",
+		width: "100dp",
 		backgroundColor: "#fff"
 	});
 	
 	var playing_image = Titanium.UI.createButton({
-		width: 50,
-		height: 50,
-		left:0
+		width: "50dp",
+		height: "50dp",
+		left:"0dp"
 	})
 	
 	var playing_label = Titanium.UI.createLabel({
 		text: "nothing",
-		width: 100,
-		height: 100,
+		width: "100dp",
+		height: "100dp",
 		color: "#000"
 	});
 	
 	var like_button = Titanium.UI.createButton({
 		title: "LIKE",
-		height:19,
-		width:40,
-		top:5,
-		right:5
+		height:"19dp",
+		width:"40dp",
+		top:"5dp",
+		right:"5dp"
 	});
 	
 	like_button.addEventListener('click', Controllers.remote.postToWall.partial(playing_label, playing_image));
@@ -72,10 +72,10 @@ Views.remote = function(win) {
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
 		backgroundSelectedImage:'images/remote_view/remote_home_down.png',
-		height:19,
-		width:20,
-		top:5,
-		right:5
+		height:"19dp",
+		width:"20dp",
+		top:"5dp",
+		right:"5dp"
 	});
 	
 	home_button.addEventListener('click', compose(Xbmc.action('menu'), Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null)));
@@ -83,10 +83,10 @@ Views.remote = function(win) {
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_backbtn_down.png',
-		height:35,
-		width:65,
-		top:210,
-		left:10
+		height:"35dp",
+		width:"65dp",
+		top:"210dp",
+		left:"10dp"
 	});
 	
 	return_button.addEventListener('click', Xbmc.action('back'));
@@ -94,10 +94,10 @@ Views.remote = function(win) {
 	var power_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_powerbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_powerbtn_down.png',
-		height:46,
-		width:46,
-		top:45,
-		left:15
+		height:"46dp",
+		width:"46dp",
+		top:"45dp",
+		left:"15dp"
 	});
 	
 	power_button.addEventListener('click', Xbmc.sendKey('shutdown'));
@@ -107,10 +107,10 @@ Views.remote = function(win) {
 	var keyboard_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_keyboardbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_keyboardbtn_down.png',
-		height:35,
-		width:65,
-		top:210,
-		right:10
+		height:"35dp",
+		width:"65dp",
+		top:"210dp",
+		right:"10dp"
 	});
 	
 	keyboard_button.addEventListener('click', function(){
@@ -119,10 +119,10 @@ Views.remote = function(win) {
 	
 	var interface_button = Titanium.UI.createButton({
 		title:'Gesture',
-		height:35,
-		width:75,
-		top:40,
-		right:10
+		height:"35dp",
+		width:"75dp",
+		top:"40dp",
+		right:"10dp"
 	});
 	
 	interface_button.addEventListener('click', function(){
@@ -141,9 +141,9 @@ Views.remote = function(win) {
 	
 	var gesture_controls = Titanium.UI.createView({
 		backgroundImage:'images/remote_view/remote_mainbtns.png',
-		top:35,
-		width:188,
-		height:188,
+		top:"35dp",
+		width:"188dp",
+		height:"188dp",
 		visible:false
 	});
 
@@ -156,41 +156,41 @@ Views.remote = function(win) {
 	
 	var arrow_controls = Titanium.UI.createView({
 		backgroundImage:'images/remote_view/remote_mainbtns.png',
-		top:35,
-		width:188,
-		height:188
+		top:"35dp",
+		width:"188dp",
+		height:"188dp"
 	});
 
 	var up_clickable = Titanium.UI.createView({
-		top:22,
-		width:60,
-		height:37
+		top:"22dp",
+		width:"60dp",
+		height:"37dp"
 	});
 	
 	var down_clickable = Titanium.UI.createView({
-		bottom:22,
-		width:60,
-		height:37
+		bottom:"22dp",
+		width:"60dp",
+		height:"37dp"
 	});
 	
 	var left_clickable = Titanium.UI.createView({
-		left:24,
-		height:60,
-		width:37
+		left:"24dp",
+		height:"60dp",
+		width:"37dp"
 	});
 	
 	var right_clickable = Titanium.UI.createView({
-		right:24,
-		height:60,
-		width:37
+		right:"24dp",
+		height:"60dp",
+		width:"37dp"
 	});
 	
 	var up_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_upbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_upbtn_down.png',
-		height:17,
-		width:30,
-		top:0
+		height:"17dp",
+		width:"30dp",
+		top:"0dp"
 	});
 	
 	up_clickable.addEventListener('click', compose(Xbmc.action('up'), Feedback.buttonPress));
@@ -198,9 +198,9 @@ Views.remote = function(win) {
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_downbtn_down.png',
-		height:17,
-		width:30,
-		bottom:0
+		height:"17dp",
+		width:"30dp",
+		bottom:"0dp"
 	});
 	
 	down_button.addEventListener('click', compose(Xbmc.action('down'), Feedback.buttonPress));
@@ -208,9 +208,9 @@ Views.remote = function(win) {
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_leftbtn_down.png',
-		height:30,
-		width:17,
-		left:0
+		height:"30dp",
+		width:"17dp",
+		left:"0dp"
 	});
 	
 	left_button.addEventListener('click', compose(Xbmc.action('left'), Feedback.buttonPress));
@@ -218,9 +218,9 @@ Views.remote = function(win) {
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_rightbtn_down.png',
-		height:30,
-		width:17,
-		right:0
+		height:"30dp",
+		width:"17dp",
+		right:"0dp"
 	});
 	
 	right_button.addEventListener('click', compose(Xbmc.action('right'), Feedback.buttonPress));
@@ -228,51 +228,51 @@ Views.remote = function(win) {
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_okbtn_down.png',
-		height:62,
-		width:62
+		height:"62dp",
+		width:"62dp"
 	});
 	
 	ok_button.addEventListener('click', compose(Xbmc.action('select'), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
 
 	var color_buttons = Titanium.UI.createView({
-		bottom:0,
-		height:60
+		bottom:"0dp",
+		height:"60dp"
 	});
 
 	var red_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_redbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_redbtn_down.png',
-		height:38,
-		width:38,
-		left:33,
-		bottom:14
+		height:"38dp",
+		width:"38dp",
+		left:"33dp",
+		bottom:"14dp"
 	});
 
 	var blue_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_bluebtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_bluebtn_down.png',
-		height:38,
-		width:38,
-		left:105,
-		bottom:2
+		height:"38dp",
+		width:"38dp",
+		left:"105dp",
+		bottom:"2dp"
 	});
 
 	var green_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_greenbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_greenbtn_down.png',
-		height:38,
-		width:38,
-		right:105,
-		bottom:2
+		height:"38dp",
+		width:"38dp",
+		right:"105dp",
+		bottom:"2dp"
 	});
 
 	var yellow_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_yellowbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_yellowbtn_down.png',
-		height:38,
-		width:38,
-		right:33,
-		bottom:14
+		height:"38dp",
+		width:"38dp",
+		right:"33dp",
+		bottom:"14dp"
 	});
 
 	win.add(search);

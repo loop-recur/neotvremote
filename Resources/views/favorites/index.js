@@ -3,10 +3,10 @@ Views.favorites.index = function(view, favorites) {
 	
 	var edit_button = Titanium.UI.createButton({
 		title: "Edit",
-		height:25,
-		width:45,
-		top:5,
-		right:30
+		height:"25dp",
+		width:"45dp",
+		top:"5dp",
+		right:"30dp"
 	});
 	
 	edit_button.addEventListener('click', function(){
