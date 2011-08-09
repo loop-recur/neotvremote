@@ -3,10 +3,10 @@ Views.favorites.edit = function(view, favorites) {
 	
 	var edit_button = Titanium.UI.createButton({
 		title: "Stop Editting",
-		height:25,
-		width:105,
-		top:5,
-		right:30
+		height:"25dp",
+		width:"105dp",
+		top:"5dp",
+		right:"30dp"
 	});
 	
 	edit_button.addEventListener('click', function(){

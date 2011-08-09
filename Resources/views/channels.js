@@ -4,10 +4,10 @@ Views.channels = function(win) {
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_home.png',
 		backgroundSelectedImage:'images/channel_view/channel_home_down.png',
-		height:19,
-		width:20,
-		top:5,
-		right:5
+		height:"19dp",
+		width:"20dp",
+		top:"5dp",
+		right:"5dp"
 	});
 	
 	var keyboard_field = Helpers.ui.keyboard();
@@ -15,10 +15,10 @@ Views.channels = function(win) {
 	var keyboard_button = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_keyboard.png',
 		backgroundSelectedImage:'images/channel_view/channel_keyboard_down.png',
-		height:25,
-		width:45,
-		top:5,
-		left:10
+		height:"25dp",
+		width:"45dp",
+		top:"5dp",
+		left:"10dp"
 	});	
 	
 	keyboard_button.addEventListener('click', function(){
@@ -28,10 +28,10 @@ Views.channels = function(win) {
 	var channel_favorites = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_fav.png',
 		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
-		height:20,
-		width:20,
-		top:5,
-		right:30		
+		height:"20dp",
+		width:"20dp",
+		top:"5dp",
+		right:"30dp"		
 	});
 	
 	var channel_list = Views.channel_list(Channels);

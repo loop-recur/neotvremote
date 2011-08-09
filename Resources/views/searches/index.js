@@ -10,8 +10,8 @@ Views.searches.index = function(win) {
 		barColor:'black',
 		showCancel:true,
 		hintText:'Enter a channel...',
-		height:40,
-		top:0
+		height:"40dp",
+		top:"0dp"
 	});
 	
 	search.addEventListener('cancel', function(e)
