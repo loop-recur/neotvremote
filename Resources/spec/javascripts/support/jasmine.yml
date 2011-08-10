@@ -15,8 +15,10 @@ src_files:
   - lib/framework/lib/base.js
   - spec/javascripts/helpers/timock.js
   - spec/controllers/*
+  - spec/helpers/*
   - lib/*.js
   - controllers/*.js
+  - helpers/*.js
 
 # stylesheets
 #

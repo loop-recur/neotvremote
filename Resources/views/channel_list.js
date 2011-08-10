@@ -38,11 +38,11 @@ Views.channel_list = function(channels, favorites) {
 	function getNewSettings(settings, amount) {
 		var top = settings.top;
 		var rows_built = settings.rows_built;
-		var left = settings.left+settings.width+settings.column_separation;
+		var left = Helpers.Application.addDp(settings.left, settings.width, settings.column_separation);
 		
 		if(amount % 3 == 0) {
 			rows_built = rows_built + 1;
-			top = settings.top + settings.rows_built + settings.height + settings.row_separation;
+			top = Helpers.Application.addDp(settings.top, settings.height, settings.row_separation, settings.rows_built);
 			left = default_settings.left;
 		}
 		
