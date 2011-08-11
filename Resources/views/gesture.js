@@ -5,7 +5,7 @@ Views.gesture = function(win) {
 	var touch_x_stop = null;
 	var touch_y_stop = null;
 	
-	var difference_threshold = 40;
+	var difference_threshold = 150;
 
 	win.addEventListener('doubletap', function(e)
 	{
@@ -33,19 +33,19 @@ Views.gesture = function(win) {
 		var x_diff = touch_x_stop - touch_x_start;
 		var y_diff = touch_y_stop - touch_y_start;
 		
-		if (y_diff < difference_threshold && x_diff > difference_threshold) {
+		if (Math.abs(y_diff) < difference_threshold && x_diff > difference_threshold) {
 			alert("i went right");
+		}		
+		
+		if (Math.abs(x_diff) < difference_threshold && y_diff > difference_threshold) {
+			alert("i went down");
 		}
-
-		if (y_diff < difference_threshold && Math.abs(x_diff) > difference_threshold && x_diff < 0) {
+		
+		if (Math.abs(y_diff) < difference_threshold && (x_diff < 0 && Math.abs(x_diff) > difference_threshold)) {
 			alert("i went left");
 		}
 		
-		if (x_diff < difference_threshold && y_diff > difference_threshold) {
-			alert("i went down");
-		}
-
-		if (x_diff < difference_threshold && Math.abs(y_diff) > difference_threshold && y_diff < 0) {
+		if (Math.abs(x_diff) < difference_threshold && (y_diff < 0 && Math.abs(y_diff) > difference_threshold)) {
 			alert("i went up");
 		}
 	};
