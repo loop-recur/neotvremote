@@ -41,11 +41,13 @@ Views.channels = function(win) {
 		if(!editing) {
 			editing = true
 			view.remove(channel_list);
+			channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
 			App.action(view, "favorites#index");
 		} else {
 			editing = false;
 			map(function(v){ view.remove(v); }, view.children);
 			view.add(channel_list);
+			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
 		}
 	})
 	

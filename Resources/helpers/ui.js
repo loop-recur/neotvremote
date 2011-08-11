@@ -9,6 +9,7 @@ Helpers.ui.keyboard = function() {
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
+	
 	if(Helpers.Application.isAndroid()) { keyboard_field.softKeyboardOnFocus = Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS }
 
 	keyboard_field.addEventListener('change', function(e) {
@@ -17,3 +18,20 @@ Helpers.ui.keyboard = function() {
 	
 	return keyboard_field;
 }
+
+Helpers.ui.confirm = function(title, callbacks) {
+	if (!callbacks.cancel) callbacks.cancel = function() {};
+	var alert = Titanium.UI.createAlertDialog({ 
+		title:title, 
+		message: "Are you sure?", 
+		buttonNames: ['Yes', 'Cancel'], 
+		cancel:1 
+	});
+	
+	alert.addEventListener('click', function(e) { 
+		if (e.cancel === e.index || e.cancel === true) {return;}
+		(e.index === 0) ? callbacks.yes() : callbacks.cancel();
+	});
+		
+	alert.show();
+};

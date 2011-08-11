@@ -4,6 +4,10 @@ Views.searches.index = function(win) {
 		backgroundImage:'images/channel_view/channel_bg.png'
 	});
 	
+	var results = Ti.UI.createView({
+		top:"40dp"
+	});
+	
 	var result_view = makeView(Channels);
 
 	var search = Titanium.UI.createSearchBar({
@@ -30,15 +34,18 @@ Views.searches.index = function(win) {
 	});
 	
 	view.add(search);
-	view.add(result_view);
+	view.add(results);
+	
+	results.add(result_view);
+	search.focus();
 	
 	win.add(view);
 	
 	
 	function updateChannels(val) {
-		view.remove(result_view);
+		results.remove(result_view);
 		result_view = makeView(foundChannels(val));
-		view.add(result_view);
+		results.add(result_view);
 	}
 	
 	function foundChannels(val, channels) {

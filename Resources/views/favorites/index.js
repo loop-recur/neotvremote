@@ -6,7 +6,7 @@ Views.favorites.index = function(view, favorites) {
 		height:"25dp",
 		width:"45dp",
 		top:"5dp",
-		right:"30dp"
+		right:"60dp"
 	});
 	
 	edit_button.addEventListener('click', function(){

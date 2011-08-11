@@ -12,36 +12,52 @@ Layouts.application = function() {
 	    title:'Remote',
 	    window:win1
 	});
-
+	
+	
 	var win2 = Titanium.UI.createWindow({  
 	    backgroundImage:'images/channel_view/channel_bg.png',
 			navBarHidden: true
 	});
-	win2.addEventListener('open', Views.channels.partial(win2));
+	win2.addEventListener('open', Views.gesture.partial(win2));
 	
 	var tab2 = Titanium.UI.createTab({  
-	    icon:'images/channel_view/tab_icon_channels_inactive.png',
-	    title:'Channels',
+	    icon:'images/gestures/gesture.png',
+	    title:'Gestures',
 	    window:win2
 	});
+	
 
 	var win3 = Titanium.UI.createWindow({  
+	    backgroundImage:'images/channel_view/channel_bg.png',
+			navBarHidden: true
+	});
+	win3.addEventListener('open', Views.channels.partial(win3));
+	
+	var tab3 = Titanium.UI.createTab({  
+	    icon:'images/channel_view/tab_icon_channels_inactive.png',
+	    title:'Channels',
+	    window:win3
+	});
+	
+
+	var win4 = Titanium.UI.createWindow({  
 	    backgroundColor:'#fff',
 			navBarHidden: true
 	});
-	win3.addEventListener('open', function(){
-		App.action(win3, "settings#index");
+	win4.addEventListener('open', function(){
+		App.action(win4, "settings#index");
 	});
 	
-	var tab3 = Titanium.UI.createTab({
-	    icon:'KS_nav_ui.png',
+	var tab4 = Titanium.UI.createTab({
+	    icon:'images/settings/settings_gears.png',
 	    title:'Settings',
-	    window:win3
+	    window:win4
 	});
 
 	tabGroup.addTab(tab1);
 	tabGroup.addTab(tab2);
 	tabGroup.addTab(tab3);
+	tabGroup.addTab(tab4);
 
 	tabGroup.open();
 };
