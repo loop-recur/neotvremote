@@ -15,14 +15,14 @@ Layouts.application = function() {
 	
 	
 	var win2 = Titanium.UI.createWindow({  
-	    // backgroundImage:'images/channel_view/channel_bg.png',
+	    backgroundImage:'images/channel_view/channel_bg.png',
 			navBarHidden: true
 	});
 	win2.addEventListener('open', Views.gesture.partial(win2));
 	
 	var tab2 = Titanium.UI.createTab({  
 	    icon:'images/remote_view/tab_icon_remote_inactive.png',
-	    title:'Remote',
+	    title:'Gestures',
 	    window:win2
 	});
 	
