@@ -8,6 +8,20 @@ describe("SettingsSpec", function() {
 		expect(Mocks.db.save).toHaveBeenCalledWith('settings', {"port":8080});
 	});
 	
+	it("writes settings to the db if none exist", function() {
+		Mocks.db.find = jasmine.createSpy().andCallFake(function(a,b,c){ c([]); });
+		Settings.findOrCreate({host: "192.168.1.8", port:8081});
+		expect(Mocks.db.find).toHaveBeenCalledWith('settings', {host: "http://192.168.1.8", port:8081}, jasmine.any(Function));
+		expect(Mocks.db.save).toHaveBeenCalledWith('settings', {username: "xbmc", password: "xbmc", host: "http://192.168.1.8", port:8081});
+	});
+	
+	it("doesn't write settings to the db if previous exists", function() {
+		Mocks.db.find = jasmine.createSpy().andCallFake(function(a,b,c){ c(["something"]); });
+		Settings.findOrCreate({host: "192.168.1.8", port:8081});
+		expect(Mocks.db.find).toHaveBeenCalledWith('settings', {host: "http://192.168.1.8", port:8081}, jasmine.any(Function));
+		expect(Mocks.db.save).toHaveBeenCalledWith('settings', {username: "xbmc", password: "xbmc", host: "http://192.168.1.8", port:8081});
+	});
+	
 	describe("previous settings", function() {
 		var settings = [{host:"http://192.168.1.3", port:8080, username:"xbmc", password:"x"},
 										{host:"http://192.168.2.7", port:9090, username:"abc", password:"def"}];

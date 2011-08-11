@@ -1,6 +1,13 @@
 var Settings = function() {
 	var defaults = {username: "xbmc", password: "xbmc", port:8080, host: "http://192.168.1.1"};
 	
+	function findOrCreate(new_settings) {
+		var saveSettings = compose(save, _mergeDefaults.curry(new_settings));
+		var _saveWhen = compose(when.flip().partial(saveSettings), '.length < 1'.lambda());
+		var _findOrSave = App.db.find.partial('settings').flip().partial(_saveWhen);
+		compose(_findOrSave, _validate)(new_settings);
+	}
+	
 	function save(new_settings) {
 		var settings = _validate(new_settings);
 		App.db.save('settings', settings);
@@ -19,6 +26,10 @@ var Settings = function() {
 	
 	function load(fun) {
 		App.db.find('settings', {current : 1}, _setSetting.partial(fun, _firstSetting.curry(fun)));
+	}
+	
+	function _mergeDefaults(new_settings) {
+		return {username: "xbmc", password: "xbmc", port : new_settings.port, host : new_settings.host}
 	}
 	
 	function _firstSetting(fun) {
@@ -48,5 +59,5 @@ var Settings = function() {
 		return new_settings;
 	}
 	
-	return {save: save, destroy: destroy, setCurrent: setCurrent, load: load}
+	return {findOrCreate : findOrCreate, save: save, destroy: destroy, setCurrent: setCurrent, load: load}
 }();

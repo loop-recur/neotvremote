@@ -54,7 +54,7 @@ var Xbmc = function() {
 		
 		return function(success) {
 			if(!success) success = function(){};
-			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: success, error: function(e){Ti.API.info(e)}});
+			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: success, error: function(e){}});
 		}
 	}
 	

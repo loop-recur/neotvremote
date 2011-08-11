@@ -12,6 +12,7 @@
 #
 src_files:
   - lib/framework/support/functional.js
+  - lib/framework/support/more_functional.js
   - lib/framework/lib/base.js
   - spec/javascripts/helpers/timock.js
   - spec/controllers/*

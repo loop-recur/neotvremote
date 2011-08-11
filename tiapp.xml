@@ -31,5 +31,6 @@
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
 	</android>
 	<modules>
+		<module version="0.1" platform="android">com.looprecur.jmdns</module>
 	</modules>
 </ti:app>
