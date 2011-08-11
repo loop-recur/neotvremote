@@ -18,6 +18,7 @@ FileList = [
 	"views/favorites/index.js",
 	"views/favorites/edit.js",
 	"views/remote.js",
+	"views/gesture.js",
 	"views/searches/index.js",
 	"views/settings/index.js",
 	"views/settings/show.js"
