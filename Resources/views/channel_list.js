@@ -1,10 +1,10 @@
 Views.channel_list = function(channels, favorites) {
 	var clickFun = favorites ? toggleFav : launchChannel;
-	var default_settings = {height: 77, width: 90, left: 12.5, column_separation: 12.5, top: 2, row_separation: 10, rows_built: 0};
+	var default_settings = {height: "77dp", width: "90dp", left: "12.5dp", column_separation: "12.5dp", top: "2dp", row_separation: "10dp", rows_built: 0};
 	var scrollview = Titanium.UI.createScrollView({
-		top:40,
-		height:365,
-		width:320,
+		top:"40dp",
+		height:"365dp",
+		width:"320dp",
 		contentWidth:"auto",
 		contentHeight:'auto',
 		showHorizontalScrollIndicator:false,
@@ -38,11 +38,11 @@ Views.channel_list = function(channels, favorites) {
 	function getNewSettings(settings, amount) {
 		var top = settings.top;
 		var rows_built = settings.rows_built;
-		var left = settings.left+settings.width+settings.column_separation;
+		var left = Helpers.Application.addDp(settings.left, settings.width, settings.column_separation);
 		
 		if(amount % 3 == 0) {
 			rows_built = rows_built + 1;
-			top = settings.top + settings.rows_built + settings.height + settings.row_separation;
+			top = Helpers.Application.addDp(settings.top, settings.height, settings.row_separation, settings.rows_built);
 			left = default_settings.left;
 		}
 		
