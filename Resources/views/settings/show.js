@@ -12,7 +12,7 @@ Views.settings.show = function(win, table, settings) {
 		width:"180dp",
 		height:"35dp",
 		hintText:'Enter ip...',
-		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
 	});
@@ -34,7 +34,7 @@ Views.settings.show = function(win, table, settings) {
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
-		keyboardType:Titanium.UI.KEYBOARD_NUMBERS_PUNCTUATION,
+		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
 		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
 	});

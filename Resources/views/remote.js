@@ -14,25 +14,24 @@ Views.remote = function(win) {
 		App.action(win, "searches#index");
 	});
 
-	var favorites = Titanium.UI.createButton({
-		title:'Favorites',
-		backgroundImage:'images/remote_view/',
-		backgroundSelectedImage:'images/remote_view/',
+	var channel_favorites = Titanium.UI.createButton({
+		backgroundImage:'images/channel_view/channel_fav.png',
+		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
 		height:"20dp",
-		width:"80dp",
+		width:"20dp",
 		top:"5dp",
-		right:"70dp"
+		right:"30dp"		
 	});
 
-	var facebook_like = Titanium.UI.createButton({
-		title:'Like',
-		backgroundImage:'images/remote_view/',
-		backgroundSelectedImage:'images/remote_view/',
-		height:"20dp",
-		width:"60dp",
-		top:"5dp",
-		right:"170dp"
-	});
+	// var facebook_like = Titanium.UI.createButton({
+	// 	title:'Like',
+	// 	backgroundImage:'images/remote_view/',
+	// 	backgroundSelectedImage:'images/remote_view/',
+	// 	height:"20dp",
+	// 	width:"60dp",
+	// 	top:"5dp",
+	// 	right:"170dp"
+	// });
 	
 	var current_playing_view = Titanium.UI.createView({
 		visible: false,
@@ -100,7 +99,14 @@ Views.remote = function(win) {
 		left:"15dp"
 	});
 	
-	power_button.addEventListener('click', Xbmc.sendKey('shutdown'));
+	power_button.addEventListener('click', function() {
+		Helpers.ui.confirm("Shutdown NeoTV?", {
+			yes : function() {
+				Xbmc.sendKey('shutdown');
+			},
+			cancel : function() {}
+		});
+	});
 
 	var keyboard_field = Helpers.ui.keyboard();
 	
@@ -116,43 +122,6 @@ Views.remote = function(win) {
 	keyboard_button.addEventListener('click', function(){
 		keyboard_field.focus();
 	});
-	
-	var interface_button = Titanium.UI.createButton({
-		title:'Gesture',
-		height:"35dp",
-		width:"75dp",
-		top:"40dp",
-		right:"10dp"
-	});
-	
-	interface_button.addEventListener('click', function(){
-		if(gesture_controls.visible == false) {
-			arrow_controls.visible = false;
-			gesture_controls.visible = true;
-			interface_button.title = "Gesture";
-		} else {
-			arrow_controls.visible = true;
-			gesture_controls.visible = false;
-			interface_button.title = "Arrow";
-		}
-	});
-	
-	// GESTURES SECTION
-	
-	var gesture_controls = Titanium.UI.createView({
-		backgroundImage:'images/remote_view/remote_mainbtns.png',
-		top:"35dp",
-		width:"188dp",
-		height:"188dp",
-		visible:false
-	});
-
-	gesture_controls.addEventListener('swipe', function(e)
-	{
-		alert(e.direction);
-	});
-	
-	// ARROW CONTROL SECTION
 	
 	var arrow_controls = Titanium.UI.createView({
 		backgroundImage:'images/remote_view/remote_mainbtns.png',
@@ -276,8 +245,8 @@ Views.remote = function(win) {
 	});
 
 	win.add(search);
-	win.add(favorites);
-	win.add(facebook_like);
+	win.add(channel_favorites);
+	// win.add(facebook_like);
 	win.add(home_button);
 	win.add(return_button);
 	win.add(keyboard_field);
@@ -296,9 +265,6 @@ Views.remote = function(win) {
 	arrow_controls.add(left_clickable);
 	arrow_controls.add(right_clickable);
 
-	win.add(gesture_controls);
-	win.add(interface_button);
-	
 	win.add(arrow_controls);
 
 	color_buttons.add(blue_button);

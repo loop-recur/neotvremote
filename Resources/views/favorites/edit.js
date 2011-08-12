@@ -6,7 +6,7 @@ Views.favorites.edit = function(view, favorites) {
 		height:"25dp",
 		width:"105dp",
 		top:"5dp",
-		right:"30dp"
+		right:"60dp"
 	});
 	
 	edit_button.addEventListener('click', function(){
