@@ -9,6 +9,7 @@ Helpers.ui.keyboard = function() {
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
+	
 	if(Helpers.Application.isAndroid()) { keyboard_field.softKeyboardOnFocus = Ti.UI.Android.SOFT_KEYBOARD_SHOW_ON_FOCUS }
 
 	keyboard_field.addEventListener('change', function(e) {
