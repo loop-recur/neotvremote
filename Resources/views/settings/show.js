@@ -1,5 +1,29 @@
 Views.settings.show = function(win, table, settings) {
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
+	
+	var name_row = Ti.UI.createTableViewRow({
+		header:"Device Settings"
+	});
+	var name = Titanium.UI.createTextField({
+		color:'#336699',
+		id:"name",
+		value:(settings.name || "New Device"),
+		left:"107dp",
+		width:"180dp",
+		height:"35dp",
+		hintText:'Enter name...',
+		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
+		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
+	});
+	var name_label = Titanium.UI.createLabel({
+		text:"Name:",
+		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
+		left:"10dp", 
+		width:"90dp"
+	});
+	name_row.add(name_label);
+	name_row.add(name);
 
 	var ip_row = Ti.UI.createTableViewRow({
 		header:"Device Settings"
@@ -90,6 +114,7 @@ Views.settings.show = function(win, table, settings) {
 	password_row.add(password);
 	
  	var inputData = [ 
+		name_row,
 		ip_row,
 		port_row,
 		username_row,
@@ -105,14 +130,13 @@ Views.settings.show = function(win, table, settings) {
 		style:Titanium.UI.iPhone.TableViewStyle.GROUPED
 	});
 	
-	tableView.addEventListener('click', function(e)
-	{
+	tableView.addEventListener('click', function(e) {
 		e.source.action();
 	});
 	
 	view.add(tableView);
 
-	map(addChangeListener, [ip, port, username, password]);
+	map(addChangeListener, [name, ip, port, username, password]);
 
 	win.add(view);
 	

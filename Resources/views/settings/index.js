@@ -24,7 +24,7 @@ Views.settings.index = function(win, settings) {
 			height:"20dp",
 			left:"10dp",
 			width:"190dp",
-			text:r.host
+			text:r.name
 		});
 
 		row.owner = r;

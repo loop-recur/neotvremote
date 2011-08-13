@@ -22,16 +22,6 @@ Views.remote = function(win) {
 		top:"5dp",
 		right:"30dp"		
 	});
-
-	// var facebook_like = Titanium.UI.createButton({
-	// 	title:'Like',
-	// 	backgroundImage:'images/remote_view/',
-	// 	backgroundSelectedImage:'images/remote_view/',
-	// 	height:"20dp",
-	// 	width:"60dp",
-	// 	top:"5dp",
-	// 	right:"170dp"
-	// });
 	
 	var current_playing_view = Titanium.UI.createView({
 		visible: false,
@@ -88,7 +78,7 @@ Views.remote = function(win) {
 		left:"10dp"
 	});
 	
-	return_button.addEventListener('click', Xbmc.action('back'));
+	return_button.addEventListener('click', Controllers.remote.button("back"));
 	
 	var power_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_powerbtn.png',
@@ -162,7 +152,7 @@ Views.remote = function(win) {
 		top:"0dp"
 	});
 	
-	up_clickable.addEventListener('click', compose(Xbmc.action('up'), Feedback.buttonPress));
+	up_clickable.addEventListener('click', Controllers.remote.button("up"));
 
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
@@ -172,7 +162,7 @@ Views.remote = function(win) {
 		bottom:"0dp"
 	});
 	
-	down_button.addEventListener('click', compose(Xbmc.action('down'), Feedback.buttonPress));
+	down_button.addEventListener('click', Controllers.remote.button("down"));
 
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
@@ -182,7 +172,7 @@ Views.remote = function(win) {
 		left:"0dp"
 	});
 	
-	left_button.addEventListener('click', compose(Xbmc.action('left'), Feedback.buttonPress));
+	left_button.addEventListener('click', Controllers.remote.button("left"));
 
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
@@ -192,7 +182,7 @@ Views.remote = function(win) {
 		right:"0dp"
 	});
 	
-	right_button.addEventListener('click', compose(Xbmc.action('right'), Feedback.buttonPress));
+	right_button.addEventListener('click', Controllers.remote.button("right"));
 	
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',
@@ -201,7 +191,7 @@ Views.remote = function(win) {
 		width:"62dp"
 	});
 	
-	ok_button.addEventListener('click', compose(Xbmc.action('select'), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
+	ok_button.addEventListener('click', compose(Controllers.remote.button("select"), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:"0dp",
@@ -246,7 +236,6 @@ Views.remote = function(win) {
 
 	win.add(search);
 	win.add(channel_favorites);
-	// win.add(facebook_like);
 	win.add(home_button);
 	win.add(return_button);
 	win.add(keyboard_field);

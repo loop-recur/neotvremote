@@ -6,13 +6,11 @@ Titanium.UI.setBackgroundColor('#000');
 Titanium.Facebook.appid = "104545300725";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
+
 Layouts.application();
 setupDb();
 App.loadSettings();
-
-Bonjour.discoverNetworks(function(network) {
-	Settings.findOrCreate({host: network.host, port: network.port});
-});
+Bonjour.discoverNetworks(Settings.findOrCreate);
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());
@@ -20,6 +18,6 @@ function setupDb(redo) {
 	
 	if(redo) map(App.db.drop, ['favorites', 'settings']);
 	
-	App.db.create("settings", {host:"string", port:"string", username:"string", password:"string", current:"integer"});
+	App.db.create("settings", {name:"string", host:"string", port:"string", username:"string", password:"string", current:"integer"});
 	App.db.create("favorites", {channel_id:"integer"});
 }

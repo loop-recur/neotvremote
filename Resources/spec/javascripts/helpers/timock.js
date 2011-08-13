@@ -26,6 +26,7 @@ Titanium = {
 };
 
 Ti = {
+	App: {addEventListener:function(){}},
 	API: {info: function() {}},
 	Utils: {md5HexDigest:function(){ return "123"; }},
 };

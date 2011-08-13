@@ -7,10 +7,7 @@ Views.gesture = function(win) {
 	
 	var difference_threshold = 150;
 
-	win.addEventListener('doubletap', function(e)
-	{
-		alert("double!");
-	});
+	win.addEventListener('doubletap', Controllers.remote.button("select"));
 
 	win.addEventListener('touchstart', function(e)
 	{
@@ -34,19 +31,19 @@ Views.gesture = function(win) {
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (Math.abs(y_diff) < difference_threshold && x_diff > difference_threshold) {
-			alert("i went right");
+			return Controllers.remote.button("right")();
 		}		
 		
 		if (Math.abs(x_diff) < difference_threshold && y_diff > difference_threshold) {
-			alert("i went down");
+			return Controllers.remote.button("down")();
 		}
 		
 		if (Math.abs(y_diff) < difference_threshold && (x_diff < 0 && Math.abs(x_diff) > difference_threshold)) {
-			alert("i went left");
+			return Controllers.remote.button("left")();
 		}
 		
 		if (Math.abs(x_diff) < difference_threshold && (y_diff < 0 && Math.abs(y_diff) > difference_threshold)) {
-			alert("i went up");
+			return Controllers.remote.button("up")();
 		}
 	};
 

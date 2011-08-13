@@ -6,6 +6,7 @@ FileList = [
 	"controllers/settings.js",
 	"helpers/application.js",
 	"helpers/ui.js",
+	"lib/benchmarker.js",
 	"lib/bonjour.js",
 	"lib/channel.js",
 	"lib/favorites.js",
