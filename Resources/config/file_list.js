@@ -17,6 +17,7 @@ FileList = [
 	"layouts/application.js",
 	"views/channels.js",
 	"views/channel_list.js",
+	"views/play_controls.js",
 	"views/favorites/index.js",
 	"views/favorites/edit.js",
 	"views/remote.js",

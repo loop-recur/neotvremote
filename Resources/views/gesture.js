@@ -5,7 +5,7 @@ Views.gesture = function(win) {
 	var touch_x_stop = null;
 	var touch_y_stop = null;
 	
-	var difference_threshold = 150;
+	var difference_threshold = 40;
 
 	win.addEventListener('doubletap', Controllers.remote.button("select"));
 

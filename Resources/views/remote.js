@@ -25,16 +25,16 @@ Views.remote = function(win) {
 	
 	var current_playing_view = Titanium.UI.createView({
 		visible: false,
-		top: "240dp",
-		height: "50dp",
-		width: "100dp",
+		top: "250dp",
+		height: "45dp",
+		width: "200dp",
 		backgroundColor: "#fff"
 	});
 	
 	var playing_image = Titanium.UI.createButton({
-		width: "50dp",
-		height: "50dp",
-		left:"0dp"
+		width: "40dp",
+		height: "40dp",
+		left:"10dp"
 	})
 	
 	var playing_label = Titanium.UI.createLabel({
@@ -45,6 +45,7 @@ Views.remote = function(win) {
 	});
 	
 	var like_button = Titanium.UI.createButton({
+		// backgroundImage:"",
 		title: "LIKE",
 		height:"19dp",
 		width:"40dp",
@@ -234,6 +235,8 @@ Views.remote = function(win) {
 		bottom:"14dp"
 	});
 
+	Views.play_controls(win);
+	
 	win.add(search);
 	win.add(channel_favorites);
 	win.add(home_button);
