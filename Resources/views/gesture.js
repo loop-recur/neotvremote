@@ -5,7 +5,19 @@ Views.gesture = function(win) {
 	var touch_x_stop = null;
 	var touch_y_stop = null;
 	
-	var difference_threshold = 40;
+	function underThreshold(diff) {
+		var difference_threshold = 20;
+		return Math.abs(diff) < difference_threshold;
+	}
+	
+	function shortSwipe(diff) {
+		var swipe_length = 100;
+		return Math.abs(diff) < swipe_length;
+	}
+	
+	function diffPositive(diff) {
+		return diff > 0;
+	}
 
 	win.addEventListener('doubletap', Controllers.remote.button("select"));
 
@@ -13,7 +25,6 @@ Views.gesture = function(win) {
 	{
 		touch_x_start = e.x;
 		touch_y_start = e.y;
-
 	});
 
 	win.addEventListener('touchend', function(e)
@@ -22,7 +33,6 @@ Views.gesture = function(win) {
 		touch_y_stop = e.y;
 		
 		doGesture();
-	
 	});
 
 	function doGesture () {
@@ -30,21 +40,37 @@ Views.gesture = function(win) {
 		var x_diff = touch_x_stop - touch_x_start;
 		var y_diff = touch_y_stop - touch_y_start;
 		
-		if (Math.abs(y_diff) < difference_threshold && x_diff > difference_threshold) {
-			return Controllers.remote.button("right")();
-		}		
-		
-		if (Math.abs(x_diff) < difference_threshold && y_diff > difference_threshold) {
-			return Controllers.remote.button("down")();
-		}
-		
-		if (Math.abs(y_diff) < difference_threshold && (x_diff < 0 && Math.abs(x_diff) > difference_threshold)) {
+		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
 			return Controllers.remote.button("left")();
 		}
 		
-		if (Math.abs(x_diff) < difference_threshold && (y_diff < 0 && Math.abs(y_diff) > difference_threshold)) {
+		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
+			return Controllers.remote.button("left")();
+		}
+		
+		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
+			return Controllers.remote.button("right")();
+		}		
+		
+		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
+			return Controllers.remote.button("right")();
+		}
+		
+		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
 			return Controllers.remote.button("up")();
 		}
+		
+		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
+			return Controllers.remote.button("up")();
+		}
+		
+		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
+			return Controllers.remote.button("down")();
+		}
+		
+		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
+			return Controllers.remote.button("down")();
+		}	
 	};
-
+	
 };
