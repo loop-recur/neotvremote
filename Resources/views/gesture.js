@@ -5,6 +5,14 @@ Views.gesture = function(win) {
 	var touch_x_stop = null;
 	var touch_y_stop = null;
 	
+	var arrows = Ti.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow.png",
+		height:"250dp",
+		width:"250dp"
+	});
+	
+	win.add(arrows);
+	
 	function underThreshold(diff) {
 		var difference_threshold = 20;
 		return Math.abs(diff) < difference_threshold;
