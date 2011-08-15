@@ -19,7 +19,7 @@ Views.gesture = function(win) {
 	}
 	
 	function shortSwipe(diff) {
-		var swipe_length = 100;
+		var swipe_length = 80;
 		return Math.abs(diff) < swipe_length;
 	}
 	
@@ -27,15 +27,15 @@ Views.gesture = function(win) {
 		return diff > 0;
 	}
 
-	win.addEventListener('doubletap', Controllers.remote.button("select"));
+	arrows.addEventListener('doubletap', Controllers.remote.button("select"));
 
-	win.addEventListener('touchstart', function(e)
+	arrows.addEventListener('touchstart', function(e)
 	{
 		touch_x_start = e.x;
 		touch_y_start = e.y;
 	});
 
-	win.addEventListener('touchend', function(e)
+	arrows.addEventListener('touchend', function(e)
 	{
 		touch_x_stop = e.x;
 		touch_y_stop = e.y;
@@ -49,10 +49,12 @@ Views.gesture = function(win) {
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
+			alert("left");
 			return Controllers.remote.button("left")();
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
+			alert("long left");
 			return Controllers.remote.button("left")();
 		}
 		
