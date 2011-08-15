@@ -24,33 +24,35 @@ Views.remote = function(win) {
 	});
 	
 	var current_playing_view = Titanium.UI.createView({
+		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
 		visible: false,
 		top: "250dp",
-		height: "45dp",
-		width: "200dp",
-		backgroundColor: "#fff"
+		height: "66dp",
+		width: "270dp",
 	});
 	
 	var playing_image = Titanium.UI.createButton({
 		width: "40dp",
 		height: "40dp",
-		left:"10dp"
+		left:"10dp",
+		top:"3dp"
 	})
 	
 	var playing_label = Titanium.UI.createLabel({
 		text: "nothing",
 		width: "100dp",
 		height: "100dp",
-		color: "#000"
+		top:"25dp",
+		left:"60dp",
+		color:"#FFFFFF"
 	});
 	
 	var like_button = Titanium.UI.createButton({
-		// backgroundImage:"",
-		title: "LIKE",
-		height:"19dp",
-		width:"40dp",
-		top:"5dp",
-		right:"5dp"
+		backgroundImage:"images/nowplaying/remote_fblike.png",
+		height:"24dp",
+		width:"24dp",
+		top:"9dp",
+		right:"15dp"
 	});
 	
 	like_button.addEventListener('click', Controllers.remote.postToWall.partial(playing_label, playing_image));

@@ -15,7 +15,7 @@ Layouts.application = function() {
 	
 	
 	var win2 = Titanium.UI.createWindow({  
-	    backgroundImage:'images/channel_view/channel_bg.png',
+	    backgroundImage:'images/gestures/gesture_bg.png',
 			navBarHidden: true
 	});
 	win2.addEventListener('open', Views.gesture.partial(win2));

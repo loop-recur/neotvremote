@@ -3,7 +3,7 @@ Views.play_controls = function(win) {
 	var view = Titanium.UI.createView({
 		height:"65dp",
 		width:"180dp",
-		top:"280dp"
+		top:"305dp"
 	});
 	
 	var rewind_button = Titanium.UI.createButton({

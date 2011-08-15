@@ -1,11 +1,11 @@
 Views.favorites.index = function(view, favorites) {
 	var channel_list = Views.channel_list(favorites);
 	
-	var edit_button = Titanium.UI.createButton({
-		title: "Edit",
-		height:"25dp",
-		width:"45dp",
-		top:"5dp",
+	var edit_button = Titanium.UI.createView({
+		backgroundImage:"images/channel_view/channel_edit_button.png",
+		height:"33dp",
+		width:"66dp",
+		top:"0dp",
 		right:"60dp"
 	});
 	
