@@ -39,6 +39,9 @@ Layouts.application = function() {
 	    window:win3
 	});
 	
+	Layouts.application.openFavs = function () {
+		tabGroup.setActiveTab(2);
+	};
 
 	var win4 = Titanium.UI.createWindow({  
 	    backgroundColor:'#fff',
