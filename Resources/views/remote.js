@@ -15,8 +15,8 @@ Views.remote = function(win) {
 	var channel_favorites = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_fav.png',
 		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
-		height:"20dp",
-		width:"20dp",
+		height:"40dp",
+		width:"40dp",
 		top:"5dp",
 		right:"30dp"		
 	});

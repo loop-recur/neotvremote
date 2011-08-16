@@ -35,12 +35,6 @@ Views.play_controls = function(win) {
 	
 	pause_button.addEventListener("click", Xbmc.action("pause"));
 	
-	var stop_button = Titanium.UI.createButton({
-		backgroundImage:'images/playcontrols/remote_stop.png',
-		backgroundSelectedImage:'images/playcontrols/remote_stop_down.png',
-		height:"55dp",
-		width:"55dp"
-	
 	var ff_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_ff.png',
 		backgroundSelectedImage:'images/playcontrols/remote_ff_down.png',
