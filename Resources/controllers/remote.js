@@ -18,7 +18,7 @@ Controllers.remote = function() {
 	}
 	
 	function _wallPostText(channel) {
-		return "I'm watching "+channel+" on my Netgear NeoTv.";
+		return "I'm watching "+channel+" on my Netgear NeoTV.";
 	}
 		
 	return {displayPlaying : displayPlaying, postToWall : postToWall, button : button}

@@ -104,7 +104,7 @@ Views.remote = function(win) {
 	});
 
 	var keyboard_field = Helpers.ui.keyboard();
-	
+
 	var keyboard_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_keyboardbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_keyboardbtn_down.png',
@@ -116,6 +116,21 @@ Views.remote = function(win) {
 	
 	keyboard_button.addEventListener('click', function(){
 		keyboard_field.focus();
+	});
+	
+	if(Helpers.Application.isAndroid()) {
+		keyboard_field.addEventListener('return', function() {
+			keyboard_field2.focus();
+		});
+	};
+	
+	var keyboard_field2 = Titanium.UI.createTextField({  
+	  width:0,
+	  height:0,
+		top:0,
+		autocorrect:false,
+	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+	  returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	
 	var arrow_controls = Titanium.UI.createView({
@@ -245,7 +260,9 @@ Views.remote = function(win) {
 	win.add(channel_favorites);
 	win.add(home_button);
 	win.add(return_button);
+	win.add(keyboard_field2);
 	win.add(keyboard_field);
+
 	win.add(keyboard_button);
 	win.add(power_button);
 
