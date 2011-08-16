@@ -2,11 +2,11 @@ Controllers.favorites = function() {
 	var name = "favorites";
 	
 	function index(view, params) {
-		App.db.find(name, {}, compose(view, _makeFavs));
+		App.db.find(name, {}, compose(view.partial(params), _makeFavs));
 	}
 	
 	function edit(view, params) {
-		view(params.favorites);
+		view(params, params.favorites);
 	}
 	
 	function _makeFavs(xs) {

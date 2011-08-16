@@ -1,11 +1,9 @@
 Views.remote = function(win) {	
 	
 	var search = Titanium.UI.createButton({
-		title:'Search',
-		backgroundImage:'images/remote_view/',
-		backgroundSelectedImage:'images/remote_view/',
+		backgroundImage:'images/remote_view/remote_mag.png',
 		height:"20dp",
-		width:"70dp",
+		width:"20dp",
 		top:"5dp",
 		left:"5dp"
 	});
@@ -26,14 +24,14 @@ Views.remote = function(win) {
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
 		visible: false,
-		top: "250dp",
+		top: "235dp",
 		height: "66dp",
 		width: "270dp",
 	});
 	
 	var playing_image = Titanium.UI.createButton({
-		width: "40dp",
-		height: "40dp",
+		width: "35dp",
+		height: "35dp",
 		left:"10dp",
 		top:"3dp"
 	})
@@ -77,7 +75,7 @@ Views.remote = function(win) {
 		backgroundSelectedImage:'images/remote_view/remote_backbtn_down.png',
 		height:"35dp",
 		width:"65dp",
-		top:"210dp",
+		top:"195dp",
 		left:"10dp"
 	});
 	
@@ -108,7 +106,7 @@ Views.remote = function(win) {
 		backgroundSelectedImage:'images/remote_view/remote_keyboardbtn_down.png',
 		height:"35dp",
 		width:"65dp",
-		top:"210dp",
+		top:"195dp",
 		right:"10dp"
 	});
 	

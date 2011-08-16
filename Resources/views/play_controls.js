@@ -3,7 +3,7 @@ Views.play_controls = function(win) {
 	var view = Titanium.UI.createView({
 		height:"65dp",
 		width:"180dp",
-		top:"305dp"
+		top:"295dp"
 	});
 	
 	var rewind_button = Titanium.UI.createButton({
@@ -21,8 +21,8 @@ Views.play_controls = function(win) {
 	var play_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_play.png',
 		backgroundSelectedImage:'images/playcontrols/remote_play_down.png',
-		height:"63dp",
-		width:"63dp"
+		height:"55dp",
+		width:"55dp"
 	});
 	
 	play_button.addEventListener('click', function() {

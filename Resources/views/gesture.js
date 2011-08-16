@@ -5,11 +5,78 @@ Views.gesture = function(win) {
 	var touch_x_stop = null;
 	var touch_y_stop = null;
 	
-	var arrows = Ti.UI.createView({
-		backgroundImage:"images/gestures/gesture_arrow.png",
-		height:"250dp",
-		width:"250dp"
+	var arrows = Titanium.UI.createView({
+		height:"265dp",
+		width:"265dp",
+		top:"35dp"
 	});
+	
+	var up_arrow = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_up.png",
+		width:"30dp",
+		height:"135dp",
+		top:"0dp"
+	});
+	
+	var down_arrow = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_down.png",
+		width:"30dp",
+		height:"135dp",
+		bottom:"0dp"		
+	});
+	
+	var left_arrow = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_left.png",
+		height:"30dp",
+		width:"135dp",
+		left:"0dp"		
+	});
+	
+	var right_arrow = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_right.png",
+		height:"30dp",
+		width:"135dp",
+		right:"0dp"
+	});
+	
+	var back_button = Titanium.UI.createButton({
+		backgroundImage:'images/gestures/gesture_back_button.png',
+		height:"41dp",
+		width:"81dp",
+		top:"330dp",
+		left:"10dp"
+	});
+	
+	var home_button = Titanium.UI.createButton({
+		backgroundImage:'images/gestures/gesture_home_button.png',
+		height:"41dp",
+		width:"81dp",
+		top:"330dp"
+	});
+	
+	var keyboard_field = Helpers.ui.keyboard();
+	
+	var keyboard_button = Titanium.UI.createButton({
+		backgroundImage:'images/gestures/gesture_keyboard_button.png',
+		height:"41dp",
+		width:"81dp",
+		top:"330dp",
+		right:"10dp"
+	});
+	
+	keyboard_button.addEventListener('click', function(){
+		keyboard_field.focus();
+	});
+	
+	arrows.add(up_arrow);
+	arrows.add(down_arrow);
+	arrows.add(left_arrow);
+	arrows.add(right_arrow);
+	
+	win.add(back_button);
+	win.add(home_button);
+	win.add(keyboard_field);
+	win.add(keyboard_button);
 	
 	win.add(arrows);
 	
@@ -19,7 +86,7 @@ Views.gesture = function(win) {
 	}
 	
 	function shortSwipe(diff) {
-		var swipe_length = 80;
+		var swipe_length = 70;
 		return Math.abs(diff) < swipe_length;
 	}
 	

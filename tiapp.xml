@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <deployment-targets>
         <target device="mobileweb">true</target>
@@ -7,14 +7,14 @@
         <target device="android">true</target>
         <target device="iphone">true</target>
     </deployment-targets>
-<id>com.looprecur.neotvremote</id>
-<name>neotvremote</name>
-<version>.3</version>
-<publisher>Netgear</publisher>
-<url>http://www.netgear.com</url>
-<description>NeoTV Remote</description>
-<copyright>2011</copyright>
-<icon>default_app_logo.png</icon>
+    <id>com.looprecur.neotvremote</id>
+    <name>neotvremote</name>
+    <version>.3</version>
+    <publisher>Netgear</publisher>
+    <url>http://www.netgear.com</url>
+    <description>NeoTV Remote</description>
+    <copyright>2011</copyright>
+    <icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
     <statusbar-style>default</statusbar-style>
@@ -22,15 +22,14 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>false</navbar-hidden>
     <analytics>false</analytics>
-<guid>560fbe18-0833-4de7-ac8d-562b44066fe3</guid>
-	<iphone>
-		<orientations device="iphone">
-			<orientation>Ti.UI.PORTRAIT</orientation>
-		</orientations>
-	</iphone>
-	<android xmlns:android="http://schemas.android.com/apk/res/android">
-	</android>
-	<modules>
-		<module platform="android" version="0.1">com.looprecur.jmdns</module>
-	</modules>
+    <guid>560fbe18-0833-4de7-ac8d-562b44066fe3</guid>
+    <iphone>
+        <orientations device="iphone">
+            <orientation>Ti.UI.PORTRAIT</orientation>
+        </orientations>
+    </iphone>
+    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <modules>
+        <module platform="android" version="0.1">com.looprecur.jmdns</module>
+    </modules>
 </ti:app>

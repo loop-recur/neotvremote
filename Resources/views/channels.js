@@ -37,12 +37,13 @@ Views.channels = function(win) {
 	var channel_list = Views.channel_list(Channels);
 
 	var editing = false;
+	
 	channel_favorites.addEventListener('click', function(){
 		if(!editing) {
 			editing = true
 			view.remove(channel_list);
 			channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
-			App.action(view, "favorites#index");
+			App.action(view,"favorites#index", {win : win});
 		} else {
 			editing = false;
 			map(function(v){ view.remove(v); }, view.children);
