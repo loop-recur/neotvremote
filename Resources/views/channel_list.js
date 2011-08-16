@@ -2,7 +2,6 @@ Views.channel_list = function(channels, favorites) {
 	var clickFun = favorites ? toggleFav : launchChannel;
 	var default_settings = {height: "77dp", width: "90dp", left: "12.5dp", column_separation: "12.5dp", top: "2dp", row_separation: "10dp", rows_built: 0};
 	var scrollview = Titanium.UI.createScrollView({
-		// top:"40dp",
 		height:"365dp",
 		width:"320dp",
 		contentWidth:"auto",
