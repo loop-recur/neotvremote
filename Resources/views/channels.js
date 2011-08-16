@@ -1,4 +1,5 @@
 Views.channels = function(win) {
+	var editing;
 	var view = Titanium.UI.createView({top: "30dp"});
 	
 	var home_button = Titanium.UI.createButton({
@@ -50,22 +51,8 @@ Views.channels = function(win) {
 	});
 	
 	var channel_list = Views.channel_list(Channels);
-
-	var editing = false;
 	
-	channel_favorites.addEventListener('click', function(){
-		if(!editing) {
-			editing = true
-			view.remove(channel_list);
-			channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
-			App.action(view,"favorites#index", {win : win});
-		} else {
-			editing = false;
-			map(function(v){ view.remove(v); }, view.children);
-			view.add(channel_list);
-			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
-		}
-	});
+	channel_favorites.addEventListener('click', toggleFavoriteMode);
 	
 	view.add(channel_list);
 	
@@ -75,4 +62,21 @@ Views.channels = function(win) {
 	win.add(keyboard_button);
 	win.add(channel_favorites);
 	win.add(view);
+	
+	
+	function toggleFavoriteMode() {
+		if(editing) {
+			Ti.App.fireEvent("hideEdit");
+			Ti.App.fireEvent("hideIndex");
+			editing = false;
+			map(function(v){ view.remove(v); }, view.children);
+			view.add(channel_list);
+			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
+		} else {
+			editing = true
+			view.remove(channel_list);
+			channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
+			App.action(view,"favorites#index", {win : win});
+		}
+	}
 };
