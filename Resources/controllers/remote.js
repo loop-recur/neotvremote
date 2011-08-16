@@ -4,9 +4,7 @@ Controllers.remote = function() {
 	});
 	
 	function button(name) {
-		return function() {
-			Ti.App.fireEvent('remoteButtonPressed', {name : name});
-		}
+		return Xbmc.action(name);
 	}
 	
 	function displayPlaying(label_view, image_view, current_playing_view, playing_text) {

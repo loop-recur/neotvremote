@@ -5,9 +5,12 @@ var Bonjour = function() {
 	}
 
 	function _discoverAndroid(callback) {
+		Ti.API.info("============STARTING!");
 		var jmdns = require('com.looprecur.jmdns');
 
 		jmdns.discover(function(name, port, host) {
+			Ti.API.info("============FOUND ONE!");
+			Ti.API.info(host);
 			callback({name : name, port : port, host : host});
 		});
 	}

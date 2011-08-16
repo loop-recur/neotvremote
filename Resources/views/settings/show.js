@@ -131,7 +131,7 @@ Views.settings.show = function(win, table, settings) {
 	});
 	
 	tableView.addEventListener('click', function(e) {
-		e.source.action();
+		if(e.source.action) e.source.action();
 	});
 	
 	view.add(tableView);

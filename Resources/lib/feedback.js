@@ -6,7 +6,7 @@ var Feedback = function() {
 	// }
 	
 	function iOSSound() {
-		Titanium.Media.playClick();
+		// Titanium.Media.playClick();
 	}
 
 	return {buttonPress: iOSSound}
