@@ -93,15 +93,15 @@ Views.gesture = function(win) {
 	function diffPositive(diff) {
 		return diff > 0;
 	}
-
+	
 	arrows.addEventListener('doubletap', Controllers.remote.button("select"));
-
+	
 	arrows.addEventListener('touchstart', function(e)
 	{
 		touch_x_start = e.x;
 		touch_y_start = e.y;
 	});
-
+	
 	arrows.addEventListener('touchend', function(e)
 	{
 		touch_x_stop = e.x;
@@ -109,7 +109,7 @@ Views.gesture = function(win) {
 		
 		doGesture();
 	});
-
+	
 	function doGesture () {
 		
 		var x_diff = touch_x_stop - touch_x_start;

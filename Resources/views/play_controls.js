@@ -32,15 +32,15 @@ Views.play_controls = function(win) {
 	var pause_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_pause.png',
 		backgroundSelectedImage:'images/playcontrols/remote_pause_down.png',
-		height:"63dp",
-		width:"63dp"
+		height:"55dp",
+		width:"55dp"
 	});
 	
 	var stop_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_stop.png',
 		backgroundSelectedImage:'images/playcontrols/remote_stop_down.png',
-		height:"63dp",
-		width:"63dp"
+		height:"55dp",
+		width:"55dp"
 	});
 	
 	var ff_button = Titanium.UI.createButton({
