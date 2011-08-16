@@ -73,6 +73,21 @@ Views.gesture = function(win) {
 	keyboard_button.addEventListener('click', function(){
 		keyboard_field.focus();
 	});
+
+	if(Helpers.Application.isAndroid()) {
+		keyboard_field.addEventListener('return', function() {
+			keyboard_field2.focus();
+		});
+	};
+	
+	var keyboard_field2 = Titanium.UI.createTextField({  
+	  width:0,
+	  height:0,
+		top:0,
+		autocorrect:false,
+	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+	  returnKeyType:Titanium.UI.RETURNKEY_DONE
+	});
 	
 	arrows.add(up_arrow);
 	arrows.add(down_arrow);
@@ -81,13 +96,14 @@ Views.gesture = function(win) {
 	
 	win.add(return_button);
 	win.add(home_button);
+	win.add(keyboard_field2);
 	win.add(keyboard_field);
 	win.add(keyboard_button);
 	
 	win.add(arrows);
 	
 	function underThreshold(diff) {
-		var difference_threshold = 20;
+		var difference_threshold = 21;
 		return Math.abs(diff) < difference_threshold;
 	}
 	
@@ -100,13 +116,9 @@ Views.gesture = function(win) {
 		return diff > 0;
 	}
 	
-	function doThree(fun) {
-		fun();
-		fun();
-		fun();
-	}
-	
-	arrows.addEventListener('doubletap', Controllers.remote.button("select"));
+	arrows.addEventListener('doubletap', function () {
+		Controllers.remote.button("select");
+	});
 	
 	arrows.addEventListener('touchstart', function(e)
 	{
@@ -119,8 +131,14 @@ Views.gesture = function(win) {
 		touch_x_stop = e.x;
 		touch_y_stop = e.y;
 		
-		doGesture();
+		doubleTap();
 	});
+	
+	function doubleTap() {
+		if (Math.abs(touch_x_stop - touch_x_start) > 20 || Math.abs(touch_y_stop - touch_y_start) > 20) {
+			doGesture();
+		}
+	}
 	
 	function doGesture () {
 		
@@ -133,7 +151,7 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			doThree(alert("long left"));
+			alert("long left");
 			return Controllers.remote.button("left")();
 		}
 		

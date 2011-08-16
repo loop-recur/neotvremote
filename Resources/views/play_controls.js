@@ -2,7 +2,7 @@ Views.play_controls = function(win) {
 	
 	var view = Titanium.UI.createView({
 		height:"65dp",
-		width:"180dp",
+		width:"210dp",
 		top:"295dp"
 	});
 	
@@ -19,27 +19,21 @@ Views.play_controls = function(win) {
 	var play_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_play.png',
 		backgroundSelectedImage:'images/playcontrols/remote_play_down.png',
-		height:"55dp",
-		width:"55dp"
+		height:"48dp",
+		width:"48dp",
+		left:"53dp"
 	});
 	
 	play_button.addEventListener('click', Xbmc.action("play"));
 	
 	var pause_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_pause.png',
-		backgroundSelectedImage:'images/playcontrols/remote_pause_down.png',
-		height:"55dp",
-		width:"55dp"
+		height:"48dp",
+		width:"48dp",
+		right:"53dp"
 	});
 	
 	pause_button.addEventListener("click", Xbmc.action("pause"));
-	
-	var stop_button = Titanium.UI.createButton({
-		backgroundImage:'images/playcontrols/remote_stop.png',
-		backgroundSelectedImage:'images/playcontrols/remote_stop_down.png',
-		height:"55dp",
-		width:"55dp"
-	});
 	
 	var ff_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_ff.png',
@@ -53,6 +47,7 @@ Views.play_controls = function(win) {
 	
 	view.add(rewind_button);
 	view.add(play_button);
+	view.add(pause_button);
 	view.add(ff_button);
 
 	win.add(view);

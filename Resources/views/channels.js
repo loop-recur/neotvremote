@@ -25,6 +25,21 @@ Views.channels = function(win) {
 		keyboard_field.focus();
 	});
 	
+	if(Helpers.Application.isAndroid()) {
+		keyboard_field.addEventListener('return', function() {
+			keyboard_field2.focus();
+		});
+	};
+	
+	var keyboard_field2 = Titanium.UI.createTextField({  
+	  width:0,
+	  height:0,
+		top:0,
+		autocorrect:false,
+	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+	  returnKeyType:Titanium.UI.RETURNKEY_DONE
+	});
+	
 	var channel_favorites = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_fav.png',
 		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
@@ -55,6 +70,7 @@ Views.channels = function(win) {
 	view.add(channel_list);
 	
 	win.add(home_button);
+	win.add(keyboard_field2);
 	win.add(keyboard_field);
 	win.add(keyboard_button);
 	win.add(channel_favorites);

@@ -4,7 +4,7 @@ Helpers.ui.keyboard = function() {
 	var keyboard_field = Titanium.UI.createTextField({  
 	  width:0,
 	  height:0,
-		top:0,
+		top:00,
 		autocorrect:false,
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE
