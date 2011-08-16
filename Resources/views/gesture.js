@@ -39,7 +39,7 @@ Views.gesture = function(win) {
 		right:"0dp"
 	});
 	
-	var back_button = Titanium.UI.createButton({
+	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/gestures/gesture_back_button.png',
 		height:"41dp",
 		width:"81dp",
@@ -47,12 +47,18 @@ Views.gesture = function(win) {
 		left:"10dp"
 	});
 	
+	return_button.addEventListener('click', Controllers.remote.button("back"));
+	
+	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/gestures/gesture_home_button.png',
 		height:"41dp",
 		width:"81dp",
 		top:"330dp"
 	});
+	
+	home_button.addEventListener('click', compose(Xbmc.action('menu')));
+	
 	
 	var keyboard_field = Helpers.ui.keyboard();
 	
@@ -73,7 +79,7 @@ Views.gesture = function(win) {
 	arrows.add(left_arrow);
 	arrows.add(right_arrow);
 	
-	win.add(back_button);
+	win.add(return_button);
 	win.add(home_button);
 	win.add(keyboard_field);
 	win.add(keyboard_button);
@@ -86,12 +92,18 @@ Views.gesture = function(win) {
 	}
 	
 	function shortSwipe(diff) {
-		var swipe_length = 70;
+		var swipe_length = 120;
 		return Math.abs(diff) < swipe_length;
 	}
 	
 	function diffPositive(diff) {
 		return diff > 0;
+	}
+	
+	function doThree(fun) {
+		fun();
+		fun();
+		fun();
 	}
 	
 	arrows.addEventListener('doubletap', Controllers.remote.button("select"));
@@ -121,7 +133,7 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			alert("long left");
+			doThree(alert("long left"));
 			return Controllers.remote.button("left")();
 		}
 		

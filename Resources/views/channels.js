@@ -50,7 +50,7 @@ Views.channels = function(win) {
 			view.add(channel_list);
 			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
 		}
-	})
+	});
 	
 	view.add(channel_list);
 	

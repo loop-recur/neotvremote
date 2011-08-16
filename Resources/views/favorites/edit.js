@@ -12,7 +12,7 @@ Views.favorites.edit = function(view, params, favorites) {
 		top:"5dp",
 		right:"60dp"
 	});
-	
+
 	edit_button.addEventListener('click', function(){
 		dealloc();
 		App.action(view, "favorites#index", {win : win});

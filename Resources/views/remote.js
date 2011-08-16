@@ -21,6 +21,10 @@ Views.remote = function(win) {
 		right:"30dp"		
 	});
 	
+	channel_favorites.addEventListener('click', function() {
+		Layouts.application.openFavs();
+	});
+	
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
 		visible: false,
