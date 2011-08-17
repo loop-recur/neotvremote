@@ -63,7 +63,20 @@ Views.channel_list = function(channels, favorites) {
 	}
 	
 	function getOpacity(channel_button) {
-		return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 0.2;
+		if(Helpers.Application.isAndroid()) {
+			// if (favorites.indexOf(channel_button.value) !== -1) {
+			// 				channel_button.borderWidth = 5;
+			// 				channel_button.borderColor = "#D3D22E";
+			// 				channel_button.borderRadius = 5;
+			// 			} else {
+			// 				channel_button.borderWidth = 0;
+			// 				channel_button.borderColor = "red";
+			// 				channel_button.borderRadius = 0;	
+			// };
+			return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 1;
+		} else {
+			return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 0.2;			
+		};
 	}
 	
 	function launchChannel(e) {
@@ -74,7 +87,14 @@ Views.channel_list = function(channels, favorites) {
 		var channel = e.source.value;
 		var index = Channels.indexOf(channel);
 		Favorites.toggleFavorite(index);
-		e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
+		
+		if(Helpers.Application.isAndroid()) {
+			e.source.borderWidth = (e.source.borderWidth == 5) ? 0 : 5;
+			e.source.borderColor = (e.source.borderColor == "#D3D22E") ? "red" : "#D3D22E";
+			e.source.borderRadius = (e.source.borderRadius == 5) ? 0 : 5;
+		} else {
+			e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
+		}
 	}
 	
 	return scrollview;

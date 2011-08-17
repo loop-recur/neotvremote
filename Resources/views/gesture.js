@@ -108,7 +108,7 @@ Views.gesture = function(win) {
 	}
 	
 	function shortSwipe(diff) {
-		var swipe_length = 120;
+		var swipe_length = 80;
 		return Math.abs(diff) < swipe_length;
 	}
 	
@@ -151,12 +151,9 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			function() {
-				alert("long left"); 
-				alert("long left"); 
-				alert("long left"); 
-			}
-			// return Controllers.remote.button("left")();
+			Controllers.remote.button("left")();
+			Controllers.remote.button("left")();
+			Controllers.remote.button("left")();
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
@@ -164,7 +161,9 @@ Views.gesture = function(win) {
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			return Controllers.remote.button("right")();
+			Controllers.remote.button("right")();
+			Controllers.remote.button("right")();
+			Controllers.remote.button("right")();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
@@ -172,7 +171,9 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			return Controllers.remote.button("up")();
+			Controllers.remote.button("up")();
+			Controllers.remote.button("up")();
+			Controllers.remote.button("up")();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
@@ -180,7 +181,9 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			return Controllers.remote.button("down")();
+			Controllers.remote.button("down")();
+			Controllers.remote.button("down")();
+			Controllers.remote.button("down")();
 		}	
 	};
 	

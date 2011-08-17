@@ -37,18 +37,19 @@ Views.remote = function(win) {
 		width: "35dp",
 		height: "35dp",
 		left:"10dp",
-		top:"3dp"
+		top:"5dp"
 	})
 	
 	var playing_label = Titanium.UI.createLabel({
 		text: "nothing",
-		width: "100dp",
-		height: "100dp",
-		top:"25dp",
-		left:"60dp",
-		color:"#FFFFFF"
+		width: "175dp",
+		height: "25dp",
+		top:"8dp",
+		left:"52dp",
+		color:"#FFFFFF",
+		font:{fontFamily:'Helvetica Neue',fontSize:18},
 	});
-	
+
 	var like_button = Titanium.UI.createButton({
 		backgroundImage:"images/nowplaying/remote_fblike.png",
 		height:"24dp",
