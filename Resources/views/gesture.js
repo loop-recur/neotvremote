@@ -151,8 +151,12 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			alert("long left");
-			return Controllers.remote.button("left")();
+			function() {
+				alert("long left"); 
+				alert("long left"); 
+				alert("long left"); 
+			}
+			// return Controllers.remote.button("left")();
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
