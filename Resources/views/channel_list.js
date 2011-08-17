@@ -65,13 +65,13 @@ Views.channel_list = function(channels, favorites) {
 	
 	function addAndroidMask(channel_button) {
 		if (favorites.indexOf(channel_button.value) !== -1) {
-			channel_button.borderWidth = 0;
-			channel_button.borderColor = "black";
-			channel_button.borderRadius = 0;
-		} else {
 			channel_button.borderWidth = 5;
 			channel_button.borderColor = "#D3D22E";
 			channel_button.borderRadius = 5;
+		} else {
+			channel_button.borderWidth = 0;
+			channel_button.borderColor = "black";
+			channel_button.borderRadius = 0;
 		};
 	}
 
