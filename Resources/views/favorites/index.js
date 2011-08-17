@@ -2,7 +2,19 @@ Views.favorites.index = function(view, params, favorites) {
 	
 	var win = params.win; 
 	
-	var channel_list = Views.channel_list(favorites);
+	var channel_list = Titanium.UI.createScrollView({
+		height:"365dp",
+		width:"320dp",
+		contentWidth:"auto",
+		contentHeight:'auto',
+		showHorizontalScrollIndicator:false,
+		showVerticalScrollIndicator:true
+	});
+	
+	view.add(channel_list);
+
+	Views.channel_list(channel_list, favorites);
+	
 	
 	var edit_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_edit_button.png",
@@ -25,6 +37,5 @@ Views.favorites.index = function(view, params, favorites) {
 		view.remove(channel_list);
 	}
 	
-	view.add(channel_list);
 	win.add(edit_button);
 }

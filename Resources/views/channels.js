@@ -50,11 +50,18 @@ Views.channels = function(win, favs) {
 		right:"40dp"		
 	});
 	
-	var channel_list = Views.channel_list(Channels);
-	
-	channel_favorites.addEventListener('click', toggleFavoriteMode);
+	var channel_list = Titanium.UI.createScrollView({
+		height:"365dp",
+		width:"320dp",
+		contentWidth:"auto",
+		contentHeight:'auto',
+		showHorizontalScrollIndicator:false,
+		showVerticalScrollIndicator:true
+	});
 	
 	view.add(channel_list);
+
+	channel_favorites.addEventListener('click', toggleFavoriteMode);
 	
 	win.add(home_button);
 	win.add(keyboard_field2);
@@ -62,6 +69,8 @@ Views.channels = function(win, favs) {
 	win.add(keyboard_button);
 	win.add(channel_favorites);
 	win.add(view);
+	
+	Views.channel_list(channel_list, Channels);
 	
 	win.addEventListener("favs", toggleFavoriteMode);
 	if(favs) toggleFavoriteMode();
@@ -71,7 +80,9 @@ Views.channels = function(win, favs) {
 			Ti.App.fireEvent("hideEdit");
 			Ti.App.fireEvent("hideIndex");
 			editing = false;
-			map(function(v){ view.remove(v); }, view.children);
+			win.remove(view);
+			view = Titanium.UI.createView({top: "30dp"});
+			win.add(view);
 			view.add(channel_list);
 			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
 		} else {

@@ -56,6 +56,6 @@ Views.searches.index = function(win) {
 	};
 	
 	function makeView(channels) {
-		return Views.channel_list(channels);
+		return Views.channel_list(null, channels);
 	}
 };
