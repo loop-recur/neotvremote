@@ -10,7 +10,6 @@ var Settings = function() {
 	function save(new_settings) {
 		var settings = _validate(new_settings);
 		setCurrent(settings);
-		App.loadSettings(_url(settings), _credentials(settings));
 	}
 	
 	function destroy(id) {
@@ -22,6 +21,7 @@ var Settings = function() {
 		App.db.find('settings', {}, map.partial(_setCurrent));
 		settings.current = 1;
 		App.db.save('settings', settings);
+		App.loadSettings();
 	}
 	
 	function load(fun) {
