@@ -35,6 +35,6 @@ Views.favorites.index = function(view, params, favorites) {
 		view.remove(channel_list);
 	}
 	
-	win.add(edit_button);
 	Views.channel_list(channel_list, favorites);
+	win.add(edit_button);
 }

@@ -34,7 +34,7 @@ Views.favorites.edit = function(view, params, favorites) {
 		win.remove(edit_button);
 		view.remove(channel_list);
 	}
-		
+	
+	Views.channel_list(channel_list, Channels, favorites);	
 	win.add(edit_button);
-	Views.channel_list(channel_list, Channels, favorites);
 }

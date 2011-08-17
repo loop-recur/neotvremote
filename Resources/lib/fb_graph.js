@@ -1,8 +1,8 @@
 var FbGraph = function() {
 
-	function wallPost(message, pic) {
+	function wallPost(message, link) {
 		_authenticated(function() {
-			Titanium.Facebook.requestWithGraphPath('me/feed', {message: message, picture: pic}, 'POST', function(e) {});
+			Titanium.Facebook.requestWithGraphPath('me/feed', {message: message, link: link}, 'POST', function(e) {});
 		});
 	}
 	

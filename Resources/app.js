@@ -9,7 +9,6 @@ Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
 Layouts.application();
 setupDb();
-App.loadSettings();
 Bonjour.discoverNetworks(Settings.findOrCreate);
 
 function setupDb(redo) {

@@ -11,11 +11,11 @@ Controllers.remote = function() {
 	}
 	
 	function postToWall(label, image_view) {
-		FbGraph.wallPost(_wallPostText(label.text), Channel.url(label.text));
+		FbGraph.wallPost(_wallPostText(label.text), "http://www.netgear.com/ntv");
 	}
 	
 	function _wallPostText(channel) {
-		return "I'm watching "+channel+" on my Netgear NeoTV.";
+		return "Watching "+channel+" on my NeoTV Streaming Player.  Now your TV can be a Smart TV. NeoTV streams thousands of movies and TV shows instantly from Netflix, Vudu, YouTube, and more right on your TV.";
 	}
 		
 	return {displayPlaying : displayPlaying, postToWall : postToWall, button : button}

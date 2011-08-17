@@ -1,6 +1,7 @@
 describe("SettingsSpec", function() {
 	beforeEach(function() {
 	  App.db = Mocks.db;
+		App.loadSettings = jasmine.createSpy();
 	});
 	
 	it("writes settings to the db", function() {
