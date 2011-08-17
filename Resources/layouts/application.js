@@ -1,4 +1,5 @@
 Layouts.application = function() {
+	var favs = false;
 	var tabGroup = Titanium.UI.createTabGroup();
 
 	var win1 = Titanium.UI.createWindow({  
@@ -31,7 +32,7 @@ Layouts.application = function() {
 	    backgroundImage:'images/channel_view/channel_bg.png',
 			navBarHidden: true
 	});
-	win3.addEventListener('open', Views.channels.partial(win3));
+	win3.addEventListener('open', function(){ Views.channels(win3, favs); });
 	
 	var tab3 = Titanium.UI.createTab({  
 	    icon:'images/channel_view/tab_icon_channels_inactive.png',
@@ -41,6 +42,8 @@ Layouts.application = function() {
 	
 	Layouts.application.openFavs = function () {
 		tabGroup.setActiveTab(2);
+		favs = true;
+		win3.fireEvent("favs");
 	};
 
 	var win4 = Titanium.UI.createWindow({  

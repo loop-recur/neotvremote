@@ -9,7 +9,7 @@ var Settings = function() {
 	
 	function save(new_settings) {
 		var settings = _validate(new_settings);
-		App.db.save('settings', settings);
+		setCurrent(settings);
 	}
 	
 	function destroy(id) {
@@ -38,6 +38,7 @@ var Settings = function() {
 	function _setSetting(fun, elsfun, all_current_settings) {
 		if(all_current_settings.length > 0) {
 			var settings = all_current_settings[0];
+			setCurrent(settings);
 			fun(_url(settings), _credentials(settings));
 		} else {
 			elsfun();
