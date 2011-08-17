@@ -51,7 +51,7 @@ Views.channels = function(win, favs) {
 	});
 	
 	var channel_list = Titanium.UI.createScrollView({
-		top: "6dp",
+		top: "10dp",
 		height:"365dp",
 		width:"320dp",
 		contentWidth:"auto",

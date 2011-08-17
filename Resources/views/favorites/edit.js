@@ -3,7 +3,7 @@ Views.favorites.edit = function(view, params, favorites) {
 	var win = params.win;
 	
 	var channel_list = Titanium.UI.createScrollView({
-		top: "6dp",
+		top: "10dp",
 		height:"365dp",
 		width:"320dp",
 		contentWidth:"auto",
