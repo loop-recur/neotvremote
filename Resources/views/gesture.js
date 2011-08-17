@@ -109,9 +109,9 @@ Views.gesture = function(win) {
 	
 	function shortSwipe(diff) {
 		if(Helpers.Application.isAndroid() && Titanium.Platform.displayCaps.density == "high") {
-			var swipe_length = 150;
+			var swipe_length = 110;
 		} else {
-			var swipe_length = 100;
+			var swipe_length = 90;
 		}
 		return Math.abs(diff) < swipe_length;
 	}
@@ -154,7 +154,14 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			return Xbmc.action("left")();
+			// return Xbmc.action("left")();
+			
+			function doThreeLeft () {
+				setTimeout(Xbmc.action("left"), 1);
+	      setTimeout(Xbmc.action("left"), 250);
+	      setTimeout(Xbmc.action("left"), 500);
+			}
+			return doThreeLeft();
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
@@ -162,17 +169,14 @@ Views.gesture = function(win) {
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
-				alert('long right');
-				
-				function doThree () {
-					Ti.API.info("LONG RIGHT BEFORE");
-					Xbmc.action("right")();
-					Xbmc.action("right")();
-					Xbmc.action("right")();
-					Ti.API.info("LONG RIGHT AFTER");
-				}
-				
-				return doThree();
+			// return Xbmc.action("right")();
+			
+			function doThreeRight () {
+				setTimeout(Xbmc.action("right"), 1);
+	      setTimeout(Xbmc.action("right"), 250);
+	      setTimeout(Xbmc.action("right"), 500);
+			}
+			return doThreeRight();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
@@ -180,7 +184,14 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			return Xbmc.action("up")();
+			// return Xbmc.action("up")();
+			
+			function doThreeUp () {
+				setTimeout(Xbmc.action("up"), 1);
+	      setTimeout(Xbmc.action("up"), 250);
+	      setTimeout(Xbmc.action("up"), 500);
+			}
+			return doThreeUp();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
@@ -188,7 +199,13 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			return Xbmc.action("down")();
+			// return Xbmc.action("down")();
+      function doThreeDown () {
+				setTimeout(Xbmc.action("down"), 1);
+	      setTimeout(Xbmc.action("down"), 250);
+	      setTimeout(Xbmc.action("down"), 500);
+			}
+			return doThreeDown();
 		}	
 	};
 	
