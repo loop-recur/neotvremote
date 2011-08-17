@@ -103,12 +103,16 @@ Views.gesture = function(win) {
 	win.add(arrows);
 	
 	function underThreshold(diff) {
-		var difference_threshold = 21;
+		var difference_threshold = 20;
 		return Math.abs(diff) < difference_threshold;
 	}
 	
 	function shortSwipe(diff) {
-		var swipe_length = 80;
+		if(Helpers.Application.isAndroid() && Titanium.Platform.displayCaps.density == "high") {
+			var swipe_length = 150;
+		} else {
+			var swipe_length = 100;
+		}
 		return Math.abs(diff) < swipe_length;
 	}
 	
@@ -117,7 +121,7 @@ Views.gesture = function(win) {
 	}
 	
 	arrows.addEventListener('doubletap', function () {
-		Controllers.remote.button("select");
+		return Controllers.remote.button("select")();
 	});
 	
 	arrows.addEventListener('touchstart', function(e)
@@ -135,7 +139,7 @@ Views.gesture = function(win) {
 	});
 	
 	function doubleTap() {
-		if (Math.abs(touch_x_stop - touch_x_start) > 20 || Math.abs(touch_y_stop - touch_y_start) > 20) {
+		if (Math.abs(touch_x_stop - touch_x_start) > 15 || Math.abs(touch_y_stop - touch_y_start) > 15) {
 			doGesture();
 		}
 	}
@@ -146,44 +150,45 @@ Views.gesture = function(win) {
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
-			alert("left");
-			return Controllers.remote.button("left")();
+			return Xbmc.action("left")();
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			Controllers.remote.button("left")();
-			Controllers.remote.button("left")();
-			Controllers.remote.button("left")();
+			return Xbmc.action("left")();
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
-			return Controllers.remote.button("right")();
+			return Xbmc.action("right")();
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			Controllers.remote.button("right")();
-			Controllers.remote.button("right")();
-			Controllers.remote.button("right")();
+				alert('long right');
+				
+				function doThree () {
+					Ti.API.info("LONG RIGHT BEFORE");
+					Xbmc.action("right")();
+					Xbmc.action("right")();
+					Xbmc.action("right")();
+					Ti.API.info("LONG RIGHT AFTER");
+				}
+				
+				return doThree();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
-			return Controllers.remote.button("up")();
+			return Xbmc.action("up")();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			Controllers.remote.button("up")();
-			Controllers.remote.button("up")();
-			Controllers.remote.button("up")();
+			return Xbmc.action("up")();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
-			return Controllers.remote.button("down")();
+			return Xbmc.action("down")();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			Controllers.remote.button("down")();
-			Controllers.remote.button("down")();
-			Controllers.remote.button("down")();
+			return Xbmc.action("down")();
 		}	
 	};
 	
