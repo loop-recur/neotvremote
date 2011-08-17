@@ -21,7 +21,6 @@ var Settings = function() {
 		App.db.find('settings', {}, map.partial(_setCurrent));
 		settings.current = 1;
 		App.db.save('settings', settings);
-		App.loadSettings();
 	}
 	
 	function load(fun) {
