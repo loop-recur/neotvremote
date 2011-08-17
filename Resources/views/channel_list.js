@@ -25,7 +25,8 @@ Views.channel_list = function(channels, favorites) {
 			value:name
 		});
 		
-		if(favorites) addMask(channel_button);
+		if(favorites && !Helpers.Application.isAndroid()) addMask(channel_button);
+		if(favorites && Helpers.Application.isAndroid()) addAndroidMask(channel_button);
 				
 		channel_button.addEventListener('click', clickFun);
 		
@@ -62,21 +63,20 @@ Views.channel_list = function(channels, favorites) {
 		channel_button.opacity = getOpacity(channel_button);
 	}
 	
-	function getOpacity(channel_button) {
-		if(Helpers.Application.isAndroid()) {
-			// if (favorites.indexOf(channel_button.value) !== -1) {
-			// 				channel_button.borderWidth = 5;
-			// 				channel_button.borderColor = "#D3D22E";
-			// 				channel_button.borderRadius = 5;
-			// 			} else {
-			// 				channel_button.borderWidth = 0;
-			// 				channel_button.borderColor = "red";
-			// 				channel_button.borderRadius = 0;	
-			// };
-			return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 1;
+	function addAndroidMask(channel_button) {
+		if (favorites.indexOf(channel_button.value) !== -1) {
+			channel_button.borderWidth = 0;
+			channel_button.borderColor = "black";
+			channel_button.borderRadius = 0;
 		} else {
-			return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 0.2;			
+			channel_button.borderWidth = 5;
+			channel_button.borderColor = "#D3D22E";
+			channel_button.borderRadius = 5;
 		};
+	}
+
+	function getOpacity(channel_button) {
+		return (favorites.indexOf(channel_button.value) !== -1) ? 1 : 0.2;
 	}
 	
 	function launchChannel(e) {
@@ -90,7 +90,7 @@ Views.channel_list = function(channels, favorites) {
 		
 		if(Helpers.Application.isAndroid()) {
 			e.source.borderWidth = (e.source.borderWidth == 5) ? 0 : 5;
-			e.source.borderColor = (e.source.borderColor == "#D3D22E") ? "red" : "#D3D22E";
+			e.source.borderColor = (e.source.borderColor == "#D3D22E") ? "black" : "#D3D22E";
 			e.source.borderRadius = (e.source.borderRadius == 5) ? 0 : 5;
 		} else {
 			e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;

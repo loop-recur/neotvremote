@@ -2,9 +2,9 @@ Views.remote = function(win) {
 	
 	var search = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_mag.png',
-		height:"20dp",
-		width:"20dp",
-		top:"5dp",
+		height:"40dp",
+		width:"40dp",
+		top:"1dp",
 		left:"5dp"
 	});
 	
@@ -17,8 +17,8 @@ Views.remote = function(win) {
 		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
 		height:"40dp",
 		width:"40dp",
-		top:"5dp",
-		right:"30dp"		
+		top:"1dp",
+		right:"40dp"		
 	});
 	
 	channel_favorites.addEventListener('click', function() {
@@ -52,9 +52,9 @@ Views.remote = function(win) {
 
 	var like_button = Titanium.UI.createButton({
 		backgroundImage:"images/nowplaying/remote_fblike.png",
-		height:"24dp",
-		width:"24dp",
-		top:"9dp",
+		height:"40dp",
+		width:"40dp",
+		top:"2dp",
 		right:"15dp"
 	});
 	
@@ -67,9 +67,9 @@ Views.remote = function(win) {
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
 		backgroundSelectedImage:'images/remote_view/remote_home_down.png',
-		height:"19dp",
-		width:"20dp",
-		top:"5dp",
+		height:"40dp",
+		width:"40dp",
+		top:"1dp",
 		right:"5dp"
 	});
 	

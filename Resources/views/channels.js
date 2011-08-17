@@ -5,9 +5,9 @@ Views.channels = function(win) {
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
 		backgroundSelectedImage:'images/remote_view/remote_home_down.png',
-		height:"19dp",
-		width:"20dp",
-		top:"5dp",
+		height:"40dp",
+		width:"40dp",
+		top:"1dp",
 		right:"5dp"
 	});
 	
@@ -16,9 +16,9 @@ Views.channels = function(win) {
 	var keyboard_button = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_keyboard.png',
 		backgroundSelectedImage:'images/channel_view/channel_keyboard_down.png',
-		height:"25dp",
-		width:"45dp",
-		top:"5dp",
+		height:"40dp",
+		width:"60dp",
+		top:"1dp",
 		left:"10dp"
 	});	
 	
@@ -44,10 +44,10 @@ Views.channels = function(win) {
 	var channel_favorites = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_fav.png',
 		backgroundSelectedImage:'images/channel_view/channel_fav_down.png',
-		height:"20dp",
-		width:"20dp",
-		top:"5dp",
-		right:"30dp"		
+		height:"40dp",
+		width:"40dp",
+		top:"1dp",
+		right:"40dp"		
 	});
 	
 	var channel_list = Views.channel_list(Channels);

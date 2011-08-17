@@ -6,10 +6,11 @@ Views.favorites.index = function(view, params, favorites) {
 	
 	var edit_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_edit_button.png",
-		height:"21dp",
-		width:"43dp",
-		top:"5dp",
-		right:"60dp"
+		backgroundSelectedImage:"images/channel_view/channel_edit_button_down.png",
+		height:"33dp",
+		width:"61dp",
+		top:"3dp",
+		right:"80dp"
 	});
 
 	edit_button.addEventListener('click', function() {
