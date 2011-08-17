@@ -1,13 +1,9 @@
 var Feedback = function() {
-	// var soundFun = Helpers.Application.isAndroid() ? androidSound : iOSSound;
-	
-	// function androidSound() {
-	// 	Titanium.Media.createSound({url:'app://path/to/file.mp3',preload:true,allowBackground:true});
-	// }
+	var soundFun = Helpers.Application.isAndroid() ? function(){} : iOSSound;
 	
 	function iOSSound() {
-		// Titanium.Media.playClick();
+		Titanium.Media.playClick();
 	}
 
-	return {buttonPress: iOSSound}
+	return {buttonPress: soundFun}
 }();

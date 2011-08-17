@@ -1,10 +1,7 @@
 Controllers.remote = function() {
-	Ti.App.addEventListener("remoteButtonPressed", function(e) {
-		compose(Xbmc.action(e.name), Feedback.buttonPress)();
-	});
 	
 	function button(name) {
-		return Xbmc.action(name);
+		return compose(Xbmc.action(name), Feedback.buttonPress);
 	}
 	
 	function displayPlaying(label_view, image_view, current_playing_view, playing_text) {
