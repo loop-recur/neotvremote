@@ -10,9 +10,14 @@ App.action = function(win, controller_action, args) {
 	Controllers[controller][action](view.partial(win), params);
 };
 
-App.loadSettings = function() {
-	Settings.load(function(url, credentials) {
+App.loadSettings = function(url, credentials) {
+	if(url) {
 		App.base_url = url;
 		App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
-	})	
+	} else {
+		Settings.load(function(url, credentials) {
+			App.base_url = url;
+			App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+		});
+	}
 };
