@@ -51,6 +51,7 @@ Views.channels = function(win, favs) {
 	});
 	
 	var channel_list = Titanium.UI.createScrollView({
+		top: "4dp",
 		height:"365dp",
 		width:"320dp",
 		contentWidth:"auto",
@@ -70,10 +71,10 @@ Views.channels = function(win, favs) {
 	win.add(channel_favorites);
 	win.add(view);
 	
-	Views.channel_list(channel_list, Channels);
-	
 	win.addEventListener("favs", toggleFavoriteMode);
 	if(favs) toggleFavoriteMode();
+	
+	Views.channel_list(channel_list, Channels);
 	
 	function toggleFavoriteMode() {
 		if(editing) {

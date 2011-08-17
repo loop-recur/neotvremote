@@ -64,15 +64,7 @@ Views.channel_list = function(view, channels, favorites) {
 	}
 	
 	function addAndroidMask(channel_button) {
-		if (favorites.indexOf(channel_button.value) !== -1) {
-			channel_button.borderWidth = 5;
-			channel_button.borderColor = "#D3D22E";
-			channel_button.borderRadius = 5;
-		} else {
-			channel_button.borderWidth = 0;
-			channel_button.borderColor = "black";
-			channel_button.borderRadius = 0;
-		};
+		toggleBorder(channel_button, favorites.indexOf(channel_button.value) !== -1)
 	}
 
 	function getOpacity(channel_button) {
@@ -89,12 +81,22 @@ Views.channel_list = function(view, channels, favorites) {
 		Favorites.toggleFavorite(index);
 		
 		if(Helpers.Application.isAndroid()) {
-			e.source.borderWidth = (e.source.borderWidth == 5) ? 0 : 5;
-			e.source.borderColor = (e.source.borderColor == "#D3D22E") ? "black" : "#D3D22E";
-			e.source.borderRadius = (e.source.borderRadius == 5) ? 0 : 5;
+			toggleBorder(e.source, e.source.borderColor == "#D3D22E");
 		} else {
 			e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
 		}
+	}
+	
+	function toggleBorder(button, cond) {
+		if (cond) {
+			button.borderWidth = 5;
+			button.borderColor = "#D3D22E";
+			button.borderRadius = 5;
+		} else {
+			button.borderWidth = 0;
+			button.borderColor = "black";
+			button.borderRadius = 0;
+		};
 	}
 	
 	return scrollview;
