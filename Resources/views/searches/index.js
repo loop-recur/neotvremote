@@ -8,7 +8,7 @@ Views.searches.index = function(win) {
 		top:"40dp"
 	});
 	
-	var result_view = makeView(Channels);
+	var result_view = makeView([]);
 
 	var search = Titanium.UI.createSearchBar({
 		barColor:'black',
@@ -18,19 +18,17 @@ Views.searches.index = function(win) {
 		top:"0dp"
 	});
 	
-	search.addEventListener('cancel', function(e)
-	{ 
+	search.addEventListener('cancel', function(e) { 
 		win.remove(view);
 	});
 	
-	search.addEventListener('return', function(e)
-	{
+	search.addEventListener('return', function(e) {
 		search.blur();
 	});
 	
 	search.addEventListener('change', function(e) {
 		var val = e.value.toLowerCase();
-		updateChannels(val);
+		setTimeout(updateIfDifferent.partial(val), 500);
 	});
 	
 	view.add(search);
@@ -41,6 +39,9 @@ Views.searches.index = function(win) {
 	
 	win.add(view);
 	
+	function updateIfDifferent(val) {
+		if(search.value == val) updateChannels(val);
+	}
 	
 	function updateChannels(val) {
 		results.remove(result_view);
@@ -49,8 +50,9 @@ Views.searches.index = function(win) {
 	}
 	
 	function foundChannels(val, channels) {
+		if(!val) return [];
 		var isMatch = function(x) { return (x.indexOf(val) != -1); };
-		return select(isMatch, Channels);
+		return compose(take.partial(9), select.partial(isMatch))(Channels);
 	};
 	
 	function makeView(channels) {

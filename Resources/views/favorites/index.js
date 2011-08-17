@@ -6,17 +6,18 @@ Views.favorites.index = function(view, params, favorites) {
 	
 	var edit_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_edit_button.png",
-		// title:"edit",
 		height:"21dp",
 		width:"43dp",
 		top:"5dp",
 		right:"60dp"
 	});
 
-	edit_button.addEventListener('click', function(){
+	edit_button.addEventListener('click', function() {
 		dealloc();
 		App.action(view, "favorites#edit", {favorites : favorites, win : win});
-	})
+	});
+	
+	Ti.App.addEventListener("hideIndex", dealloc);
 	
 	function dealloc() {
 		win.remove(edit_button);
