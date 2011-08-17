@@ -31,7 +31,7 @@ describe("Controllers.remoteSpec", function() {
 	
 		it("posts to wall with text describing the channel and channel's photo", function() {
 			Controllers.remote.postToWall({text : "Netflix"});
-		  expect(FbGraph.wallPost).toHaveBeenCalledWith("I'm watching Netflix on my Netgear NeoTv.", "http://looprecur.com/netgear/channel_netflix.png");
+		  expect(FbGraph.wallPost).toHaveBeenCalledWith("I'm watching Netflix on my Netgear NeoTV.", "http://looprecur.com/netgear/channel_netflix.png");
 		});
 	});
 	

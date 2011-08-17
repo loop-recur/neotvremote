@@ -1,4 +1,4 @@
-Views.channels = function(win) {
+Views.channels = function(win, favs) {
 	var editing;
 	var view = Titanium.UI.createView({top: "30dp"});
 	
@@ -63,6 +63,8 @@ Views.channels = function(win) {
 	win.add(channel_favorites);
 	win.add(view);
 	
+	win.addEventListener("favs", toggleFavoriteMode);
+	if(favs) toggleFavoriteMode();
 	
 	function toggleFavoriteMode() {
 		if(editing) {
