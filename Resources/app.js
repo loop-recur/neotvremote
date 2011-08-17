@@ -7,7 +7,7 @@ Titanium.Facebook.appid = "104545300725";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
 Layouts.application();
-setupDb(true);
+setupDb();
 App.loadSettings();
 Bonjour.discoverNetworks(Settings.findOrCreate);
 
