@@ -6,9 +6,9 @@ Titanium.UI.setBackgroundColor('#000');
 Titanium.Facebook.appid = "104545300725";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
-Layouts.application();
-setupDb();
+setupDb(true);
 App.loadSettings();
+Layouts.application();
 Bonjour.discoverNetworks(Settings.findOrCreate);
 
 function setupDb(redo) {
