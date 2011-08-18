@@ -74,7 +74,7 @@ Views.channel_list = function(view, channels, favorites) {
 	}
 	
 	function launchChannel(e) {
-		alert(e.source.value + " clicked!");
+		Xbmc.launch(e.source.value)();
 	}
 	
 	function toggleFav(e) {

@@ -19,6 +19,10 @@ var Xbmc = function() {
 		"reverse" : "17"
 	}
 	
+	function launch(channel) {
+		return _httpCall("PlayFile", channel);
+	}
+	
 	function action(key) {
 		return _httpCall("Action", _getCode(key));
 	}
@@ -83,5 +87,5 @@ var Xbmc = function() {
 		return {type : type}
 	}();
 
-	return {sendKey : sendKey, action : action, keyboard : Keyboard.type, currentPlaying : currentPlaying}
+	return {sendKey: sendKey, action: action, launch: launch, currentPlaying: currentPlaying, keyboard: Keyboard.type}
 }();
