@@ -21,3 +21,8 @@ App.loadSettings = function(url, credentials) {
 		});
 	}
 };
+
+App.setSettings = function(url, credentials) {
+	App.base_url = url;
+	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+}

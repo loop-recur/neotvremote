@@ -19,6 +19,12 @@ var Xbmc = function() {
 		"reverse" : "17"
 	}
 	
+	function ping(callbacks){
+		action("up")(function(){
+			this.responseText.match("/OK/") ? callbacks.success() : callbacks.error();
+		});
+	}
+	
 	function launch(channel) {
 		return _httpCall("PlayFile", channel);
 	}
@@ -56,9 +62,10 @@ var Xbmc = function() {
 	function _httpCall(cmd, arg) {
 		var command = cmd + "("+arg+")";
 		
-		return function(success) {
+		return function(success, error) {
 			if(!success) success = function(){};
-			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: success, error: function(e){}});
+			if(!error) error = function(){};
+			App.http_client.get("/xbmcCmds/xbmcHttp", {"command":command}, {success: success, error: error});
 		}
 	}
 	
@@ -87,5 +94,5 @@ var Xbmc = function() {
 		return {type : type}
 	}();
 
-	return {sendKey: sendKey, action: action, launch: launch, currentPlaying: currentPlaying, keyboard: Keyboard.type}
+	return {ping: ping, sendKey: sendKey, action: action, launch: launch, currentPlaying: currentPlaying, keyboard: Keyboard.type}
 }();

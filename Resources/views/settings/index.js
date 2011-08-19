@@ -1,13 +1,20 @@
 Views.settings.index = function(win, settings) {	
+	
+	var autoRow = Ti.UI.createTableViewRow({
+		title:"Auto Pair",
+		owner:"auto",
+		header:""
+	});
 
 	var newRow = Ti.UI.createTableViewRow({
 		title:"Add a new device",
 		owner:{},
 		header:""
 	});
-	
+		
 	var rows = map(createTableViewRow, settings);
 	
+	// rows.push(autoRow);
 	rows.push(newRow);
 	
 	var tableView = Titanium.UI.createTableView({
@@ -37,9 +44,18 @@ Views.settings.index = function(win, settings) {
 		return row;
 	}
 	
-	tableView.addEventListener('click', function(e)
-	{
-		Views.settings.show(win, tableView, e.rowData.owner);
+	function stopChecking() {
+		autoRow.title = "Auto Pair";
+	}
+	
+	tableView.addEventListener('click', function(e) {
+		var owner = e.rowData.owner;
+		if(owner == "auto") {
+			autoRow.title = "Checking...";
+			Bonjour.discoverNetworks(compose(stopChecking, Settings.findOrCreate));
+		} else {
+			Views.settings.show(win, tableView, owner);
+		}
 	});
 
 	win.add(tableView);	
