@@ -10,7 +10,7 @@ var Channel = function() {
 	}
 	
 	function _imageName(name) {
-		var channel = (name || "").toLowerCase();
+		var channel = (name || "").toLowerCase().replace(" ", "");
 		return 'channel_'+channel+'.png';
 	}
 	

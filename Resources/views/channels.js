@@ -11,6 +11,8 @@ Views.channels = function(win, favs) {
 		right:"5dp"
 	});
 	
+	home_button.addEventListener('click', Xbmc.action('menu'));
+	
 	var keyboard_field = Helpers.ui.keyboard();
 	
 	var keyboard_button = Titanium.UI.createButton({
