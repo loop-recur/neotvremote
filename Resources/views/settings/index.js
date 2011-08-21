@@ -7,15 +7,15 @@ Views.settings.index = function(win) {
 		id:"hosts"
 	});
 	
-	var sound_row = Ti.UI.createTableViewRow({
+	var feedback_row = Ti.UI.createTableViewRow({
 		header:"Sounds & Vibrate",
 		title:"Manage Feedback Settings",
-		id:"sounds"
+		id:"feedback"
 	});
 	
 	var inputData = [ 
 		hosts_row,
-		sound_row
+		feedback_row
 	];
 	
 	var tableView = Titanium.UI.createTableView({
@@ -24,9 +24,8 @@ Views.settings.index = function(win) {
 	});
 	
 	tableView.addEventListener('click', function(e) {
-		if(e.source.id == "hosts"){
-			Views.hosts.index.partial(win);
-		}
+		var action = e.source.id;
+		App.action(win, action + "#index");
 	});
 	
 	view.add(tableView);

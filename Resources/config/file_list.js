@@ -5,6 +5,7 @@ FileList = [
 	"controllers/searches.js",
 	"controllers/hosts.js",
 	"controllers/settings.js",
+	"controllers/feedback.js",
 	"helpers/application.js",
 	"helpers/ui.js",
 	"lib/benchmarker.js",
@@ -26,5 +27,6 @@ FileList = [
 	"views/searches/index.js",
 	"views/settings/index.js",
 	"views/hosts/index.js",
-	"views/hosts/show.js"
+	"views/hosts/show.js",
+	"views/feedback/index.js"
 ];
