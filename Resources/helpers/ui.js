@@ -37,16 +37,18 @@ Helpers.ui.confirm = function(title, callbacks) {
 };
 
 Helpers.ui.addNav = function(win, title, fun) {
+	
 	var nav_button = Titanium.UI.createButton({
 		title:title,
 	});
 	
-	win.leftNavButton = nav_button;
-	
 	nav_button.addEventListener('click', function() {
+		win.hideNavBar();
 		fun(win);
-		win.leftNavButton = null;
 	});
+	
+	win.leftNavButton = nav_button;
+	win.showNavBar();
 	
 	return nav_button;
 }
