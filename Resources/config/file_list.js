@@ -4,6 +4,7 @@ FileList = [
 	"controllers/remote.js",
 	"controllers/searches.js",
 	"controllers/hosts.js",
+	"controllers/settings.js",
 	"helpers/application.js",
 	"helpers/ui.js",
 	"lib/benchmarker.js",

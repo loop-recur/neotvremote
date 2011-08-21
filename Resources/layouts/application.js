@@ -51,7 +51,7 @@ Layouts.application = function() {
 			navBarHidden: true
 	});
 	win4.addEventListener('open', function(){
-		App.action(win4, "hosts#index");
+		App.action(win4, "settings#index");
 	});
 	
 	var tab4 = Titanium.UI.createTab({
