@@ -1,7 +1,7 @@
 Views.feedback.index = function(win) {
-	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "red"});
+	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFF"});
 
-	Helpers.ui.addNav(win, "Back", Views.settings.index);
+	if(!Helpers.Application.isAndroid()) {Helpers.ui.addNav(win, "Back", Views.settings.index);};
 	
 	var vibrate_row = Ti.UI.createTableViewRow({
 		header:"Feedback"

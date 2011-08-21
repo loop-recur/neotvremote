@@ -43,12 +43,12 @@ Helpers.ui.addNav = function(win, title, fun) {
 	});
 	
 	nav_button.addEventListener('click', function() {
-		win.hideNavBar();
+		// win.hideNavBar();
 		fun(win);
 	});
 	
 	win.leftNavButton = nav_button;
-	win.showNavBar();
+	// win.showNavBar();
 	
 	return nav_button;
 }

@@ -1,7 +1,7 @@
 Views.hosts.index = function(win, hosts) {	
 	
-	Helpers.ui.addNav(win, "Back", Views.settings.index);
-	
+	if(!Helpers.Application.isAndroid()) {Helpers.ui.addNav(win, "Back", Views.settings.index);};
+		
 	var autoRow = Ti.UI.createTableViewRow({
 		title:"Auto Pair",
 		owner:"auto",
