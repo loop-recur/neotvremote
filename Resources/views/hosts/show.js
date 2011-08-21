@@ -1,6 +1,8 @@
 Views.hosts.show = function(win, table, hosts) {
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
 	
+	Helpers.ui.addNav(win, "Back", Views.settings.index);
+	
 	var name_row = Ti.UI.createTableViewRow({
 		header:"Device Hosts"
 	});

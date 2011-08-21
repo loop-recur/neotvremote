@@ -47,9 +47,9 @@ Layouts.application = function() {
 	};
 
 	var win4 = Titanium.UI.createWindow({  
-	    backgroundColor:'#fff',
-			navBarHidden: true
+	    backgroundColor:'#fff'
 	});
+	
 	win4.addEventListener('open', function(){
 		App.action(win4, "settings#index");
 	});
