@@ -1,5 +1,5 @@
-Controllers.settings = function() {
-	var name = "settings";
+Controllers.hosts = function() {
+	var name = "hosts";
 	
 	function index(view, params) {
 		App.db.find(name, {}, view);

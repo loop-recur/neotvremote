@@ -3,7 +3,7 @@ FileList = [
 	"controllers/favorites.js",
 	"controllers/remote.js",
 	"controllers/searches.js",
-	"controllers/settings.js",
+	"controllers/hosts.js",
 	"helpers/application.js",
 	"helpers/ui.js",
 	"lib/benchmarker.js",
@@ -12,7 +12,7 @@ FileList = [
 	"lib/favorites.js",
 	"lib/fb_graph.js",
 	"lib/feedback.js",
-	"lib/settings.js",
+	"lib/hosts.js",
 	"lib/xbmc.js",
 	"layouts/application.js",
 	"views/channels.js",
@@ -24,5 +24,6 @@ FileList = [
 	"views/gesture.js",
 	"views/searches/index.js",
 	"views/settings/index.js",
-	"views/settings/show.js"
+	"views/hosts/index.js",
+	"views/hosts/show.js"
 ];
