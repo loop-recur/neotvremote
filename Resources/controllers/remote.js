@@ -1,7 +1,10 @@
 Controllers.remote = function() {
 	
 	function button(name) {
-		return compose(Xbmc.action(name), Feedback.buttonPress);
+		return function(){
+			Feedback.buttonPress();
+			setTimeout(Xbmc.action(name),0);
+		}
 	}
 	
 	function displayPlaying(label_view, image_view, current_playing_view, playing_text) {
