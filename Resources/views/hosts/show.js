@@ -1,13 +1,15 @@
-Views.settings.show = function(win, table, settings) {
+Views.hosts.show = function(win, table, hosts) {
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
 	
+	if(!Helpers.Application.isAndroid()) {Helpers.ui.addNav(win, "Cancel", Views.settings.index);};
+	
 	var name_row = Ti.UI.createTableViewRow({
-		header:"Device Settings"
+		header:"Device Hosts"
 	});
 	var name = Titanium.UI.createTextField({
 		color:'#336699',
 		id:"name",
-		value:(settings.name || "New Device"),
+		value:(hosts.name || "New Device"),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
@@ -26,12 +28,12 @@ Views.settings.show = function(win, table, settings) {
 	name_row.add(name);
 
 	var ip_row = Ti.UI.createTableViewRow({
-		header:"Device Settings"
+		header:"Device Hosts"
 	});
 	var ip = Titanium.UI.createTextField({
 		color:'#336699',
 		id:"host",
-		value:(settings.host || null),
+		value:(hosts.host || null),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
@@ -54,7 +56,7 @@ Views.settings.show = function(win, table, settings) {
 	var port = Ti.UI.createTextField({
 		id: "port",
 		hintText:"Enter port...",
-		value: (settings.port || null),
+		value: (hosts.port || null),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
@@ -74,7 +76,7 @@ Views.settings.show = function(win, table, settings) {
 	var username_row = Ti.UI.createTableViewRow();
 	var username = Titanium.UI.createTextField({  
 		id: "username",
-		value: (settings.username || null),
+		value: (hosts.username || null),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
@@ -95,7 +97,7 @@ Views.settings.show = function(win, table, settings) {
 	var password_row = Ti.UI.createTableViewRow();
 	var password = Titanium.UI.createTextField({ 
 		id: "password",
-		value: (settings.password || null),
+		value: (hosts.password || null),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",
@@ -142,29 +144,29 @@ Views.settings.show = function(win, table, settings) {
 	
 	function addChangeListener(field) {
 		field.addEventListener('change', function(){
-			settings[field.id] = field.value;
+			hosts[field.id] = field.value;
 		});
 	}
 	
 	function close() {
-		App.loadSettings();
+		App.loadHosts();
 		table.data = [];
-		App.action(win, "settings#index");
+		App.action(win, "hosts#index");
 		win.remove(view);
 	}
 	
 	function save(){
-		Settings.save(settings);
+		Hosts.save(hosts);
 		close();
 	}
 	
 	function destroy() {
-		Settings.destroy(settings.id);
+		Hosts.destroy(hosts.id);
 		close();
 	}
 	
 	function setCurrent() {
-		Settings.setCurrent(settings);
+		Hosts.setCurrent(hosts);
 		close();
 	}
 };

@@ -10,19 +10,19 @@ App.action = function(win, controller_action, args) {
 	Controllers[controller][action](view.partial(win), params);
 };
 
-App.loadSettings = function(url, credentials) {
+App.loadHosts = function(url, credentials) {
 	if(url) {
 		App.base_url = url;
 		App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
 	} else {
-		Settings.load(function(url, credentials) {
+		Hosts.load(function(url, credentials) {
 			App.base_url = url;
 			App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
 		});
 	}
 };
 
-App.setSettings = function(url, credentials) {
+App.setHosts = function(url, credentials) {
 	App.base_url = url;
 	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
 }
