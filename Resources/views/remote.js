@@ -245,6 +245,7 @@ Views.remote = function(win) {
 	});
 
 	Views.play_controls(win);
+	Helpers.ui.connecting(win);
 	
 	win.add(channel_favorites);
 	win.add(home_button);

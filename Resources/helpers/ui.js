@@ -52,3 +52,37 @@ Helpers.ui.addNav = function(win, title, fun) {
 	
 	return nav_button;
 }
+
+Helpers.ui.connecting = function(win) {
+	
+	var images = [];
+	for (var i=1;i<4;i++) { images.push('images/connecting/remote_connecting' + ((i<4)?'0'+i:i)+'.png');}
+
+	var position_top = "45dp";
+	var position_right = "20dp";
+	
+	var imageView = Titanium.UI.createImageView({
+		images:images,
+		duration:400, // in milliseconds, the time before next frame is shown
+		repeatCount:0,  // 0 means animation repeats indefinitely, use > 1 to control repeat count
+		width:"81dp", 
+		height:"14dp",
+		top:position_top,
+		right:position_right
+	});
+	
+	var connected = Titanium.UI.createView({
+		backgroundImage:"images/connecting/remote_connected.png",
+		width:"81dp",
+		height:"14dp",
+		top: position_top,
+		right: position_right,
+		visible:false
+	});
+	
+	imageView.start();
+	
+	win.add(imageView);
+	win.add(connected);
+
+}
