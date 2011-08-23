@@ -1,9 +1,23 @@
 var Feedback = function() {
-	var soundFun = Helpers.Application.isAndroid() ? function(){} : iOSSound;
+	var settings;
 	
-	function iOSSound() {
-		Titanium.Media.playClick();
+	function loadSettings() {
+		Controllers.feedback.index(function(s) {
+			settings = s;
+		});
 	}
-
-	return {buttonPress: soundFun}
+	
+	function _click() {
+		if(settings.sound) _playClick();
+	}
+	
+	function _vibrate() {
+		if(settings.vibrate) Ti.Media.vibrate();
+	}
+	
+	function _playClick() {
+		if(!Helpers.Application.isAndroid()) Titanium.Media.playClick();
+	}
+	
+	return {buttonPress: compose(_vibrate, _click), loadSettings: loadSettings}
 }();

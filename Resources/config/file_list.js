@@ -19,14 +19,14 @@ FileList = [
 	"layouts/application.js",
 	"views/channels.js",
 	"views/channel_list.js",
-	"views/play_controls.js",
 	"views/favorites/index.js",
 	"views/favorites/edit.js",
-	"views/remote.js",
+	"views/feedback/index.js",
 	"views/gesture.js",
-	"views/searches/index.js",
-	"views/settings/index.js",
 	"views/hosts/index.js",
 	"views/hosts/show.js",
-	"views/feedback/index.js"
+	"views/play_controls.js",
+	"views/remote.js",
+	"views/searches/index.js",
+	"views/settings/index.js"
 ];
