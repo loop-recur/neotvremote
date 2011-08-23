@@ -18,8 +18,22 @@ Views.gesture = function(win) {
 		top:"0dp"
 	});
 	
+	var up_arrow_mask = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_up_down.png",
+		width:"30dp",
+		height:"135dp",
+		top:"0dp"
+	});
+	
 	var down_arrow = Titanium.UI.createView({
 		backgroundImage:"images/gestures/gesture_arrow_down.png",
+		width:"30dp",
+		height:"135dp",
+		bottom:"0dp"		
+	});
+	
+	var down_arrow_mask = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_down_down.png",
 		width:"30dp",
 		height:"135dp",
 		bottom:"0dp"		
@@ -32,8 +46,22 @@ Views.gesture = function(win) {
 		left:"0dp"		
 	});
 	
+	var left_arrow_mask = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_left_down.png",
+		height:"30dp",
+		width:"135dp",
+		left:"0dp"		
+	});
+	
 	var right_arrow = Titanium.UI.createView({
 		backgroundImage:"images/gestures/gesture_arrow_right.png",
+		height:"30dp",
+		width:"135dp",
+		right:"0dp"
+	});
+	
+	var right_arrow_mask = Titanium.UI.createView({
+		backgroundImage:"images/gestures/gesture_arrow_right_down.png",
 		height:"30dp",
 		width:"135dp",
 		right:"0dp"
@@ -121,6 +149,11 @@ Views.gesture = function(win) {
 	}
 	
 	arrows.addEventListener('doubletap', function () {
+		animateGesture(up_arrow_mask);
+		animateGesture(down_arrow_mask);
+		animateGesture(left_arrow_mask);
+		animateGesture(right_arrow_mask);
+		
 		return Controllers.remote.button("select")();
 	});
 	
@@ -144,18 +177,27 @@ Views.gesture = function(win) {
 		}
 	}
 	
+	function animateGesture(arrow_mask) {
+		arrows.add(arrow_mask);
+		arrow_mask.animate({opacity:0,duration:1000}, function() {
+			arrows.remove(arrow_mask);
+			arrow_mask.opacity = 1;
+		});	
+	}
+	
 	function doGesture () {
 		
 		var x_diff = touch_x_stop - touch_x_start;
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
+			animateGesture(left_arrow_mask);
 			return Xbmc.action("left")();
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
 			// return Xbmc.action("left")();
-			
+			animateGesture(left_arrow_mask);
 			function doThreeLeft () {
 				setTimeout(Xbmc.action("left"), 1);
 	      setTimeout(Xbmc.action("left"), 250);
@@ -165,11 +207,13 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
+			animateGesture(right_arrow_mask);
 			return Xbmc.action("right")();
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
 			// return Xbmc.action("right")();
+			animateGesture(right_arrow_mask);
 			
 			function doThreeRight () {
 				setTimeout(Xbmc.action("right"), 1);
@@ -180,12 +224,14 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
+			animateGesture(up_arrow_mask);
 			return Xbmc.action("up")();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
 			// return Xbmc.action("up")();
-			
+			animateGesture(up_arrow_mask);
+						
 			function doThreeUp () {
 				setTimeout(Xbmc.action("up"), 1);
 	      setTimeout(Xbmc.action("up"), 250);
@@ -195,12 +241,14 @@ Views.gesture = function(win) {
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
+			animateGesture(down_arrow_mask);
 			return Xbmc.action("down")();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
 			// return Xbmc.action("down")();
-      function doThreeDown () {
+      animateGesture(down_arrow_mask);
+			function doThreeDown () {
 				setTimeout(Xbmc.action("down"), 1);
 	      setTimeout(Xbmc.action("down"), 250);
 	      setTimeout(Xbmc.action("down"), 500);
