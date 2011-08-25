@@ -1,15 +1,17 @@
 var Hosts = function() {
 	var defaults = {name: "Default", username: "xbmc", password: "xbmc", port:8080, host: "http://192.168.1.1"};
 	
-	function findOrCreate(new_hosts) {
-		App.db.find('hosts', _validate(new_hosts), function(xs){
-			when((xs.length < 1), compose(save, _mergeDefaults.curry(new_hosts)));
+	function findOrCreate(new_host, cb) {
+		if(!cb) cb = function(){};
+		App.db.find('hosts', _validate(new_host), function(xs){
+			when((xs.length < 1), compose(cb, save, _mergeDefaults.curry(new_host)));
 		});
 	}
 	
-	function save(new_hosts) {
-		var hosts = _validate(new_hosts);
+	function save(new_host) {
+		var hosts = _validate(new_host);
 		setCurrent(hosts);
+		return new_host;
 	}
 	
 	function destroy(id) {

@@ -1,4 +1,5 @@
 Views.searches.index = function(win) {
+	var updateFun = Helpers.Application.isAndroid() ? updateDelayed : updateChannels;
 	var view = Ti.UI.createView({
 		fullscreen : true,
 		backgroundImage:'images/channel_view/channel_bg.png'
@@ -27,8 +28,7 @@ Views.searches.index = function(win) {
 	});
 	
 	search.addEventListener('change', function(e) {
-		var val = e.value.toLowerCase();
-		setTimeout(updateIfDifferent.partial(val), 500);
+		updateFun(e.value.toLowerCase());
 	});
 	
 	view.add(search);
@@ -39,10 +39,11 @@ Views.searches.index = function(win) {
 	
 	win.add(view);
 	
-	function updateIfDifferent(val) {
-		if(search.value == val) updateChannels(val);
+	function updateDelayed(val) {
+		var _updateIfDifferent = function(v){ if(search.value == v) updateChannels(v); };
+		setTimeout(_updateIfDifferent.partial(val), 100);
 	}
-	
+		
 	function updateChannels(val) {
 		results.remove(result_view);
 		result_view = makeView(foundChannels(val));
@@ -51,11 +52,11 @@ Views.searches.index = function(win) {
 	
 	function foundChannels(val, channels) {
 		if(!val) return [];
-		var isMatch = function(x) { return (x.indexOf(val) != -1); };
+		var isMatch = function(x) { return (x.toLowerCase().indexOf(val) != -1); };
 		return compose(take.partial(9), select.partial(isMatch))(Channels);
 	};
 	
 	function makeView(channels) {
-		return Views.channel_list(null, channels);
+		return Views.channel_list.create(channels);
 	}
 };

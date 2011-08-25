@@ -9,7 +9,7 @@ Views.hosts.show = function(win, table, hosts) {
 	var name = Titanium.UI.createTextField({
 		color:'#336699',
 		id:"name",
-		value:(hosts.name || "New Device"),
+		value:(hosts.name),
 		left:"107dp",
 		width:"180dp",
 		height:"35dp",

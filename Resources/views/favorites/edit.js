@@ -2,17 +2,7 @@ Views.favorites.edit = function(view, params, favorites) {
 
 	var win = params.win;
 	
-	var channel_list = Titanium.UI.createScrollView({
-		top: "10dp",
-		height:"365dp",
-		width:"320dp",
-		contentWidth:"auto",
-		contentHeight:'auto',
-		showHorizontalScrollIndicator:false,
-		showVerticalScrollIndicator:true
-	});
-	
-	view.add(channel_list);
+	Views.channel_list.favoritesMode(ChannelList.children, favorites);
 	
 	var edit_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_done_button.png",
@@ -31,10 +21,11 @@ Views.favorites.edit = function(view, params, favorites) {
 	Ti.App.addEventListener("hideEdit", dealloc);
 	
 	function dealloc() {
+		Views.channel_list.launchMode(ChannelList.children);
 		win.remove(edit_button);
-		view.remove(channel_list);
+		view.remove(ChannelList);
 	}
 	
-	Views.channel_list(channel_list, Channels, favorites);	
 	win.add(edit_button);
+	view.add(ChannelList);
 }
