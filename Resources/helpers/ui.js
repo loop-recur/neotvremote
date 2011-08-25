@@ -65,10 +65,11 @@ Helpers.ui.connecting = function(win) {
 		images:images,
 		duration:100, // in milliseconds, the time before next frame is shown
 		repeatCount:0,  // 0 means animation repeats indefinitely, use > 1 to control repeat count
-		width:"85dp", 
+		width:"85dp",
 		height:"15dp",
 		top:position_top,
-		left:position_left
+		left:position_left,
+		canScale:true
 	});
 	
 	var connected = Titanium.UI.createView({
@@ -77,10 +78,10 @@ Helpers.ui.connecting = function(win) {
 		height:"15dp",
 		top: position_top,
 		left: position_left,
-		visible:true
+		visible:false
 	});
 	
-	// imageView.start();
+	imageView.start();
 	
 	win.add(imageView);
 	win.add(connected);
