@@ -3,15 +3,17 @@ var Hosts = function() {
 	
 	function findOrCreate(new_host, cb) {
 		if(!cb) cb = function(){};
+		Ti.API.info("FINDING++++====");
 		App.db.find('hosts', _validate(new_host), function(xs){
 			when((xs.length < 1), compose(cb, save, _mergeDefaults.curry(new_host)));
 		});
 	}
 	
 	function save(new_host) {
-		var hosts = _validate(new_host);
-		setCurrent(hosts);
-		return new_host;
+		Ti.API.info("SHOULD BE SAVINING++++====");
+		var host = _validate(new_host);
+		setCurrent(host);
+		return host;
 	}
 	
 	function destroy(id) {

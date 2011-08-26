@@ -53,7 +53,7 @@ Helpers.ui.addNav = function(win, title, fun) {
 	return nav_button;
 }
 
-Helpers.ui.connecting = function(win) {
+Helpers.ui.connecting = function() {
 	
 	var images = [];
 	for (var i=1;i<7;i++) { images.push('images/connecting/remote_connecting' + ((i<7)?'0'+i:i)+'.png');}
@@ -80,9 +80,23 @@ Helpers.ui.connecting = function(win) {
 		visible:true
 	});
 	
-	// imageView.start();
+	Ti.App.addEventListener('connecting', startConnecting);
 	
-	win.add(imageView);
-	win.add(connected);
-
-}
+	function startConnecting() {
+		connected.visible = false;
+		imageView.visible = true;
+		imageView.start();
+		Xbmc.ping(finishConnecting);
+	}
+	
+	function finishConnecting() {
+		connected.visible = true;
+		imageView.visible = false;
+		imageView.stop();
+	}
+	
+	return function(win) {
+		win.add(imageView);
+		win.add(connected);
+	}
+}(); //to start listener

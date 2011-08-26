@@ -166,7 +166,7 @@ Views.hosts.show = function(win, table, hosts) {
 	}
 	
 	function setCurrent() {
-		Hosts.setCurrent(hosts);
+		Hosts.save(hosts);
 		close();
 	}
 };

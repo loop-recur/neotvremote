@@ -14,10 +14,12 @@ App.loadHosts = function(url, credentials) {
 	if(url) {
 		App.base_url = url;
 		App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+		Ti.App.fireEvent('connecting');
 	} else {
 		Hosts.load(function(url, credentials) {
 			App.base_url = url;
 			App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+			Ti.App.fireEvent('connecting');
 		});
 	}
 };
@@ -25,4 +27,5 @@ App.loadHosts = function(url, credentials) {
 App.setHosts = function(url, credentials) {
 	App.base_url = url;
 	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
+	Ti.App.fireEvent('connecting');
 }

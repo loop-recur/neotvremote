@@ -19,9 +19,11 @@ var Xbmc = function() {
 		"reverse" : "17"
 	}
 	
-	function ping(callbacks){
+	function ping(callback){
 		action("up")(function(){
-			this.responseText.match("/OK/") ? callbacks.success() : callbacks.error();
+			Ti.API.info(this.responseText.indexOf("OK") !== -1);
+			Ti.API.info(this.responseText.indexOf("OK"));
+			if(this.responseText.indexOf("OK") !== -1) callback();
 		});
 	}
 	

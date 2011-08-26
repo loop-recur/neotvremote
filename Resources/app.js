@@ -10,9 +10,16 @@ Layouts.application();
 setupDb();
 App.loadHosts();
 Feedback.loadSettings();
-Bonjour.discoverNetworks(Hosts.findOrCreate);
-ChannelList = Views.channel_list.create(Channels);
-Views.channel_list.launchMode(ChannelList.children);
+
+setTimeout(function(){
+	Bonjour.discoverNetworks(Hosts.findOrCreate);
+}, 200);
+
+setTimeout(function(){
+	ChannelList = Views.channel_list.create(Channels);
+	Views.channel_list.launchMode(ChannelList.children);
+}, 0);
+
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());
