@@ -9,7 +9,8 @@ Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 Layouts.application();
 setupDb();
 Feedback.loadSettings();
-setTimeout(App.loadHosts, 300);
+
+setTimeout(App.loadHosts, 0);
 
 setTimeout(function(){
 	Bonjour.discoverNetworks(Hosts.findOrCreate);

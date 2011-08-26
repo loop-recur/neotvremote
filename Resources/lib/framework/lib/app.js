@@ -27,5 +27,8 @@ App.loadHosts = function(url, credentials) {
 App.setHosts = function(url, credentials) {
 	App.base_url = url;
 	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
-	Ti.App.fireEvent('connecting');
+	setTimeout(function(){
+		Ti.App.fireEvent('connecting');
+	}, 1500);
+	
 }
