@@ -12,16 +12,20 @@ Views.hosts.index = function(win, hosts) {
 		owner:{name: "New Device"},
 		header:""
 	});
-		
-	var rows = map(createTableViewRow, hosts);
-	
-	rows.push(autoRow);
-	rows.push(newRow);
 	
 	var tableView = Titanium.UI.createTableView({
-		data:rows,
+		data:[],
 		style:Titanium.UI.iPhone.TableViewStyle.GROUPED
 	});
+	
+	makeRows(hosts);
+	
+	function makeRows(rows) {
+		var rows = map(createTableViewRow, rows);
+		rows.push(autoRow);
+		rows.push(newRow);
+		tableView.setData(rows);		
+	}
 		
 	function createTableViewRow(r) {
 		var row = Ti.UI.createTableViewRow({
@@ -57,14 +61,7 @@ Views.hosts.index = function(win, hosts) {
 	
 	function stopChecking(host) {
 		autoRow.title = "Auto Pair";
-		if(host) {
-			App.db.find("hosts", {}, function(hosts){
-				var rows = map(createTableViewRow, hosts);
-				rows.push(autoRow);
-				rows.push(newRow);
-				tableView.setData(rows);
-			});
-		}
+		if(host) App.db.find("hosts", {}, makeRows);
 	}
 	
 	tableView.addEventListener('click', function(e) {

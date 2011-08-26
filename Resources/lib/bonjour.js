@@ -13,7 +13,6 @@ var Bonjour = function() {
 	}
 
 	function _discoverIphone(callback) {
-		Ti.API.info("LOOOKING@");
 		var serviceBrowser = Titanium.Network.createBonjourBrowser({serviceType:'_xbmc-web._tcp', domain:'local.'});
 		serviceBrowser.addEventListener('updatedServices', _addServices);
 		serviceBrowser.search();
