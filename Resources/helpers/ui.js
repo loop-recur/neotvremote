@@ -54,6 +54,7 @@ Helpers.ui.addNav = function(win, title, fun) {
 }
 
 Helpers.ui.connecting = function() {
+	Ti.App.addEventListener('connecting', startConnecting);
 	
 	var images = [];
 	for (var i=1;i<7;i++) { images.push('images/connecting/remote_connecting' + ((i<7)?'0'+i:i)+'.png');}
@@ -80,8 +81,6 @@ Helpers.ui.connecting = function() {
 		left: position_left,
 		visible:false
 	});
-	
-	Ti.App.addEventListener('connecting', startConnecting);
 	
 	function startConnecting() {
 		connected.visible = false;

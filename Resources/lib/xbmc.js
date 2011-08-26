@@ -20,11 +20,17 @@ var Xbmc = function() {
 	}
 	
 	function ping(callback){
-		action("up")(function(){
-			Ti.API.info(this.responseText.indexOf("OK") !== -1);
-			Ti.API.info(this.responseText.indexOf("OK"));
-			if(this.responseText.indexOf("OK") !== -1) callback();
-		});
+		var interval = setInterval(startPing, 1000);
+		
+		function startPing() {
+			action("up")(function(){
+				if(this.responseText.indexOf("OK") !== -1) {
+					clearInterval(interval);
+					callback();
+				}
+			});
+		};
+		setTimeout(startPing, 0);
 	}
 	
 	function launch(channel) {

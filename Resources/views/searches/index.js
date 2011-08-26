@@ -45,9 +45,10 @@ Views.searches.index = function(win) {
 	}
 		
 	function updateChannels(val) {
+		var new_view = makeView(foundChannels(val));
+		results.add(new_view);
 		results.remove(result_view);
-		result_view = makeView(foundChannels(val));
-		results.add(result_view);
+		result_view = new_view;
 	}
 	
 	function foundChannels(val, channels) {
