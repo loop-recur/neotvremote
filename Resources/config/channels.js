@@ -33,7 +33,7 @@ var Channels = [
 	,"whitehouse"
 	,"Take180"
 	,"GBtv"	
-	,"Nextnewnetwork"	
+	,"Nextnewnetworks"	
 	,"killers"	
 	,"makingof"	
 	,"bonjovi"
