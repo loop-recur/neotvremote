@@ -58,8 +58,12 @@ Views.hosts.index = function(win, hosts) {
 	function stopChecking(host) {
 		autoRow.title = "Auto Pair";
 		if(host) {
-			rows.unshift(createTableViewRow(host));
-			tableView.setData(rows);
+			App.db.find("hosts", {}, function(hosts){
+				var rows = map(createTableViewRow, hosts);
+				rows.push(autoRow);
+				rows.push(newRow);
+				tableView.setData(rows);
+			});
 		}
 	}
 	
