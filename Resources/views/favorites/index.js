@@ -2,7 +2,10 @@ Views.favorites.index = function(view, params, favorites) {
 	
 	var win = params.win; 
 	var channel_list = Views.channel_list.create(favorites);
-	Views.channel_list.launchMode(channel_list.children, true);
+		
+	setTimeout(function() {
+		Views.channel_list.launchMode(channel_list.children, true);
+	},100);
 	
 	view.add(channel_list);
 	

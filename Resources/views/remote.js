@@ -9,9 +9,7 @@ Views.remote = function(win) {
 		right:"40dp"		
 	});
 	
-	channel_favorites.addEventListener('click', function() {
-		Layouts.application.openFavs();
-	});
+	channel_favorites.addEventListener('click', compose(Layouts.application.openFavs, Feedback.buttonPress));
 	
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
@@ -39,8 +37,8 @@ Views.remote = function(win) {
 	});
 
 	var like_button = Titanium.UI.createButton({
-		backgroundImage:"images/nowplaying/remote_fblike.png",
-		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
+		backgroundImage:"images/nowplaying/remote_fblike_down.png",
+		backgroundSelectedImage:'images/nowplaying/remote_fblike.png',
 		height:"40dp",
 		width:"40dp",
 		top:"0dp",
@@ -62,7 +60,7 @@ Views.remote = function(win) {
 		right:"5dp"
 	});
 	
-	home_button.addEventListener('click', compose(Xbmc.action('menu'), Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null)));
+	home_button.addEventListener('click', compose(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null), Controllers.remote.button("menu")));
 
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',
@@ -74,24 +72,6 @@ Views.remote = function(win) {
 	});
 	
 	return_button.addEventListener('click', Controllers.remote.button("back"));
-	
-	var power_button = Titanium.UI.createButton({
-		backgroundImage:'images/remote_view/remote_powerbtn.png',
-		backgroundSelectedImage:'images/remote_view/remote_powerbtn_down.png',
-		height:"40dp",
-		width:"40dp",
-		top:"0dp",
-		left:"2dp"
-	});
-	
-	power_button.addEventListener('click', function() {
-		Helpers.ui.confirm("Shutdown NeoTV?", {
-			yes : function() {
-				Xbmc.sendKey('shutdown');
-			},
-			cancel : function() {}
-		});
-	});
 
 	var keyboard_field = Helpers.ui.keyboard();
 
@@ -105,6 +85,7 @@ Views.remote = function(win) {
 	});
 	
 	keyboard_button.addEventListener('click', function(){
+		Feedback.buttonPress();
 		keyboard_field.focus();
 	});
 	
@@ -254,7 +235,6 @@ Views.remote = function(win) {
 	win.add(keyboard_field);
 
 	win.add(keyboard_button);
-	win.add(power_button);
 
 
 	up_clickable.add(up_button);

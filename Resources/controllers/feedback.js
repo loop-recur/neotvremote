@@ -6,7 +6,7 @@ Controllers.feedback = function() {
 	}
 	
 	function init(feedbacks) {
-		return (feedbacks[0] || {vibrate:1, sound:1});
+		return (feedbacks[0] || {vibrate:0, sound:1});
 	}
 	
 	function save(feedback) {

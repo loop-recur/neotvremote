@@ -85,7 +85,7 @@ Views.gesture = function(win) {
 		top:"330dp"
 	});
 	
-	home_button.addEventListener('click', compose(Xbmc.action('menu')));
+	home_button.addEventListener('click', Controllers.remote.button("menu"));
 	
 	
 	var keyboard_field = Helpers.ui.keyboard();
@@ -99,6 +99,7 @@ Views.gesture = function(win) {
 	});
 	
 	keyboard_button.addEventListener('click', function(){
+		Feedback.buttonPress();
 		keyboard_field.focus();
 	});
 
@@ -186,75 +187,50 @@ Views.gesture = function(win) {
 	}
 	
 	function doGesture () {
+		Feedback.buttonPress();
 		
 		var x_diff = touch_x_stop - touch_x_start;
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
 			animateGesture(left_arrow_mask);
-			return Xbmc.action("left")();
+			Xbmc.action("left")();
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			// return Xbmc.action("left")();
 			animateGesture(left_arrow_mask);
-			function doThreeLeft () {
-				setTimeout(Xbmc.action("left"), 1);
-	      setTimeout(Xbmc.action("left"), 250);
-	      setTimeout(Xbmc.action("left"), 500);
-			}
-			return doThreeLeft();
+			nTimes(3, Xbmc.action("left"));
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
 			animateGesture(right_arrow_mask);
-			return Xbmc.action("right")();
+			Xbmc.action("right")();
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
-			// return Xbmc.action("right")();
 			animateGesture(right_arrow_mask);
-			
-			function doThreeRight () {
-				setTimeout(Xbmc.action("right"), 1);
-	      setTimeout(Xbmc.action("right"), 250);
-	      setTimeout(Xbmc.action("right"), 500);
-			}
-			return doThreeRight();
+			nTimes(3, Xbmc.action("right"));
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
 			animateGesture(up_arrow_mask);
-			return Xbmc.action("up")();
+			Xbmc.action("up")();
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			// return Xbmc.action("up")();
 			animateGesture(up_arrow_mask);
-						
-			function doThreeUp () {
-				setTimeout(Xbmc.action("up"), 1);
-	      setTimeout(Xbmc.action("up"), 250);
-	      setTimeout(Xbmc.action("up"), 500);
-			}
-			return doThreeUp();
+			nTimes(3, Xbmc.action("up"));
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
 			animateGesture(down_arrow_mask);
-			return Xbmc.action("down")();
+			Xbmc.action("down")();
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
-			// return Xbmc.action("down")();
       animateGesture(down_arrow_mask);
-			function doThreeDown () {
-				setTimeout(Xbmc.action("down"), 1);
-	      setTimeout(Xbmc.action("down"), 250);
-	      setTimeout(Xbmc.action("down"), 500);
-			}
-			return doThreeDown();
-		}	
+			nTimes(3, Xbmc.action("down"));
+		}
 	};
 	
 };

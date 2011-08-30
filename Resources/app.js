@@ -21,6 +21,13 @@ setTimeout(function(){
 	Views.channel_list.launchMode(ChannelList.children);
 }, 0);
 
+setTimeout(function(){
+	Controllers.favorites.index(function(params, favs) {
+		FavoritesList = Views.channel_list.create(Channels, favs);
+		Views.channel_list.favoritesMode(FavoritesList.children, favs);
+	}, {});
+}, 900);
+
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());

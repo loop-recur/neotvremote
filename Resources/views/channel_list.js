@@ -30,9 +30,7 @@ Views.channel_list = function() {
 				id:name,
 				value:name
 			});
-			
-			if(Helpers.Application.isAndroid()) _addBorder(channel_button);
-			
+						
 			scrollview.add(channel_button);
 
 			return {settings: new_settings, amount: config.amount+1};
@@ -61,12 +59,6 @@ Views.channel_list = function() {
 				rows_built: settings.rows_built
 			};
 		}
-		
-		function _addBorder(button) {
-			button.borderWidth = 0;
-			button.borderRadius = 0;
-		}
-		
 			
 		return scrollview;
 	}

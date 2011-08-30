@@ -23,8 +23,8 @@ Views.searches.index = function(win) {
 		win.remove(view);
 	});
 	
-	search.addEventListener('return', function(e) {
-		search.blur();
+	search.addEventListener('return', function(){
+		win.remove(view);
 	});
 	
 	search.addEventListener('change', function(e) {

@@ -12,3 +12,13 @@ take = function(n, array) {
 	};
 	return newArray;
 }
+
+
+nTimes = function(times, fun) {
+	var time = 0;
+	
+	for(var i=0;i<times;i++ ){
+		setTimeout(fun, time);
+		time += 250;
+	}
+}
