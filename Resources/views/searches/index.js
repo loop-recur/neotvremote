@@ -24,6 +24,7 @@ Views.searches.index = function(win) {
 	});
 	
 	search.addEventListener('return', function(){
+		search.blur();
 		win.remove(view);
 	});
 	

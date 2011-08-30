@@ -1,8 +1,5 @@
 Views.favorites.edit = function(view, params, favorites) {
-	// Views.channel_list.favoritesMode(ChannelList.children, favorites);
-
 	var win = params.win;
-	
 	
 	var edit_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_done_button.png",
@@ -21,7 +18,6 @@ Views.favorites.edit = function(view, params, favorites) {
 	Ti.App.addEventListener("hideEdit", dealloc);
 	
 	function dealloc() {
-		// Views.channel_list.launchMode(ChannelList.children);
 		win.remove(edit_button);
 		view.remove(FavoritesList);
 	}
