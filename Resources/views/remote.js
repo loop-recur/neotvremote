@@ -9,7 +9,7 @@ Views.remote = function(win) {
 		right:"40dp"		
 	});
 	
-	channel_favorites.addEventListener('click', compose(Layouts.application.openFavs, Feedback.buttonPress));
+	channel_favorites.addEventListener('touchstart', compose(Layouts.application.openFavs, Feedback.buttonPress));
 	
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
@@ -45,7 +45,7 @@ Views.remote = function(win) {
 		right:"15dp"
 	});
 	
-	like_button.addEventListener('click', Controllers.remote.postToWall.partial(playing_label, playing_image));
+	like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
 	
 	current_playing_view.add(playing_image);
 	current_playing_view.add(playing_label);
@@ -60,7 +60,7 @@ Views.remote = function(win) {
 		right:"5dp"
 	});
 	
-	home_button.addEventListener('click', compose(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null), Controllers.remote.button("menu")));
+	home_button.addEventListener('touchstart', compose(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view, null), Controllers.remote.button("menu")));
 
 	var return_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_backbtn.png',
@@ -84,7 +84,7 @@ Views.remote = function(win) {
 		right:"10dp"
 	});
 	
-	keyboard_button.addEventListener('click', function(){
+	keyboard_button.addEventListener('touchstart', function(){
 		Feedback.buttonPress();
 		keyboard_field.focus();
 	});

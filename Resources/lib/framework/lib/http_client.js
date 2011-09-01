@@ -1,4 +1,4 @@
-LoopRecur.HttpClient = function(client) {
+LoopRecur.HttpClient = function() {
 		
 	function post(url, params_or_call_backs, call_backs) {
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
@@ -41,7 +41,7 @@ LoopRecur.HttpClient = function(client) {
 		client = Titanium.Network.createHTTPClient();
 		client.onload = call_backs.success;
 		client.onerror = call_backs.error;
-		client.setTimeout(0);
+		// client.setTimeout(0);
 		client.open(method, App.base_url+url);
 		setHeaders(client);
 		return client;
