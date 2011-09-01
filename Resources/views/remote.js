@@ -113,26 +113,26 @@ Views.remote = function(win) {
 
 	var up_clickable = Titanium.UI.createView({
 		top:"0dp",
-		width:"60dp",
+		width:"80dp",
 		height:"60dp"
 	});
 	
 	var down_clickable = Titanium.UI.createView({
 		bottom:"0dp",
-		width:"60dp",
+		width:"80dp",
 		height:"60dp"
 	});
 	
 	var left_clickable = Titanium.UI.createView({
 		left:"0dp",
-		height:"60dp",
-		width:"60dp"
+		height:"80dp",
+		width:"68dp"
 	});
 	
 	var right_clickable = Titanium.UI.createView({
 		right:"0dp",
-		height:"60dp",
-		width:"60dp"
+		height:"80dp",
+		width:"68dp"
 	});
 	
 	var up_button = Titanium.UI.createButton({

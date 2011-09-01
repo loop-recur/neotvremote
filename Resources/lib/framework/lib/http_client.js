@@ -38,10 +38,10 @@ LoopRecur.HttpClient = function(client) {
 	}
 
 	function prepare(method, url, call_backs) {
-		client.setTimeout(0);
 		client = Titanium.Network.createHTTPClient();
 		client.onload = call_backs.success;
 		client.onerror = call_backs.error;
+		client.setTimeout(0);
 		client.open(method, App.base_url+url);
 		setHeaders(client);
 		return client;

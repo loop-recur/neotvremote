@@ -10,6 +10,7 @@ Layouts.application();
 setupDb();
 Feedback.loadSettings();
 
+
 setTimeout(App.loadHosts, 0);
 
 setTimeout(function(){

@@ -16,14 +16,15 @@ var Xbmc = function() {
 		"skip_forward" : "14",
 		"skip_backward" : "15",
 		"forward" : "16",
-		"reverse" : "17"
+		"reverse" : "17",
+		"ping" : "277"
 	}
 	
 	function ping(callback){
 		var interval = setInterval(startPing, 1000);
 		
 		function startPing() {
-			action("up")(function(){
+			action("ping")(function(){
 				if(this.responseText.indexOf("OK") !== -1) {
 					clearInterval(interval);
 					callback();
@@ -35,6 +36,10 @@ var Xbmc = function() {
 	
 	function launch(channel) {
 		return _httpCall("PlayFile", channel);
+	}
+	
+	function version() {
+		return _httpCall("GetSystemInfo", "");
 	}
 	
 	function action(key) {
@@ -102,5 +107,13 @@ var Xbmc = function() {
 		return {type : type}
 	}();
 
-	return {ping: ping, sendKey: sendKey, action: action, launch: launch, currentPlaying: currentPlaying, keyboard: Keyboard.type}
+	return {
+					ping: ping
+					, version: version
+				  , sendKey: sendKey
+					, action: action
+					, launch: launch
+					, currentPlaying: currentPlaying
+					, keyboard: Keyboard.type
+				}
 }();
