@@ -8,6 +8,7 @@ Controllers.remote = function() {
 	}
 	
 	function displayPlaying(label_view, image_view, current_playing_view, playing_text) {
+		playing_text = "Pandora";
 		current_playing_view.visible = playing_text ? true : false;
 		label_view.text = playing_text;
 		image_view.backgroundImage = Channel.imagePath(playing_text);
@@ -18,7 +19,8 @@ Controllers.remote = function() {
 	}
 	
 	function _wallPostText(channel) {
-		return "Watching "+channel+" on my NeoTV Streaming Player.  Now your TV can be a Smart TV. NeoTV streams thousands of movies and TV shows instantly from Netflix, Vudu, YouTube, and more right on your TV.";
+		var text = channel ? channel+" on" : "";
+		return "Watching "+text+" my NeoTV Streaming Player.  Now your TV can be a Smart TV. NeoTV streams thousands of movies and TV shows instantly from Netflix, Vudu, YouTube, and more right on your TV.";
 	}
 		
 	return {displayPlaying : displayPlaying, postToWall : postToWall, button : button}

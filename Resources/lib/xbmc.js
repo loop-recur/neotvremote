@@ -17,7 +17,7 @@ var Xbmc = function() {
 		"skip_backward" : "15",
 		"forward" : "16",
 		"reverse" : "17",
-		"ping" : "277"
+		"ping" : "27"
 	}
 	
 	function ping(callback){

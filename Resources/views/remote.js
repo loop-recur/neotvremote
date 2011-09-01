@@ -1,4 +1,4 @@
-Views.remote = function(win) {	
+Views.remote = function(win) {
 
 	var channel_favorites = Titanium.UI.createButton({
 		backgroundImage:'images/channel_view/channel_fav.png',
@@ -26,8 +26,9 @@ Views.remote = function(win) {
 		top:"5dp"
 	})
 	
+	// It will post the text of this label to facebook.  Leave blank for it to work right.
 	var playing_label = Titanium.UI.createLabel({
-		text: "nothing",
+		text: "",
 		width: "175dp",
 		height: "25dp",
 		top:"8dp",
@@ -37,8 +38,8 @@ Views.remote = function(win) {
 	});
 
 	var like_button = Titanium.UI.createButton({
-		backgroundImage:"images/nowplaying/remote_fblike_down.png",
-		backgroundSelectedImage:'images/nowplaying/remote_fblike.png',
+		backgroundImage:"images/nowplaying/remote_fblike.png",
+		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
 		height:"40dp",
 		width:"40dp",
 		top:"0dp",
@@ -50,6 +51,17 @@ Views.remote = function(win) {
 	current_playing_view.add(playing_image);
 	current_playing_view.add(playing_label);
 	current_playing_view.add(like_button);
+	
+	var top_like_button = Titanium.UI.createButton({
+		backgroundImage:"images/nowplaying/remote_fblike.png",
+		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
+		height:"35dp",
+		width:"35dp",
+		top:"2dp",
+		right:"77dp"
+	});
+	
+	top_like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
 	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
@@ -182,7 +194,7 @@ Views.remote = function(win) {
 		width:"62dp"
 	});
 	
-	ok_button.addEventListener('touchstart', compose(Controllers.remote.button("select"), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
+	ok_button.addEventListener('touchstart', compose(showNowPlaying, Controllers.remote.button("select")));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:"0dp",
@@ -228,6 +240,7 @@ Views.remote = function(win) {
 	Views.play_controls(win);
 	Helpers.ui.connecting(win);
 	
+	win.add(top_like_button);
 	win.add(channel_favorites);
 	win.add(home_button);
 	win.add(return_button);
@@ -256,4 +269,10 @@ Views.remote = function(win) {
 	color_buttons.add(yellow_button);
 	win.add(color_buttons);
 	win.add(current_playing_view);	
+	
+	Ti.App.addEventListener('showPlaying', showNowPlaying);
+	
+	function showNowPlaying() {
+		Xbmc.currentPlaying(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view));
+	}
 };

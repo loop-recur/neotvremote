@@ -134,6 +134,7 @@ Views.channel_list = function() {
 	
 	function _launchChannel(e) {
 		Xbmc.launch(e.source.value)();
+		Ti.App.fireEvent('showPlaying', {});
 	}
 	
 	function _toggleFav(e) {
