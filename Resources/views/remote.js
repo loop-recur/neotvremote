@@ -71,7 +71,7 @@ Views.remote = function(win) {
 		left:"10dp"
 	});
 	
-	return_button.addEventListener('click', Controllers.remote.button("back"));
+	return_button.addEventListener('touchstart', Controllers.remote.button("back"));
 
 	var keyboard_field = Helpers.ui.keyboard();
 
@@ -112,27 +112,27 @@ Views.remote = function(win) {
 	});
 
 	var up_clickable = Titanium.UI.createView({
-		top:"0dp",
-		width:"80dp",
-		height:"60dp"
+		top:"-15dp",
+		width:"130dp",
+		height:"70dp"
 	});
 	
 	var down_clickable = Titanium.UI.createView({
-		bottom:"0dp",
-		width:"80dp",
-		height:"60dp"
+		bottom:"-15dp",
+		width:"130dp",
+		height:"70dp"
 	});
 	
 	var left_clickable = Titanium.UI.createView({
-		left:"0dp",
+		left:"-10dp",
 		height:"80dp",
-		width:"68dp"
+		width:"78dp"
 	});
 	
 	var right_clickable = Titanium.UI.createView({
-		right:"0dp",
+		right:"-10dp",
 		height:"80dp",
-		width:"68dp"
+		width:"78dp"
 	});
 	
 	var up_button = Titanium.UI.createButton({
@@ -140,40 +140,40 @@ Views.remote = function(win) {
 		backgroundSelectedImage:'images/remote_view/remote_upbtn_down.png',
 		height:"17dp",
 		width:"30dp",
-		top:"20dp"
+		top:"35dp"
 	});
 	
-	up_clickable.addEventListener('click', Controllers.remote.button("up"));
+	up_clickable.addEventListener('touchstart', Controllers.remote.button("up"));
 
 	var down_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_downbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_downbtn_down.png',
 		height:"17dp",
 		width:"30dp",
-		bottom:"22dp"
+		bottom:"37dp"
 	});
 	
-	down_button.addEventListener('click', Controllers.remote.button("down"));
+	down_clickable.addEventListener('touchstart', Controllers.remote.button("down"));
 
 	var left_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_leftbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_leftbtn_down.png',
 		height:"30dp",
 		width:"17dp",
-		left:"20dp"
+		left:"30dp"
 	});
 	
-	left_button.addEventListener('click', Controllers.remote.button("left"));
+	left_clickable.addEventListener('touchstart', Controllers.remote.button("left"));
 
 	var right_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_rightbtn.png',
 		backgroundSelectedImage:'images/remote_view/remote_rightbtn_down.png',
 		height:"30dp",
 		width:"17dp",
-		right:"22dp"
+		right:"32dp"
 	});
 	
-	right_button.addEventListener('click', Controllers.remote.button("right"));
+	right_clickable.addEventListener('touchstart', Controllers.remote.button("right"));
 	
 	var ok_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_okbtn.png',
@@ -182,7 +182,7 @@ Views.remote = function(win) {
 		width:"62dp"
 	});
 	
-	ok_button.addEventListener('click', compose(Controllers.remote.button("select"), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
+	ok_button.addEventListener('touchstart', compose(Controllers.remote.button("select"), Xbmc.currentPlaying.curry(Controllers.remote.displayPlaying.partial(playing_label, playing_image, current_playing_view))));
 
 	var color_buttons = Titanium.UI.createView({
 		bottom:"0dp",
