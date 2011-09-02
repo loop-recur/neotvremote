@@ -37,6 +37,7 @@ Helpers.ui.addNav = function(win, title, fun) {
 }
 
 Helpers.ui.connecting = function() {
+	Ti.API.info("start listening")
 	Ti.App.addEventListener('connecting', startConnecting);
 	
 	var images = [];
@@ -66,6 +67,7 @@ Helpers.ui.connecting = function() {
 	});
 	
 	function startConnecting() {
+		Ti.API.info("start connecting!");
 		connected.visible = false;
 		imageView.visible = true;
 		imageView.start();
