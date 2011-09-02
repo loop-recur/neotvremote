@@ -40,9 +40,9 @@ Views.remote = function(win) {
 	var like_button = Titanium.UI.createButton({
 		backgroundImage:"images/nowplaying/remote_fblike.png",
 		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
-		height:"40dp",
-		width:"40dp",
-		top:"3dp",
+		height:"35dp",
+		width:"35dp",
+		top:"5dp",
 		right:"15dp"
 	});
 	
@@ -270,9 +270,15 @@ Views.remote = function(win) {
 	win.add(color_buttons);
 	win.add(current_playing_view);	
 	
+	map(addFeedback, color_buttons.children);
+	
 	Ti.App.addEventListener('showPlaying', showNowPlaying);
 	
 	function showNowPlaying() {
 		Xbmc.currentPlaying(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view));
+	}
+	
+	function addFeedback(b) {
+		b.addEventListener('click', Feedback.buttonPress);
 	}
 };
