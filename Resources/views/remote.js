@@ -14,7 +14,7 @@ Views.remote = function(win) {
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
 		visible: false,
-		top: "235dp",
+		top: "240dp",
 		height: "66dp",
 		width: "270dp",
 	});
