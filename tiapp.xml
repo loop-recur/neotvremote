@@ -9,7 +9,7 @@
     </deployment-targets>
     <id>com.looprecur.neotvremote</id>
     <name>NeoTV Remote</name>
-    <version>0.4</version>
+    <version>1.0</version>
     <publisher>Netgear</publisher>
     <url>http://www.netgear.com</url>
     <description>NeoTV Remote</description>
