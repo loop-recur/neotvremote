@@ -53,12 +53,12 @@ Views.remote = function(win) {
 	current_playing_view.add(like_button);
 	
 	var top_like_button = Titanium.UI.createButton({
-		backgroundImage:"images/nowplaying/remote_fblike.png",
-		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
-		height:"28dp",
-		width:"28dp",
-		top:"7dp",
-		right:"79dp"
+		backgroundImage:"images/nowplaying/remote_fblike_gray.png",
+		backgroundSelectedImage:'images/nowplaying/remote_fblike_down_gray.png',
+		height:"40dp",
+		width:"40dp",
+		top:"-2dp",
+		right:"77dp"
 	});
 	
 	top_like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
