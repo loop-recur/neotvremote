@@ -19,7 +19,6 @@ App.loadHosts = function(url, credentials) {
 		Hosts.load(function(url, credentials) {
 			App.base_url = url;
 			App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
-			Ti.App.fireEvent('connecting');
 		});
 	}
 };

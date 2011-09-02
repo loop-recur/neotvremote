@@ -25,7 +25,7 @@ var Xbmc = function() {
 		
 		function startPing() {
 			action("ping")(function(){
-				if(this.responseText.indexOf("OK") !== -1) {
+				if(this.responseText.indexOf("<li>OK") !== -1) {
 					clearInterval(interval);
 					callback();
 				}
