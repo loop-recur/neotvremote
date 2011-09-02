@@ -39,7 +39,7 @@ var Channels = [
 	,"KanyeWest"
 	,"Golf"
 	,"GTcar"
-	,"GTchannel"
+	,"gtChannel"
 	,"SingingFool"	
 	,"OReillyMake"
 	,"MariahCarey"
