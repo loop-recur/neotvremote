@@ -16,6 +16,7 @@ var Hosts = function() {
 	
 	function destroy(id) {
 		App.db.destroy('hosts', {id : id});
+		_firstSetting(function(){});
 	}
 	
 	function setCurrent(hosts) {
