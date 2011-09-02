@@ -138,9 +138,9 @@ Views.gesture = function(win) {
 	
 	function shortSwipe(diff) {
 		if(Helpers.Application.isAndroid() && Titanium.Platform.displayCaps.density == "high") {
-			var swipe_length = 160;
+			var swipe_length = 210;
 		} else {
-			var swipe_length = 110;
+			var swipe_length = 150;
 		}
 		return Math.abs(diff) < swipe_length;
 	}
