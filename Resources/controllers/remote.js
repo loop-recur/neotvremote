@@ -8,7 +8,6 @@ Controllers.remote = function() {
 	}
 	
 	function displayPlaying(label_view, image_view, current_playing_view, playing_text) {
-		playing_text = "Pandora";
 		current_playing_view.visible = playing_text ? true : false;
 		label_view.text = playing_text;
 		image_view.backgroundImage = Channel.imagePath(playing_text);
