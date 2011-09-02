@@ -270,9 +270,15 @@ Views.remote = function(win) {
 	win.add(color_buttons);
 	win.add(current_playing_view);	
 	
+	map(addFeedback, color_buttons.childern);
+	
 	Ti.App.addEventListener('showPlaying', showNowPlaying);
 	
 	function showNowPlaying() {
 		Xbmc.currentPlaying(Controllers.remote.displayPlaying.curry(playing_label, playing_image, current_playing_view));
+	}
+	
+	function addEventListener(b) {
+		b.addEventListener('click', Feedback.buttonPress);
 	}
 };
