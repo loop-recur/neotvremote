@@ -6,3 +6,4 @@ Resources/config/environments.js
 .fastdev.lock
 .settings/
 api.jsca
+.project
