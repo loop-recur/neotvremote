@@ -3,7 +3,7 @@ try { App.run(); } catch(E) { alert("Failed with "+E); }
 
 Titanium.UI.setBackgroundColor('#000');
 
-Titanium.Facebook.appid = "104545300725";
+Titanium.Facebook.appid = "159867857428871";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
 Layouts.application();
