@@ -13,7 +13,7 @@ Views.remote = function(win) {
 	
 	var current_playing_view = Titanium.UI.createView({
 		backgroundImage:'images/nowplaying/remote_now_showing_pane.png',
-		visible: true,
+		visible: false,
 		top: "235dp",
 		height: "66dp",
 		width: "270dp",
@@ -42,7 +42,7 @@ Views.remote = function(win) {
 		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
 		height:"40dp",
 		width:"40dp",
-		top:"0dp",
+		top:"3dp",
 		right:"15dp"
 	});
 	
@@ -55,10 +55,10 @@ Views.remote = function(win) {
 	var top_like_button = Titanium.UI.createButton({
 		backgroundImage:"images/nowplaying/remote_fblike.png",
 		backgroundSelectedImage:'images/nowplaying/remote_fblike_down.png',
-		height:"35dp",
-		width:"35dp",
-		top:"2dp",
-		right:"77dp"
+		height:"33dp",
+		width:"33dp",
+		top:"3dp",
+		right:"79dp"
 	});
 	
 	top_like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
