@@ -19,8 +19,8 @@ Views.play_controls = function(win) {
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_play_pause.png',
 		backgroundSelectedImage:'images/playcontrols/remote_play_pause.png',
-		height:"42dp",
-		width:"58dp"
+		height:"44dp",
+		width:"56dp"
 	});
 	
 	play_pause_button.addEventListener('click', Xbmc.action("select"));
