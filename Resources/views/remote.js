@@ -279,6 +279,6 @@ Views.remote = function(win) {
 	}
 	
 	function addFeedback(b) {
-		b.addEventListener('click', Feedback.buttonPress);
+		b.addEventListener('touchstart', Feedback.buttonPress);
 	}
 };

@@ -14,7 +14,7 @@ Views.play_controls = function(win) {
 		left:"3dp"
 	});
 	
-	rewind_button.addEventListener('click', Xbmc.action("reverse"));
+	rewind_button.addEventListener('touchstart', Controllers.remote.button("reverse"));
 
 	var play_pause_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_play_pause.png',
@@ -23,7 +23,7 @@ Views.play_controls = function(win) {
 		width:"58dp"
 	});
 	
-	play_pause_button.addEventListener('click', Xbmc.action("select"));
+	play_pause_button.addEventListener('touchstart', Controllers.remote.button("select"));
 	
 	var ff_button = Titanium.UI.createButton({
 		backgroundImage:'images/playcontrols/remote_ff.png',
@@ -33,7 +33,7 @@ Views.play_controls = function(win) {
 		right:"3dp"
 	});
 	
-	ff_button.addEventListener("click", Xbmc.action("forward"));
+	ff_button.addEventListener("touchstart", Controllers.remote.button("forward"));
 	
 	view.add(rewind_button);
 	view.add(play_pause_button);
