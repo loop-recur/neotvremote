@@ -46,7 +46,7 @@ Views.remote = function(win) {
 		right:"15dp"
 	});
 	
-	like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
+	like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image), Feedback.buttonPress));
 	
 	current_playing_view.add(playing_image);
 	current_playing_view.add(playing_label);
@@ -61,7 +61,7 @@ Views.remote = function(win) {
 		right:"77dp"
 	});
 	
-	top_like_button.addEventListener('touchstart', Controllers.remote.postToWall.partial(playing_label, playing_image));
+	top_like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image), Feedback.buttonPress));
 	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
