@@ -1,5 +1,5 @@
 Views.settings.index = function(win) {
-	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#ffffff"});
+	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFFFFF"});
 	
 	var hosts_row = Ti.UI.createTableViewRow({
 		header:"Hosts",

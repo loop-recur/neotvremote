@@ -1,6 +1,6 @@
 Views.feedback.index = function(win, feedback) {
 	
-	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFF"});
+	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFFFFF"});
 
 	Helpers.ui.addNav(win, "Back", Views.settings.index);
 	
