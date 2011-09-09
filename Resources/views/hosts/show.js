@@ -51,76 +51,9 @@ Views.hosts.show = function(win, table, hosts) {
 	ip_row.add(ip_label);
 	ip_row.add(ip);
 
-	
-	var port_row = Ti.UI.createTableViewRow();
-	var port = Ti.UI.createTextField({
-		id: "port",
-		hintText:"Enter port...",
-		value: (hosts.port || null),
-		left:"107dp",
-		width:"180dp",
-		height:"35dp",
-		keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
-		returnKeyType:Titanium.UI.RETURNKEY_NEXT,
-		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
-	});
-	var port_label = Titanium.UI.createLabel({
-		text:"Port:",
-		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
-		left:"10dp", 
-		width:"90dp"
-	});
-	port_row.add(port_label);
-	port_row.add(port);
-
-	var username_row = Ti.UI.createTableViewRow();
-	var username = Titanium.UI.createTextField({  
-		id: "username",
-		value: (hosts.username || null),
-		left:"107dp",
-		width:"180dp",
-		height:"35dp",
-	  hintText:'username',  
-	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	  returnKeyType:Titanium.UI.RETURNKEY_NEXT,
-		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
-	});
-	var username_label = Titanium.UI.createLabel({
-		text:"Username:",
-		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
-		left:"10dp", 
-		width:"90dp"
-	});
-	username_row.add(username_label);
-	username_row.add(username);
-
-	var password_row = Ti.UI.createTableViewRow();
-	var password = Titanium.UI.createTextField({ 
-		id: "password",
-		value: (hosts.password || null),
-		left:"107dp",
-		width:"180dp",
-		height:"35dp",
-	  hintText:'Password',
-	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,  
-	  returnKeyType:Titanium.UI.RETURNKEY_DONE,
-		borderStyle:Titanium.UI.INPUT_BORDERSTYLE_NONE
-	});
-	var password_label = Titanium.UI.createLabel({
-		text:"Password:",
-		font:{fontFamily:'Helvetica Neue',fontSize:"16dp",fontWeight:'bold'},
-		left:"10dp", 
-		width:"90dp"
-	});
-	password_row.add(password_label);
-	password_row.add(password);
-	
  	var inputData = [ 
 		name_row,
 		ip_row,
-		port_row,
-		username_row,
-		password_row,
 		{title:'Save', action : save, header:''},
 		{title:'Delete' , action : destroy},
 		{title:'Close', action : close },
@@ -138,7 +71,7 @@ Views.hosts.show = function(win, table, hosts) {
 	
 	view.add(tableView);
 
-	map(addChangeListener, [name, ip, port, username, password]);
+	map(addChangeListener, [name, ip]);
 
 	win.add(view);
 	

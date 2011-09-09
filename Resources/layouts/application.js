@@ -45,6 +45,21 @@ Layouts.application = function() {
 		favs = true;
 		win3.fireEvent("favs");
 	};
+	
+	var firstTime = true;
+	Layouts.application.setChannelBlurEvent = function(fun) {
+		var run = false;
+		
+		if(firstTime) {
+			var newFun = function() {
+				if(!run) fun();
+				run = true;
+			}
+			win3.addEventListener("blur", newFun);
+		} else {
+			run = false;
+		}
+	};
 
 	var win4 = Titanium.UI.createWindow({  
 	    backgroundColor:'#fff',
