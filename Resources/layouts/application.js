@@ -63,11 +63,18 @@ Layouts.application = function() {
 
 	var win4 = Titanium.UI.createWindow({  
 	    backgroundColor:'#fff',
-			navBarHidden:false
+			navBarHidden:false,
+			fullscreen: true
 	});
 	
 	win4.addEventListener('open', function(){
 		App.action(win4, "settings#index");
+	});
+	
+	win4.addEventListener('android:back', function(e) {
+		var children = win4.children;
+		if(children.length == 1) return;
+		win4.remove(children[children.length-1]);
 	});
 	
 	var tab4 = Titanium.UI.createTab({

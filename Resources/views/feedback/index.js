@@ -1,4 +1,5 @@
 Views.feedback.index = function(win, feedback) {
+	
 	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFF"});
 
 	Helpers.ui.addNav(win, "Back", Views.settings.index);
@@ -56,6 +57,8 @@ Views.feedback.index = function(win, feedback) {
 	view.add(tableView);
 	
 	win.add(view);
+	
+
 	
 	function save(type, feedback, e) {
 		feedback[type] = e.value;
