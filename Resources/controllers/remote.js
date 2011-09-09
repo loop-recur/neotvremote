@@ -14,12 +14,18 @@ Controllers.remote = function() {
 	}
 	
 	function postToWall(label, image_view) {
-		FbGraph.wallPost(_wallPostText(label.text), "http://www.netgear.com/ntv");
+		FbGraph.wallPost({
+			message:_wallPostText(label.text),
+			link: "http://www.youtube.com/watch?v=pABgqZ--QN0"
+		});
 	}
 	
 	function _wallPostText(channel) {
-		var text = channel ? channel+" on" : "";
-		return "Watching "+text+" my NeoTV Streaming Player.  Now your TV can be a Smart TV. NeoTV streams thousands of movies and TV shows instantly from Netflix, Vudu, YouTube, and more right on your TV.";
+		if(channel) {
+			return "Playing "+channel+" on my NeoTV Streaming Player.";
+		} else {
+			return "Playing movies, photos, music on my NeoTV Streaming Player.";
+		}
 	}
 		
 	return {displayPlaying : displayPlaying, postToWall : postToWall, button : button}

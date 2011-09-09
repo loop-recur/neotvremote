@@ -6,27 +6,39 @@ Titanium.UI.setBackgroundColor('#000');
 Titanium.Facebook.appid = "159867857428871";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
+setTimeout(function(){
+	Ti.API.info("=============LAODING CHANNELS=========");
+	ChannelList = Views.channel_list.create(Channels);
+	Views.channel_list.launchMode(ChannelList.children);
+	
+	Ti.API.info("=============DONE FIRST!!!!!=========");
+}, 0);
+
 Layouts.application();
 setupDb();
 Feedback.loadSettings();
 
-setTimeout(App.loadHosts, 0);
+setTimeout(App.loadHosts, 200);
 
 setTimeout(function(){
+	Ti.API.info("=============LAODING Bonjuor=========");
 	Bonjour.discoverNetworks(Hosts.findOrCreate);
-}, 200);
+}, 400);
+
 
 setTimeout(function(){
-	ChannelList = Views.channel_list.create(Channels);
-	Views.channel_list.launchMode(ChannelList.children);
-}, 500);
-
-setTimeout(function(){
+	Ti.API.info("=============LAODING Favs=========");
 	Controllers.favorites.index(function(params, favs) {
 		FavoritesList = Views.channel_list.create(Channels, favs);
 		Views.channel_list.favoritesMode(FavoritesList.children, favs);
 	}, {});
-}, 1200);
+	
+	Ti.API.info("=============DONE SECOND!!!!!=========");
+},800);
+// 
+// setTimeout(function(){
+// 
+// }, 1200);
 
 
 function setupDb(redo) {
