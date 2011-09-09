@@ -19,14 +19,14 @@ setTimeout(function(){
 setTimeout(function(){
 	ChannelList = Views.channel_list.create(Channels);
 	Views.channel_list.launchMode(ChannelList.children);
-}, 0);
+}, 500);
 
 setTimeout(function(){
 	Controllers.favorites.index(function(params, favs) {
 		FavoritesList = Views.channel_list.create(Channels, favs);
 		Views.channel_list.favoritesMode(FavoritesList.children, favs);
 	}, {});
-}, 900);
+}, 1200);
 
 
 function setupDb(redo) {

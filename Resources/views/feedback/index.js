@@ -8,7 +8,7 @@ Views.feedback.index = function(win, feedback) {
 	});
 	
 	var vibrate_switch = Ti.UI.createSwitch({
-		value:feedback.vibrate,
+		value:(feedback.vibrate ==  1),
 		right:10
 	});
 	
@@ -27,7 +27,7 @@ Views.feedback.index = function(win, feedback) {
 	var sound_row = Ti.UI.createTableViewRow();
 	
 	var sound_switch = Ti.UI.createSwitch({
-		value:feedback.sound,
+		value:(feedback.sound == 1),
 		right:10
 	});
 	
