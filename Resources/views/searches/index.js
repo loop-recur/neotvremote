@@ -19,18 +19,25 @@ Views.searches.index = function(win) {
 		top:"0dp"
 	});
 	
+	search.addEventListener("touchstart", function(e){
+		search.focus();
+	});
+	
 	search.addEventListener('cancel', function(e) { 
 		win.remove(view);
 	});
 	
 	search.addEventListener('return', function(){
 		search.blur();
-		win.remove(view);
 	});
 	
 	search.addEventListener('change', function(e) {
 		updateFun(e.value.toLowerCase());
 	});
+	
+	Layouts.application.setChannelBlurEvent(function(){
+		win.remove(view);
+	})
 	
 	view.add(search);
 	view.add(results);

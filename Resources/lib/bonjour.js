@@ -23,7 +23,8 @@ var Bonjour = function() {
 
 		function _addService(service) {
 			service.addEventListener('updatedHosts', function(e) {
-				callback({name : service.name, port : e.port, host : e.host})
+				var name = service.name.replace("XBMC", "");
+				callback({name : name, port : e.port, host : e.host})
 			});
 			service.resolve();
 		}
