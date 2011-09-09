@@ -13,12 +13,10 @@ Feedback.loadSettings();
 setTimeout(App.loadHosts, 0);
 
 setTimeout(function(){
-	Ti.API.info("=============LAODING Bonjuor=========");
 	Bonjour.discoverNetworks(Hosts.findOrCreate);
 }, 200);
 
 setTimeout(function(){
-	Ti.API.info("=============LAODING CHANNELS=========");
 	ChannelList = Views.channel_list.create(Channels);
 	Views.channel_list.launchMode(ChannelList.children);
 	
@@ -27,7 +25,6 @@ setTimeout(function(){
 		Views.channel_list.favoritesMode(FavoritesList.children, favs);
 	}, {});
 	
-	Ti.API.info("=============DONE FIRST!!!!!=========");
 }, 400);
 
 
