@@ -4,7 +4,7 @@ Views.hosts.index = function(win, hosts) {
 	var autoRow = Ti.UI.createTableViewRow({
 		title:"Auto Pair",
 		owner:"auto",
-		header:""
+		header:"Devices"
 	});
 
 	var newRow = Ti.UI.createTableViewRow({

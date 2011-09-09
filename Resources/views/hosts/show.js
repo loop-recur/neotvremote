@@ -1,5 +1,5 @@
 Views.hosts.show = function(win, table, hosts) {
-	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
+	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#ffffff"});
 	
 	Helpers.ui.addNav(win, "Cancel", Views.settings.index);
 	
