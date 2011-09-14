@@ -1,4 +1,18 @@
 Views.gesture = function(win) {
+	if(Helpers.Application.isAndroid()) {
+		var gestures = require('com.looprecur.gestures');
+		Ti.API.info("module is => " + gestures);
+
+		var proxy = gestures.createGesturesView({
+			onScroll: function(resp){ Ti.API.info("Scroll"); Ti.API.info(resp); },
+			onFling: function(resp){ Ti.API.info("Fling"); Ti.API.info(resp.y); },
+			onDown: function(){ Ti.API.info("Down"); },
+			onDoubleTap: function(){ Ti.API.info("Double"); },
+			onSingleTap: function(){ Ti.API.info("Single"); }
+		});
+		win.add(proxy);
+		
+	}
 	
 	var touch_x_start = null;
 	var touch_y_start = null;
