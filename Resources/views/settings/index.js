@@ -1,5 +1,8 @@
 Views.settings.index = function(win) {
-	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#fff"});
+	var view = Ti.UI.createView({
+		// fullscreen : true, 
+		backgroundColor: "#FFFFFF"
+	});
 	
 	var hosts_row = Ti.UI.createTableViewRow({
 		header:"Hosts",
@@ -25,7 +28,9 @@ Views.settings.index = function(win) {
 	
 	tableView.addEventListener('click', function(e) {
 		var action = e.source.id;
+		
 		App.action(win, action + "#index");
+		
 	});
 	
 	view.add(tableView);

@@ -1,10 +1,13 @@
 Views.hosts.index = function(win, hosts) {	
+	
+	var view = Ti.UI.createView({fullscreen : true, backgroundColor: "#FFFFFF"});
+	
 	if(!Helpers.Application.isAndroid()) {Helpers.ui.addNav(win, "Back", Views.settings.index);};
 		
 	var autoRow = Ti.UI.createTableViewRow({
 		title:"Auto Pair",
 		owner:"auto",
-		header:""
+		header:"Devices"
 	});
 
 	var newRow = Ti.UI.createTableViewRow({
@@ -69,5 +72,7 @@ Views.hosts.index = function(win, hosts) {
 		(owner == "auto") ? startAutoPair() : Views.hosts.show(win, tableView, owner);
 	});
 
-	win.add(tableView);	
+	view.add(tableView)
+	
+	win.add(view);	
 };

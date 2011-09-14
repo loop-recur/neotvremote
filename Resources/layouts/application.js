@@ -64,7 +64,8 @@ Layouts.application = function() {
 	var win4 = Titanium.UI.createWindow({  
 	    backgroundColor:'#fff',
 			navBarHidden:false,
-			fullscreen: true
+			title:"Settings"
+			// fullscreen: true
 	});
 	
 	win4.addEventListener('open', function(){
