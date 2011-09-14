@@ -1,5 +1,5 @@
 var Hosts = function() {
-	var defaults = {name: "Default", username: "xbmc", password: "xbmc", port:8080, host: "http://192.168.1.1"};
+	var defaults = {name: "Default", username: "xbmc", password: "xbmc", port:8080, host: ""};
 	
 	function findOrCreate(new_host, cb) {
 		if(!cb) cb = function(){};

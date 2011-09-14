@@ -8,7 +8,7 @@
         <target device="iphone">true</target>
     </deployment-targets>
     <id>com.looprecur.neotvremote</id>
-    <name>NeoTV Remote</name>
+    <name>NeoTV</name>
     <version>1.0</version>
     <publisher>Netgear</publisher>
     <url>http://www.netgear.com</url>
