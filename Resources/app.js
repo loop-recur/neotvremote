@@ -9,14 +9,14 @@ Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 Layouts.application();
 setupDb();
 Feedback.loadSettings();
+App.loadHosts();
+// setTimeout(, 0);
 
-setTimeout(App.loadHosts, 0);
-
-setTimeout(function(){
+// setTimeout(function(){
 	Bonjour.discoverNetworks(Hosts.findOrCreate);
-}, 250);
+// }, 250);
 
-setTimeout(function(){
+// setTimeout(function(){
 	ChannelList = Views.channel_list.create(Channels);
 	Views.channel_list.launchMode(ChannelList.children);
 	
@@ -25,7 +25,7 @@ setTimeout(function(){
 		Views.channel_list.favoritesMode(FavoritesList.children, favs);
 	}, {});
 	
-}, 400);
+// }, 400);
 
 
 function setupDb(redo) {
