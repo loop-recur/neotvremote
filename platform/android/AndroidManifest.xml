@@ -10,13 +10,13 @@
     
 	<application
     	android:icon="@drawable/appicon"
-      	android:label="NeoTV Remote"
-      	android:name="NeotvRemoteApplication"
+      	android:label="neotvremote"
+      	android:name="NeotvremoteApplication"
       	android:debuggable="false"
 	>
     	<activity
-        	android:name=".NeotvRemoteActivity"
-            android:label="NeoTV Remote"
+        	android:name=".NeotvremoteActivity"
+            android:label="neotvremote"
 						android:theme="@style/Theme.Titanium"
             android:configChanges="keyboardHidden|orientation"
 						android:screenOrientation="portrait"
@@ -26,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+				<activity android:name=".GestureFunActivity" android:screenOrientation="portrait"/>
 
 		<!-- TI_APPLICATION -->
 		

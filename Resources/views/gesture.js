@@ -10,8 +10,7 @@ Views.gesture = function(win) {
 			onDoubleTap: function(){ Ti.API.info("Double"); },
 			onSingleTap: function(){ Ti.API.info("Single"); }
 		});
-		win.add(proxy);
-		
+		win.add(proxy);	
 	}
 	
 	var touch_x_start = null;

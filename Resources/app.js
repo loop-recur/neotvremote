@@ -10,11 +10,11 @@ Layouts.application();
 setupDb();
 Feedback.loadSettings();
 
-App.loadHosts();
+setTimeout(App.loadHosts, 0);
 
 setTimeout(function(){
 	Bonjour.discoverNetworks(Hosts.findOrCreate);
-}, 200);
+}, 250);
 
 setTimeout(function(){
 	ChannelList = Views.channel_list.create(Channels);
