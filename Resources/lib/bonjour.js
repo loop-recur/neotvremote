@@ -24,7 +24,7 @@ var Bonjour = function() {
 
 		function _addService(service) {
 			service.addEventListener('updatedHosts', function(e) {
-				var name = _fixName(e.name);
+				var name = _fixName(service.name);
 				callback({name : name, port : e.port, host : e.host})
 			});
 			service.resolve();

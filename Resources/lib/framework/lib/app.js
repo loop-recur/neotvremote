@@ -12,10 +12,12 @@ App.action = function(win, controller_action, args) {
 
 App.loadHosts = function(url, credentials) {
 	if(url) {
+		Ti.API.info("Loading with url!");
 		App.base_url = url;
 		App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
 		Ti.App.fireEvent('connecting');
 	} else {
+		Ti.API.info("Loading without url!");
 		Hosts.load(function(url, credentials) {
 			App.base_url = url;
 			App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
@@ -25,6 +27,7 @@ App.loadHosts = function(url, credentials) {
 };
 
 App.setHosts = function(url, credentials) {
+	Ti.API.info("Setting!");
 	App.base_url = url;
 	App.http_client.credentials = ('Basic ' + Titanium.Utils.base64encode(credentials));
 	setTimeout(function(){
