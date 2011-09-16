@@ -133,14 +133,13 @@ Views.gesture = function(win) {
 	
 	if(Helpers.Application.isAndroid()) {
 		var gestures = require('com.looprecur.gestures');
-		Ti.API.info("module is => " + gestures);
 
 		var proxy = gestures.createGesturesView({
 			onScroll: function(coordinates){ moveFromCoordinates(coordinates); },
 			onFling: function(coordinates){ moveExtra(coordinates); },
-			onDown: function(){ Ti.API.info("Down"); },
+			onDown: function(){  },
 			onDoubleTap: function(){Controllers.remote.button("select")();},
-			onSingleTap: function(){ Ti.API.info("Single"); },
+			onSingleTap: function(){  },
 			width: '265dp',
 			height: '265dp',
 			top: '35dp'
@@ -148,9 +147,7 @@ Views.gesture = function(win) {
 		win.add(proxy);	
 		
 		function moveFromCoordinates(coordinates) {
-			Ti.API.info("SCROLL");
-			Ti.API.info(coordinates);
-			if(coordinates.x > 0 && coordinates.x > coordinates.y && coordinates.y > 8) {
+			if(coordinates.x > 0 && coordinates.x > coordinates.y && coordinates.y > -10) {
 				move("left");
 			} else if(coordinates.x < 0 && coordinates.x < coordinates.y && coordinates.x < -8) {
 				move("right");
@@ -162,10 +159,8 @@ Views.gesture = function(win) {
 		}
 		
 		function moveExtra(coordinates) {
-			Ti.API.info("FLING");
-			Ti.API.info(coordinates);
-			overThreshold = some('x >= 350 || x <= -350', [coordinates.x, coordinates.y]);
-			if(direction && overThreshold) nTimes(2, Xbmc.action(direction));
+			overThreshold = some('x >= 345 || x <= -345', [coordinates.x, coordinates.y]);
+			if(direction && overThreshold) nTimes(3, Xbmc.action(direction));
 		}
 		
 		var direction = null;
