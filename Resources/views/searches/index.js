@@ -1,4 +1,5 @@
 Views.searches.index = function(win) {
+	var list = null;
 	var updateFun = Helpers.Application.isAndroid() ? updateDelayed : updateChannels;
 	var view = Ti.UI.createView({
 		fullscreen : true,
@@ -17,6 +18,10 @@ Views.searches.index = function(win) {
 		hintText:'Enter a channel...',
 		height:"40dp",
 		top:"0dp"
+	});
+	
+	search.addEventListener('blur', function(){
+		if(list) Views.channel_list.launchMode(list.children);
 	});
 	
 	search.addEventListener("touchstart", function(e){
@@ -67,8 +72,7 @@ Views.searches.index = function(win) {
 	};
 	
 	function makeView(channels) {
-		var list = Views.channel_list.create(channels);
-		Views.channel_list.launchMode(list.children);
+		list = Views.channel_list.create(channels);
 		return list;
 	}
 };

@@ -7,14 +7,14 @@
         <target device="android">true</target>
         <target device="iphone">true</target>
     </deployment-targets>
-	<id>com.looprecur.neotvremote</id>
-	<name>neotvremote</name>
-	<version>0.4</version>
-	<publisher>Netgear</publisher>
-	<url>http://www.netgear.com</url>
-	<description>NeoTV</description>
-	<copyright>2011</copyright>
-	<icon>default_app_logo.png</icon>
+<id>com.looprecur.neotvremote</id>
+<name>neotvremote</name>
+<version>0.4</version>
+<publisher>Netgear</publisher>
+<url>http://www.netgear.com</url>
+<description>NeoTV</description>
+<copyright>2011</copyright>
+<icon>default_app_logo.png</icon>
     <persistent-wifi>true</persistent-wifi>
     <prerendered-icon>true</prerendered-icon>
     <statusbar-style>default</statusbar-style>
