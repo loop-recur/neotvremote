@@ -10,7 +10,7 @@ Layouts.application();
 setupDb();
 Feedback.loadSettings();
 
-App.loadHosts();
+setTimeout(App.loadHosts, 100);
 
 setTimeout(function(){
 	Bonjour.discoverNetworks(Hosts.findOrCreate);
