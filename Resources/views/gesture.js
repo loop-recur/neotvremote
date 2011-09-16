@@ -1,5 +1,4 @@
 Views.gesture = function(win) {
-	
 	var touch_x_start = null;
 	var touch_y_start = null;
 	var touch_x_stop = null;
@@ -131,6 +130,58 @@ Views.gesture = function(win) {
 	
 	win.add(arrows);
 	
+	
+	if(Helpers.Application.isAndroid()) {
+		var gestures = require('com.looprecur.gestures');
+		Ti.API.info("module is => " + gestures);
+
+		var proxy = gestures.createGesturesView({
+			onScroll: function(coordinates){ moveFromCoordinates(coordinates); },
+			onFling: function(coordinates){ moveExtra(coordinates); },
+			onDown: function(){ Ti.API.info("Down"); },
+			onDoubleTap: function(){Controllers.remote.button("select")();},
+			onSingleTap: function(){ Ti.API.info("Single"); },
+			width: '265dp',
+			height: '265dp',
+			top: '35dp'
+		});
+		win.add(proxy);	
+		
+		function moveFromCoordinates(coordinates) {
+			Ti.API.info("SCROLL");
+			Ti.API.info(coordinates);
+			if(coordinates.x > 0 && coordinates.x > coordinates.y && coordinates.y > 8) {
+				move("left");
+			} else if(coordinates.x < 0 && coordinates.x < coordinates.y && coordinates.x < -8) {
+				move("right");
+			} else if(coordinates.y > 0 && coordinates.y > coordinates.x) {
+				move("up");
+			} else if(coordinates.y < 0 && coordinates.y < coordinates.x) {
+				move("down");
+			}
+		}
+		
+		function moveExtra(coordinates) {
+			Ti.API.info("FLING");
+			Ti.API.info(coordinates);
+			overThreshold = some('x >= 350 || x <= -350', [coordinates.x, coordinates.y]);
+			if(direction && overThreshold) nTimes(2, Xbmc.action(direction));
+		}
+		
+		var direction = null;
+		var moving = false;
+		var masks = {"up":up_arrow_mask, "down":down_arrow_mask, "left":left_arrow_mask, "right":right_arrow_mask};
+		function move(dir) {
+			if(moving) return;
+			moving = true;
+			Feedback.buttonPress();
+			setTimeout(Xbmc.action(dir), 0);
+			animateGesture(masks[dir]);
+			setTimeout(function(){moving = false}, 700);
+			direction = dir;
+		}
+	}
+	
 	function underThreshold(diff) {
 		var difference_threshold = 20;
 		return Math.abs(diff) < difference_threshold;
@@ -148,29 +199,33 @@ Views.gesture = function(win) {
 	function diffPositive(diff) {
 		return diff > 0;
 	}
+
 	
-	arrows.addEventListener('doubletap', function () {
-		animateGesture(up_arrow_mask);
-		animateGesture(down_arrow_mask);
-		animateGesture(left_arrow_mask);
-		animateGesture(right_arrow_mask);
+	if(!Helpers.Application.isAndroid()) {
+
+		arrows.addEventListener('touchstart', function(e)
+		{
+			touch_x_start = e.x;
+			touch_y_start = e.y;
+		});
+	
+		arrows.addEventListener('touchend', function(e)
+		{
+			touch_x_stop = e.x;
+			touch_y_stop = e.y;
 		
-		return Controllers.remote.button("select")();
-	});
-	
-	arrows.addEventListener('touchstart', function(e)
-	{
-		touch_x_start = e.x;
-		touch_y_start = e.y;
-	});
-	
-	arrows.addEventListener('touchend', function(e)
-	{
-		touch_x_stop = e.x;
-		touch_y_stop = e.y;
+			doubleTap();
+		});
 		
-		doubleTap();
-	});
+		arrows.addEventListener('doubletap', function () {
+			animateGesture(up_arrow_mask);
+			animateGesture(down_arrow_mask);
+			animateGesture(left_arrow_mask);
+			animateGesture(right_arrow_mask);
+
+			return Controllers.remote.button("select")();
+		});
+	}
 	
 	function doubleTap() {
 		if (Math.abs(touch_x_stop - touch_x_start) > 15 || Math.abs(touch_y_stop - touch_y_start) > 15) {

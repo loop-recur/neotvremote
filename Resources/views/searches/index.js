@@ -67,6 +67,8 @@ Views.searches.index = function(win) {
 	};
 	
 	function makeView(channels) {
-		return Views.channel_list.create(channels);
+		var list = Views.channel_list.create(channels);
+		Views.channel_list.launchMode(list.children);
+		return list;
 	}
 };

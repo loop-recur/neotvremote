@@ -10,23 +10,17 @@ Layouts.application();
 setupDb();
 Feedback.loadSettings();
 
-setTimeout(App.loadHosts, 100);
+App.loadHosts();
 
-setTimeout(function(){
-	Bonjour.discoverNetworks(Hosts.findOrCreate);
-}, 200);
+ChannelList = Views.channel_list.create(Channels);
+Views.channel_list.launchMode(ChannelList.children);
 
-setTimeout(function(){
-	ChannelList = Views.channel_list.create(Channels);
-	Views.channel_list.launchMode(ChannelList.children);
-	
-	Controllers.favorites.index(function(params, favs) {
-		FavoritesList = Views.channel_list.create(Channels, favs);
-		Views.channel_list.favoritesMode(FavoritesList.children, favs);
-	}, {});
-	
-}, 400);
+Controllers.favorites.index(function(params, favs) {
+	FavoritesList = Views.channel_list.create(Channels, favs);
+	Views.channel_list.favoritesMode(FavoritesList.children, favs);
+}, {});
 
+setTimeout(Bonjour.discoverNetworks.curry(Hosts.findOrCreate), 400);
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());
