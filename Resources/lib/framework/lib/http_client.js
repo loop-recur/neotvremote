@@ -8,6 +8,7 @@ LoopRecur.HttpClient = function() {
 	}
 	
 	function get(url, params_or_call_backs, call_backs) {
+		if(App.base_url == ":8080") return;
 		var fixed_args = fixArgs(params_or_call_backs, call_backs);
 		call_backs = fixed_args[0];
 		params = fixed_args[1];
