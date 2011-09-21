@@ -31,7 +31,7 @@ describe("Controllers.remoteSpec", function() {
 	
 		it("posts to wall with text describing the channel and channel's photo", function() {
 			Controllers.remote.postToWall({text : "Netflix"});
-		  expect(FbGraph.wallPost).toHaveBeenCalledWith("Watching Netflix on my NeoTV Streaming Player.  Now your TV can be a Smart TV. NeoTV streams thousands of movies and TV shows instantly from Netflix, Vudu, YouTube, and more right on your TV.", "http://www.netgear.com/ntv");
+		  expect(FbGraph.wallPost).toHaveBeenCalledWith({ message : 'Playing Netflix on my NeoTV Streaming Player.', link : 'http://www.youtube.com/watch?v=pABgqZ--QN0' });
 		});
 	});
 	

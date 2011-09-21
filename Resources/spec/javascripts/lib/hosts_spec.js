@@ -1,6 +1,7 @@
 describe("HostsSpec", function() {
 	beforeEach(function() {
 	  App.db = Mocks.db;
+		App.setHosts = function(){}
 		App.loadHosts = jasmine.createSpy();
 	});
 	
