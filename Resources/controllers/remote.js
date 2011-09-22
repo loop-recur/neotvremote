@@ -13,11 +13,11 @@ Controllers.remote = function() {
 		image_view.backgroundImage = Channel.imagePath(playing_text);
 	}
 	
-	function postToWall(label, image_view) {
+	function postToWall(label, image_view, callback) {
 		FbGraph.wallPost({
 			message:_wallPostText(label.text),
 			link: "http://www.youtube.com/watch?v=pABgqZ--QN0"
-		});
+		}, callback);
 	}
 	
 	function _wallPostText(channel) {

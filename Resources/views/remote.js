@@ -46,7 +46,9 @@ Views.remote = function(win) {
 		right:"15dp"
 	});
 	
-	like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image), Feedback.buttonPress));
+	var alertConfirm = Helpers.ui.alert.partial("You've posted to your Facebook wall!", "OK");
+	
+	like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image, alertConfirm), Feedback.buttonPress));
 	
 	current_playing_view.add(playing_image);
 	current_playing_view.add(playing_label);
@@ -61,7 +63,7 @@ Views.remote = function(win) {
 		right:"77dp"
 	});
 	
-	top_like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image), Feedback.buttonPress));
+	top_like_button.addEventListener('touchstart', compose(Controllers.remote.postToWall.partial(playing_label, playing_image,alertConfirm), Feedback.buttonPress));
 	
 	var home_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_home.png',
@@ -209,6 +211,7 @@ Views.remote = function(win) {
 		left:"33dp",
 		bottom:"14dp"
 	});
+	red_button.addEventListener('touchstart', Controllers.remote.button("red"));
 
 	var blue_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_bluebtn.png',
@@ -216,8 +219,9 @@ Views.remote = function(win) {
 		height:"38dp",
 		width:"38dp",
 		right:"33dp",
-		bottom:"14dp"		
+		bottom:"14dp"
 	});
+	blue_button.addEventListener('touchstart', Controllers.remote.button("blue"));
 
 	var green_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_greenbtn.png',
@@ -227,6 +231,7 @@ Views.remote = function(win) {
 		left:"105dp",
 		bottom:"2dp"
 	});
+	green_button.addEventListener('touchstart', Controllers.remote.button("green"));
 
 	var yellow_button = Titanium.UI.createButton({
 		backgroundImage:'images/remote_view/remote_yellowbtn.png',
@@ -236,6 +241,7 @@ Views.remote = function(win) {
 		right:"105dp",
 		bottom:"2dp"
 	});
+	yellow_button.addEventListener('touchstart', Controllers.remote.button("yellow"));
 
 	Views.play_controls(win);
 	Helpers.ui.connecting(win);

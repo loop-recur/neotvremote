@@ -27,4 +27,28 @@ describe("XbmcSpec", function() {
 		expect(fun).toHaveBeenCalledWith("Netflix");
 	});
 	
+	describe("it gets all the channels for each directory", function() {
+	  beforeEach(function() {
+	    var fixtures = {
+				"GetShares(video)" : "<html><li>Most Popular/<li>Featured/<li>Movies & TV/</html>",
+				"GetDirectory(Most Popular/)" : "<html><li>Netflix<li>HuluPlus<li>Film Fresh</html>",
+				"GetDirectory(Movies %26 TV/)" : "<html><li>Netflix<li>Blockbuster<li>CinemaNow</html>"
+			};
+			App.http_client.get = function(a,b,callbacks){
+				callbacks.responseText = fixtures[b.command];
+				callbacks.success();
+			}
+	  });
+	
+		afterEach(function() {
+		  App.http_client.get = function(){}
+		});
+		
+		it("returns a uniq listing of each channel's name", function() {
+		  Xbmc.getAllChannels(function(channels) {
+				expect(channels).toEqual(["Netflix", "HuluPlus", "Film Fresh", "Blockbuster", "CinemaNow"]);
+			});
+		});
+	});
+	
 });

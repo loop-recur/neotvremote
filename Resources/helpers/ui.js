@@ -36,6 +36,21 @@ Helpers.ui.addNav = function(win, title, fun) {
 	return nav_button;
 }
 
+Helpers.ui.alert = function(title, message) {
+	var alert = Titanium.UI.createAlertDialog({ 
+		title:title, 
+		message: message, 
+		buttonNames: ['Ok']
+	});
+
+	alert.addEventListener('click', function(e) { 
+		alert.hide();
+	});
+	
+	alert.show();
+};
+
+
 Helpers.ui.connecting = function() {
 	Ti.App.addEventListener('connecting', startConnecting);
 	

@@ -1,71 +1,71 @@
 var Channels = [
-	"Netflix"
-	,"VuduHD"
-	,"VuduApps"
-	,"YouTube"
-	,"Pandora"
-	,"Napster"
-	,"Picasa"
-	,"Facebook"
-	, "Flingo"
-	,"Revision3"
-	,"Crunchyroll"	
-	,"Twitter"
-	,"TheEconomist"
-	,"Bliptv"
-	,"TED"
-	,"Vimeo"
-	,"Howcast"
-	,"Engadget"
-	,"TMZ"
-	,"ForaTV"
-	,"TVGuide"
-	,"KoldCast"
-	,"WB"
-	,"Blackjack Royale"
-	,"Texas"
-	,"Breakcom"
-	,"NASA360"
-	,"Showtime"
-	,"Atom"
-	,"KTVU"	
-	,"Terra"
-	,"WhiteHouse"
-	,"Take180"
-	,"Nextnewnetwork"	
-	,"Makingof"	 
-	,"Golf"
-	,"Rockswap Adventures"	
-	,"gtChannel"
-	,"Noisevox"	
-	,"SingingFool"
-	// ,"Gametrailers"
-	,"LaBlogotheque"
-	,"OReillyMake"
-	, "kirotv"	
-	,"CollegeHumor"	
-	,"NylonTV"
-	,"NationalLampoon"		
-	,"WPT"	
-	,"LiveSocket"	
-	,"localonlinenews"
-	,"FunLittleMovies"
-	,"TVSkullcandy"	
-	,"FordModels"	
-	// ,"MacysandClinton"
-	,"Etsy"	
-	,"Gigaom"
-	,"FunnyOrDie"
-	,"Fashion"
-	,"DeliciousTV"
-	, "CBS"
-	, "G4"
-	, "mlb"
-	, "Surf"
-	, "FoxNews"
-	, "cnbc"
-	, "PBS"
-	, "Earthtouch"
-	, "espn"
-	// , "cnet"
+"Netflix",
+"Vudu HD Movies",
+"Vudu Apps",
+"YouTube",
+"Pandora",
+"Napster",
+"Picasa",
+"Facebook",
+"Flingo",
+"Revision3",
+"Crunchyroll",
+"Twitter",
+"The Economist",
+"blip.tv",
+"TED",
+"Vimeo",
+"Howcast",
+"Engadget",
+"TMZ",
+"Fora.TV",
+"TV Guide",
+"Koldcast TV",
+"The WB Trailers",
+"BlackJack Royale",
+"Texas",
+"Break.com",
+"NASA",
+"Showtime Podcasts",
+"Atom",
+"KTVU",
+"ACM",
+"Terra",
+"WhiteHouse",
+"Take 180",
+"Next New Network",
+"Makingof",
+"Golf",
+"Rockswap Adventures",
+"GT Channel",
+"Noisevox",
+"Singing Fool",
+"Gametrailers",
+"La Blogotheque",
+"Make Magazine",
+"Kiro",
+"CollegeHumor",
+"Nylon TV",
+"National Lampoon",
+"Workld Poker Tour",
+"Live Socket",
+"Fun little Movies",
+"Skullcandy TV",
+"FORD Model",
+"Etsy",
+"GigaOM TV",
+"Funny or Die",
+"Fashion Network",
+"DeliciousTV",
+"CBS",
+"G4",
+"MLB",
+"Surf",
+"CNN",
+"CNBS",
+"PBS",
+"Earth-touch",
+"Foxnews",
+"ESPN",
+"CNET HD"
 ];

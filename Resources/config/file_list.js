@@ -11,6 +11,7 @@ FileList = [
 	"lib/benchmarker.js",
 	"lib/bonjour.js",
 	"lib/channel.js",
+	"lib/channel_download.js",
 	"lib/favorites.js",
 	"lib/fb_graph.js",
 	"lib/feedback.js",

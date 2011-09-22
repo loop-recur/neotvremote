@@ -17,7 +17,39 @@ var Xbmc = function() {
 		"skip_backward" : "15",
 		"forward" : "16",
 		"reverse" : "17",
-		"ping" : "27"
+		"ping" : "27",
+		"red" : "215",
+		"green" : "216",
+		"yellow" : "217",
+		"blue" : "218"
+	}
+	
+	function getAllChannels(callback) {
+		_httpCall("GetShares", "video")(function(){
+			var allChannels = []
+				, dirNames = _extractLis(this.responseText)
+				, length = dirNames.length;
+			
+			var getFileFun = _getFiles.partial(function(){
+				var files = _extractLis(this.responseText);
+				allChannels = allChannels.concat(files);
+				length = length - 1;
+				if(length <= 0) callback(uniq(allChannels));
+			});
+			
+			map(getFileFun, dirNames);
+		});
+	}
+	
+	function _extractLis(html) {
+		if(!html) return [];
+		var matches = html.match(/>(.*?)</g);
+		var all = map(function(s){return s.replace(/>|</g, ""); }, matches);
+		return filter('x', all);
+	}
+	
+	function _getFiles(callback, name) {
+		_httpCall("GetDirectory", name.replace("&", "%26"))(callback);
 	}
 	
 	function ping(callback){
@@ -117,5 +149,6 @@ var Xbmc = function() {
 					, launch: launch
 					, currentPlaying: currentPlaying
 					, keyboard: Keyboard.type
+					, getAllChannels : getAllChannels
 				}
 }();

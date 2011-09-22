@@ -22,6 +22,7 @@ Controllers.favorites.index(function(params, favs) {
 
 setTimeout(Bonjour.discoverNetworks.curry(Hosts.findOrCreate), 400);
 
+
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());
 	App.db.use("netgear");
