@@ -51,7 +51,6 @@ Helpers.ui.alert = function(title) {
 
 
 Helpers.ui.connecting = function() {
-	var running;
 	Ti.App.addEventListener('connecting', startConnecting);
 	
 	var images = [];
@@ -81,7 +80,6 @@ Helpers.ui.connecting = function() {
 	});
 	
 	function startConnecting() {
-		if(running) return;
 		if(Helpers.Application.hasWifi) {
 			connected.visible = false;
 			imageView.visible = true;
@@ -91,14 +89,12 @@ Helpers.ui.connecting = function() {
 			finishConnecting();
 			connected.visible = false;
 		}
-		running = true;
 	}
 	
 	function finishConnecting() {
 		connected.visible = true;
 		imageView.visible = false;
 		imageView.stop();
-		running = false;
 	}
 	
 	return function(win) {

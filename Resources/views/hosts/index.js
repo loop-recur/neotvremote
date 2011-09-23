@@ -71,9 +71,6 @@ Views.hosts.index = function(win, hosts) {
 	
 	function foundHost(rows) {
 		var getIds = compose(reduce.partial('+',0), map.partial("x.id"));
-		Ti.API.info(getIds(rows) == getIds(hosts));
-		Ti.API.info(getIds(rows));
-		Ti.API.info(getIds(hosts));
 		return getIds(rows) == getIds(hosts);
 	}
 	
