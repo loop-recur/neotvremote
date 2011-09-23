@@ -64,7 +64,17 @@ Views.hosts.index = function(win, hosts) {
 	
 	function stopChecking(host) {
 		autoRow.title = "Auto Pair";
-		if(host) App.db.find("hosts", {}, makeRows);
+		App.db.find("hosts", {}, function(rows) {
+			foundHost(rows) ? Helpers.ui.alert("No hosts detected") : makeRows(rows);
+		});
+	}
+	
+	function foundHost(rows) {
+		var getIds = compose(reduce.partial('+',0), map.partial("x.id"));
+		Ti.API.info(getIds(rows) == getIds(hosts));
+		Ti.API.info(getIds(rows));
+		Ti.API.info(getIds(hosts));
+		return getIds(rows) == getIds(hosts);
 	}
 	
 	tableView.addEventListener('click', function(e) {
