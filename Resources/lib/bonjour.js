@@ -8,8 +8,7 @@ var Bonjour = function() {
 		var jmdns = require('com.looprecur.jmdns');
 
 		jmdns.discover(function(name, port, host) {
-			var name = _fixName(name);
-			callback({name : name, port : port, host : host});
+			callback({name : _fixName(name), port : port, host : host});
 		});
 	}
 
@@ -24,15 +23,14 @@ var Bonjour = function() {
 
 		function _addService(service) {
 			service.addEventListener('updatedHosts', function(e) {
-				var name = _fixName(service.name);
-				callback({name : name, port : e.port, host : e.host})
+				callback({name : _fixName(service.name), port : e.port, host : e.host})
 			});
 			service.resolve();
 		}
 	}
 	
 	function _fixName(n) {
-		return n.replace(/XBMC.*/i, "");
+		return n.replace(/\.?XBMC.*/i, "");
 	}
 	
 	return { discoverNetworks : discoverNetworks}

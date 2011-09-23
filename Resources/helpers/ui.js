@@ -36,10 +36,9 @@ Helpers.ui.addNav = function(win, title, fun) {
 	return nav_button;
 }
 
-Helpers.ui.alert = function(title, message) {
+Helpers.ui.alert = function(title) {
 	var alert = Titanium.UI.createAlertDialog({ 
-		title:title, 
-		message: message, 
+		title:title,
 		buttonNames: ['Ok']
 	});
 
@@ -81,10 +80,15 @@ Helpers.ui.connecting = function() {
 	});
 	
 	function startConnecting() {
-		connected.visible = false;
-		imageView.visible = true;
-		imageView.start();
-		Xbmc.ping(finishConnecting);
+		if(Helpers.Application.hasWifi) {
+			connected.visible = false;
+			imageView.visible = true;
+			imageView.start();
+			Xbmc.ping(finishConnecting);
+		} else {
+			finishConnecting();
+			connected.visible = false;
+		}
 	}
 	
 	function finishConnecting() {

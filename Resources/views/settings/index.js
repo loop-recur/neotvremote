@@ -16,9 +16,16 @@ Views.settings.index = function(win) {
 		id:"feedback"
 	});
 	
+	var version_row = Ti.UI.createTableViewRow({
+		header:"Version",
+		title: "1.0",
+		id:""
+	});
+	
 	var inputData = [ 
 		hosts_row,
-		feedback_row
+		feedback_row,
+		version_row
 	];
 	
 	var tableView = Titanium.UI.createTableView({
@@ -29,8 +36,7 @@ Views.settings.index = function(win) {
 	tableView.addEventListener('click', function(e) {
 		var action = e.source.id;
 		
-		App.action(win, action + "#index");
-		
+		if(action) App.action(win, action + "#index");
 	});
 	
 	view.add(tableView);
