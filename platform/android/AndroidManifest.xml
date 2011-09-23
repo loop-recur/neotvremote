@@ -15,7 +15,7 @@
       	android:debuggable="false"
 	>
     	<activity
-        	android:name=".NeotvApplication"
+        	android:name=".NeotvActivity"
             android:label="NeoTV"
 						android:theme="@style/Theme.Titanium"
             android:configChanges="keyboardHidden|orientation"

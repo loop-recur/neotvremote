@@ -61,8 +61,8 @@ var Channels = [
 "G4",
 "MLB",
 "Surf",
-"CNN",
-"CNBS",
+// "CNN", never got this icon in the PSD's
+"CNBC",
 "PBS",
 "Earth-touch",
 "Foxnews",
