@@ -22,6 +22,8 @@ Controllers.favorites.index(function(params, favs) {
 
 setTimeout(Bonjour.discoverNetworks.curry(Hosts.findOrCreate), 400);
 
+Version = "1.0";
+Xbmc.version(function(version){ Version = version; });
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());

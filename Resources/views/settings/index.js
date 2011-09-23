@@ -18,7 +18,7 @@ Views.settings.index = function(win) {
 	
 	var version_row = Ti.UI.createTableViewRow({
 		header:"Version",
-		title: "1.0",
+		title: Version,
 		id:""
 	});
 	

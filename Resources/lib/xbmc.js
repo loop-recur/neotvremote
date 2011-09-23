@@ -70,8 +70,11 @@ var Xbmc = function() {
 		return _httpCall("PlayFile", channel);
 	}
 	
-	function version() {
-		return _httpCall("GetSystemInfo", "");
+	function version(cb) {
+		return _httpCall("GetSystemInfo", "")(function() {
+			var versions = _extractLis(this.responseText);
+			cb(versions[0].match(/\S+/)[0]);
+		});
 	}
 	
 	function action(key) {
