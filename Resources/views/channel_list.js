@@ -20,7 +20,9 @@ Views.channel_list = function() {
 
 		function _makeChannel(config, name) {
 			var new_settings = _getNewSettings(config.settings, config.amount);
-
+			
+			Ti.API.info(Channel.imagePath(name));
+			
 			var channel_button = Titanium.UI.createButton({
 				backgroundImage: Channel.imagePath(name),
 				height:new_settings.height,

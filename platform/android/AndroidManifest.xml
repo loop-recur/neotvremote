@@ -10,13 +10,13 @@
     
 	<application
     	android:icon="@drawable/appicon"
-      	android:label="NeoTv"
-      	android:name="NeoTvApplication"
+      	android:label="NeoTV"
+      	android:name="NeotvApplication"
       	android:debuggable="false"
 	>
     	<activity
-        	android:name=".NeoTvActivity"
-            android:label="NeoTv"
+        	android:name=".NeotvApplication"
+            android:label="NeoTV"
 						android:theme="@style/Theme.Titanium"
             android:configChanges="keyboardHidden|orientation"
 						android:screenOrientation="portrait"
