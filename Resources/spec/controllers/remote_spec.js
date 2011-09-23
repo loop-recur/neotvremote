@@ -31,7 +31,7 @@ describe("Controllers.remoteSpec", function() {
 	
 		it("posts to wall with text describing the channel and channel's photo", function() {
 			Controllers.remote.postToWall({text : "Netflix"});
-		  expect(FbGraph.wallPost).toHaveBeenCalledWith({ message : 'Playing Netflix on my NeoTV Streaming Player.', link : 'http://www.youtube.com/watch?v=pABgqZ--QN0' });
+		  expect(FbGraph.wallPost).toHaveBeenCalledWith({ message : 'Playing Netflix on my NeoTV Streaming Player.', link : 'http://www.youtube.com/watch?v=pABgqZ--QN0' }, undefined);
 		});
 	});
 	
