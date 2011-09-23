@@ -5,7 +5,7 @@ describe("ChannelSpec", function() {
 	});
 	
 	it("returns the image path", function() {
-	  expect(Channel.imagePath("NetfliX")).toEqual('images/channels/channel_netflix.png');
+	  expect(Channel.imagePath("Net  fli.X")).toEqual('images/channels/channel_netflix.png');
 	});
 	
 	it("returns the url", function() {
