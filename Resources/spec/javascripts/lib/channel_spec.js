@@ -7,8 +7,5 @@ describe("ChannelSpec", function() {
 	it("returns the image path", function() {
 	  expect(Channel.imagePath("Net  fli.X")).toEqual('images/channels/channel_netflix.png');
 	});
-	
-	it("returns the url", function() {
-		expect(Channel.url("HuluPlus")).toEqual("http://looprecur.com/netgear/channel_huluplus.png");
-	});
+
 });

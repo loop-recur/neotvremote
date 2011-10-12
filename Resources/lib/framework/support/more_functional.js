@@ -64,3 +64,12 @@ uniq = function(xs) {
 	};
 	return newArray;
 }
+
+flatten = reduce.partial(function(xs, x){ return xs.concat(x) }, []);
+
+merge = function(x,y) {
+	for(property in y) {
+		if(y[property]) x[property] = y[property];
+	}
+	return x;
+}

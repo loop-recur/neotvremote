@@ -43,24 +43,29 @@ Views.channels = function(win, favs) {
 	win.add(channel_favorites);
 	win.add(view);
 	
+	Ti.App.addEventListener("reloadChannels", standardView);
 	win.addEventListener("favs", toggleFavoriteMode);
 	if(favs) toggleFavoriteMode();
 	
+	function standardView() {
+		Ti.App.fireEvent("hideEdit");
+		Ti.App.fireEvent("hideIndex");
+		editing = false;
+		win.remove(view);
+		view = Titanium.UI.createView({top: "30dp"});
+		win.add(view);
+		view.add(ChannelList);
+		channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
+	}
+	
+	function favoritesView() {
+		editing = true
+		view.remove(ChannelList);
+		channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
+		App.action(view,"favorites#index", {win : win});
+	}
+	
 	function toggleFavoriteMode() {
-		if(editing) {
-			Ti.App.fireEvent("hideEdit");
-			Ti.App.fireEvent("hideIndex");
-			editing = false;
-			win.remove(view);
-			view = Titanium.UI.createView({top: "30dp"});
-			win.add(view);
-			view.add(ChannelList);
-			channel_favorites.backgroundImage = 'images/channel_view/channel_fav.png';
-		} else {
-			editing = true
-			view.remove(ChannelList);
-			channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
-			App.action(view,"favorites#index", {win : win});
-		}
+		editing ? standardView() : favoritesView();
 	}
 };

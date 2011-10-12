@@ -24,21 +24,33 @@ var Xbmc = function() {
 		"blue" : "218"
 	}
 	
+	function _showError(e) {
+		Ti.API.info("\n\n\n========ERROR WHILE DOWNLOADING:=======\n\n\n");
+		Ti.API.info(e);
+	}
+	
 	function getAllChannels(callback) {
 		_httpCall("GetShares", "video")(function(){
-			var allChannels = []
+			var allChannels = {}
 				, dirNames = _extractLis(this.responseText)
 				, length = dirNames.length;
+				
+			var sortChannels = function(channels_obj) {
+				var _getLast = function(d) { return channels_obj[d]; }
+				return map(_getLast, dirNames);
+			}
+		
+			var finish = compose(callback, uniq, flatten, sortChannels);
 			
-			var getFileFun = _getFiles.partial(function(){
+			var getFileFun = _getFiles.partial(function(dirname){
 				var files = _extractLis(this.responseText);
-				allChannels = allChannels.concat(files);
+				allChannels[dirname] = files;
 				length = length - 1;
-				if(length <= 0) callback(uniq(allChannels));
+				if(length <= 0) finish(allChannels);
 			});
 			
 			map(getFileFun, dirNames);
-		});
+		}, _showError);
 	}
 	
 	function _extractLis(html) {
@@ -49,7 +61,7 @@ var Xbmc = function() {
 	}
 	
 	function _getFiles(callback, name) {
-		_httpCall("GetDirectory", name.replace("&", "%26"))(callback);
+		_httpCall("GetDirectory", name.replace(/&/g, "%26").replace(/\s+/g, "%20"))(callback.partial(name));
 	}
 	
 	function ping(callback){

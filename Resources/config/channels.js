@@ -27,7 +27,6 @@ var Channels = [
 "Break.com",
 "NASA",
 "Showtime Podcasts",
-"Atom",
 "KTVU",
 "ACM",
 "Terra",

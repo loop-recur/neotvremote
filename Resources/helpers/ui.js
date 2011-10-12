@@ -49,6 +49,15 @@ Helpers.ui.alert = function(title) {
 	alert.show();
 };
 
+Helpers.ui.spinner = function(props) {
+	var activity = Ti.UI.createActivityIndicator(merge({
+		height:"26dp",
+		width:"26dp",
+	}, props));
+	
+	return activity;
+};
+
 
 Helpers.ui.connecting = function() {
 	Ti.App.addEventListener('connecting', startConnecting);
@@ -95,6 +104,7 @@ Helpers.ui.connecting = function() {
 		connected.visible = true;
 		imageView.visible = false;
 		imageView.stop();
+		ChannelUpdate.start();
 	}
 	
 	return function(win) {

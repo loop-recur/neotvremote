@@ -1,18 +1,16 @@
 var Channel = function() {
-	var baseUrl = "http://looprecur.com/netgear/";
+	var downloaded_path = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
+	var has_downloaded = downloaded_path.exists();
 	
 	function imagePath(name) {
-		return 'images/channels/'+_imageName(name);
-	}
-				
-	function url(name) {
-		return baseUrl + _imageName(name);
+		var base_path = has_downloaded ? downloaded_path.nativePath+"/" : 'images/channels/';
+		return base_path+imageName(name);
 	}
 	
-	function _imageName(name) {
+	function imageName(name) {
 		var channel = (name || "").toLowerCase().replace(" ", "").replace(" ", "").replace("-", "").replace(".", "");
 		return 'channel_'+channel+'.png';
 	}
 	
-	return {imagePath : imagePath, url : url}
+	return {imagePath : imagePath, imageName : imageName}
 }();

@@ -1,50 +1,74 @@
 var ChannelDownload = (function(){	
+	var base_url = "http://looprecur.com";
 	
-	function start() {
-		Helpers.Application.isAndroid() ? _getAndroid() : _getIphone();
+	function start(cb) {
+		Ti.API.info("\n\n\n========STARTING CHANNEL DOWNLOAD=======\n\n\n");
+		Helpers.Application.isAndroid() ? _getAndroid(cb) : _getIphone(cb);
 	}
 	
-	function _getAndroid() {   
+	function getChannelImages() {
+		var dir = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,'images', 'channels');
+		var dirItems = dir.getDirectoryListing();
+		var results = [];
+		
+		Ti.API.info("\n\n\n========GETTING ALL: =======\n\n\n");
+		for ( var i=0; i<dirItems.length; i++ ) { results.push(dirItems[i].toString()); }
+		return results;
+	}
+	
+	function _getDownloadedChannels(file_proxy) {
+		var dirItems = file_proxy.getDirectoryListing();
+		var result = [];
+		
+		Ti.API.info("\n\n\n========DOWNLOADED: "+dirItems.length+" items=======\n\n\n");
+		for ( var i=0; i<dirItems.length; i++ ) {
+			result.push(file_proxy.nativePath + Ti.Filesystem.separator + dirItems[i].toString());
+		}
+		return result;
+	}
+	
+	function _getAndroid(cb) {
 		var zipfile = require("com.websiteburo.androzip");
+		var url = (Ti.Platform.displayCaps.density == "medium") ? "/android_med.zip" : "/android_high.zip"
 		
 		var _writeZip = function() {
-			Ti.API.info("WRITING FILE");
-			var zipPath = Ti.Filesystem.resourcesDirectory + Ti.Filesystem.separator + "android_channels.zip";
-			var dirFullPath = Ti.Filesystem.resourcesDirectory + Ti.Filesystem.separator + 'images';
-			var dir = Titanium.Filesystem.getFile(dirFullPath);
+			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'channels.zip');	  
+			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
+			if(!extractPath.exists()) extractPath.createDirectory();
 			
-			var f = Ti.Filesystem.getFile(zipPath);
-		  f.write(this.responseData);
-			Ti.API.info("FINISHING WRITING");
-			Ti.API.info(f.nativePath);
-
-			Ti.API.info("Full path:");
-			Ti.API.info(dirFullPath);
-			Ti.API.info("RESOURCES");
-			Ti.API.info(Ti.Filesystem.resourcesDirectory);
-			zipfile.extract(dataDir+"/android_channels.zip", dirFullPath);	
-			Ti.API.info("DONE!");
+		  zipPath.write(this.responseData);
+			zipfile.extract(zipPath.nativePath, extractPath.nativePath);
+			cb(_getDownloadedChannels(extractPath));
 		}
 		
-		App.base_url = "http://looprecur.com";
-		App.http_client.get("/android_channels.zip", {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		var oldUrl = App.base_url;
+		App.base_url = base_url;
+		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
+		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		App.base_url = oldUrl;
 	}
 	
-	function _getIphone() {
+	function _getIphone(cb) {
 		var zipfile = require("zipfile");
-
+		var url = "/channels.zip";
+		
 		var _writeZip = function() {
 			var f = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,'channels.zip');
 		  f.write(this.responseData);
 
 			var dataDir = Ti.Filesystem.resourcesDirectory.slice(0,Ti.Filesystem.resourcesDirectory.length - 1).replace('file://localhost','').replace(/%20/g,'\\ ');
-			zipfile.extract(dataDir+"/channels.zip", dataDir+"/images/channels");		
+			var extract_path = Ti.Filesystem.getFile(dataDir+"/images/channels");
+			zipfile.extract(dataDir+"/channels.zip", dataDir+"/images/channels");
+			cb(_getDownloadedChannels(extract_path));
 		}
 		
-		App.base_url = "http://looprecur.com";
-		App.http_client.get("/channels.zip", {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		var oldUrl = App.base_url;
+		App.base_url = base_url;
+		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
+		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		App.base_url = oldUrl;
 	}
 	
 	
-	return {start: start}
+	return {start: start, getChannelImages : getChannelImages}
 })();

@@ -6,24 +6,41 @@ Titanium.UI.setBackgroundColor('#000');
 Titanium.Facebook.appid = "159867857428871";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
-Layouts.application();
+Ti.App.addEventListener('channelUpdateFinish', reloadChannels);
 setupDb();
 Feedback.loadSettings();
-
 App.loadHosts();
 
-ChannelList = Views.channel_list.create(Channels);
-Views.channel_list.launchMode(ChannelList.children);
+// Globals
+ChannelList = null;
+FavoritesList = null;
+createChannelViews(Channels); // Default channels
 
-Controllers.favorites.index(function(params, favs) {
-	FavoritesList = Views.channel_list.create(Channels, favs);
-	Views.channel_list.favoritesMode(FavoritesList.children, favs);
-}, {});
+Version = "1.0" // Default version
+Layouts.application();
 
-setTimeout(Bonjour.discoverNetworks.curry(Hosts.findOrCreate), 400);
+Xbmc.version(function(n){ Version = n; });
 
-Version = "1.0";
-Xbmc.version(function(version){ Version = version; });
+Bonjour.discoverNetworks(Hosts.findOrCreate);
+
+function reloadChannels(e) {
+	createChannelViews(e.channels, e.cb);
+}
+
+function createChannelViews(channels, cb) {
+	ChannelList = null;
+	FavoritesList = null;
+	
+	ChannelList = Views.channel_list.create(channels);
+	Views.channel_list.launchMode(ChannelList.children);
+	
+	Controllers.favorites.index(function(params, favs) {
+		FavoritesList = Views.channel_list.create(channels, favs);
+		Views.channel_list.favoritesMode(FavoritesList.children, favs);
+		if(cb) try{ cb(); }catch(e){};
+	}, {});
+	
+}
 
 function setupDb(redo) {
 	App.db = LoopRecur.Db(Titanium.Database, Helpers.Application.isAndroid());

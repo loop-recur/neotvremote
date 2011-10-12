@@ -12,6 +12,7 @@ FileList = [
 	"lib/bonjour.js",
 	"lib/channel.js",
 	"lib/channel_download.js",
+	"lib/channel_update.js",
 	"lib/favorites.js",
 	"lib/fb_graph.js",
 	"lib/feedback.js",
@@ -28,6 +29,7 @@ FileList = [
 	"views/hosts/show.js",
 	"views/play_controls.js",
 	"views/remote.js",
+	"views/update_wizard.js",
 	"views/searches/index.js",
 	"views/settings/index.js"
 ];
