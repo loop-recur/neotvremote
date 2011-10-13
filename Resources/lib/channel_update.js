@@ -1,5 +1,5 @@
 var ChannelUpdate = (function() {
-	var updating = false;	
+	var updating = false;
 		
 	_shouldUpdateChannels = function(channels) {
 		var allImages = ChannelDownload.getChannelImages();
