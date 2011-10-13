@@ -19,6 +19,8 @@ createChannelViews(Channels); // Default channels
 Version = "1.0" // Default version
 Layouts.application();
 
+Views.updateWizard(Channels, function(){});
+
 Xbmc.version(function(n){ Version = n; });
 
 Bonjour.discoverNetworks(Hosts.findOrCreate);
