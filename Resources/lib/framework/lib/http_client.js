@@ -39,12 +39,14 @@ LoopRecur.HttpClient = function() {
 	}
 
 	function prepare(method, url, call_backs) {
-		client = Titanium.Network.createHTTPClient();
+		var progress_bar = call_backs.progress_bar;
+		client = Ti.App.current_client = Titanium.Network.createHTTPClient();
 		client.onload = call_backs.success;
 		client.onerror = call_backs.error;
+		if(progress_bar) client.ondatastream = function(e){ progress_bar.value = e.progress; };
 		client.setTimeout(3000);
 		client.open(method, App.base_url+url);
-		setHeaders(client);
+		try{ setHeaders(client); }catch(e){};
 		return client;
 	}
 

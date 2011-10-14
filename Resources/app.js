@@ -21,25 +21,23 @@ Layouts.application();
 
 Xbmc.version(function(n){ Version = n; });
 
-Bonjour.discoverNetworks(Hosts.findOrCreate);
+// Bonjour.discoverNetworks(Hosts.findOrCreate);
 
 function reloadChannels(e) {
-	createChannelViews(e.channels, e.cb);
+	createChannelViews(e.channels);
 }
 
-function createChannelViews(channels, cb) {
+function createChannelViews(channels) {
 	ChannelList = null;
 	FavoritesList = null;
-	
 	ChannelList = Views.channel_list.create(channels);
 	Views.channel_list.launchMode(ChannelList.children);
 	
 	Controllers.favorites.index(function(params, favs) {
 		FavoritesList = Views.channel_list.create(channels, favs);
 		Views.channel_list.favoritesMode(FavoritesList.children, favs);
-		if(cb) try{ cb(); }catch(e){};
+		Ti.App.fireEvent('channelViewLoadDone', {});
 	}, {});
-	
 }
 
 function setupDb(redo) {

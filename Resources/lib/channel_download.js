@@ -1,9 +1,9 @@
 var ChannelDownload = (function(){	
 	var base_url = "http://looprecur.com";
 	
-	function start(cb) {
+	function start(cb, progress_bar) {
 		Ti.API.info("\n\n\n========STARTING CHANNEL DOWNLOAD=======\n\n\n");
-		Helpers.Application.isAndroid() ? _getAndroid(cb) : _getIphone(cb);
+		Helpers.Application.isAndroid() ? _getAndroid(cb, progress_bar) : _getIphone(cb, progress_bar);
 	}
 	
 	function getChannelImages() {
@@ -27,14 +27,17 @@ var ChannelDownload = (function(){
 		return result;
 	}
 	
-	function _getAndroid(cb) {
+	function _getAndroid(cb, progress_bar) {
 		var zipfile = require("com.websiteburo.androzip");
 		var url = (Ti.Platform.displayCaps.density == "medium") ? "/android_med.zip" : "/android_high.zip"
 		
 		var _writeZip = function() {
 			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'channels.zip');	  
 			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
-			if(!extractPath.exists()) extractPath.createDirectory();
+			if(extractPath.exists()) {
+				extractPath.deleteDirectory()
+				extractPath.createDirectory();
+			}
 			
 		  zipPath.write(this.responseData);
 			zipfile.extract(zipPath.nativePath, extractPath.nativePath);
@@ -44,11 +47,11 @@ var ChannelDownload = (function(){
 		var oldUrl = App.base_url;
 		App.base_url = base_url;
 		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
-		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}, progress_bar: progress_bar});
 		App.base_url = oldUrl;
 	}
 	
-	function _getIphone(cb) {
+	function _getIphone(cb, progress_bar) {
 		var zipfile = require("zipfile");
 		var url = "/channels.zip";
 		
@@ -65,7 +68,7 @@ var ChannelDownload = (function(){
 		var oldUrl = App.base_url;
 		App.base_url = base_url;
 		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
-		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}});
+		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}, progress_bar: progress_bar});
 		App.base_url = oldUrl;
 	}
 	

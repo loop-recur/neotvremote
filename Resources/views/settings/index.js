@@ -1,6 +1,5 @@
 Views.settings.index = function(win) {
 	var view = Ti.UI.createView({
-		// fullscreen : true, 
 		backgroundColor: "#FFFFFF"
 	});
 	

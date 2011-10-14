@@ -1,4 +1,4 @@
-Views.updateWizard = function(channels, cb) {
+Views.updateWizard = function(channels, cb) {	
 	var modal = Ti.UI.createWindow({
 		title:'Channel Update',
 		backgroundImage:'images/gestures/gesture_bg.png',
@@ -26,6 +26,7 @@ Views.updateWizard = function(channels, cb) {
 		left: "180dp",
 		top: "170dp",
 		title:"Ok",
+		color: "#ffffff"
 	});
 	
 	var cancel = Ti.UI.createButton({
@@ -34,36 +35,51 @@ Views.updateWizard = function(channels, cb) {
 		width:"80dp",
 		title: "Cancel",
 		left: "70dp",
-		top: "170dp"
+		top: "170dp",
+		color: "#ffffff"
 	});
 	
-	var activity = Helpers.ui.spinner({});
+	var progress_bar = Helpers.ui.progressBar({top: "115dp"});
+	modal.add(progress_bar);
+	
+	var activity = Helpers.ui.spinner();
 	modal.add(label);
 	modal.add(activity);
 	modal.add(ok);
 	modal.add(cancel);
 	
 	
-	var nextStep = function() { 
-		modal.remove(ok);
-		modal.remove(cancel);
+	var _nextStep = function() { 
+		Ti.App.fireEvent('PrechannelViewLoadDone', {});
+		progress_bar.show();
 		label.text = "Downloading channels...";
-		activity.show();
-		ChannelDownload.start(finish);
+		ChannelDownload.start(_finish, progress_bar);
+		cancel.left = null;
+		modal.remove(ok);
+		cancel.addEventListener('click', function(){ Ti.App.current_client.abort(); });
 	}
 	
-	ok.addEventListener('click', nextStep);
-	cancel.addEventListener('click', function(){ modal.close() });
-	
-	function finish(downloaded_images) {
-		label.text = "Finishing...";
+	function _close() {
 		activity.hide();
-		Ti.App.fireEvent('channelUpdateFinish', {channels: channels, cb: function(){ Ti.App.fireEvent("reloadChannels"); modal.close(); }});
+		progress_bar.hide();
+		modal.close();
+	}
+	
+	function _finish(downloaded_images) {
+		progress_bar.hide();
+		label.text = "Finishing...";
+		activity.show();
+		Ti.App.fireEvent('channelUpdateFinish', { channels: channels });
 		cb();
 	}
 	
+	Ti.App.addEventListener('channelViewLoadDone', _close);
+	ok.addEventListener('click', _nextStep);
+	cancel.addEventListener('click', _close);
+	
+	
 	if(Helpers.Application.isAndroid()) {
-		var options = {}
+		var options = {fullscreen:true}
 	} else {
 		var options = {
 			modal:true, 

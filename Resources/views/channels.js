@@ -43,11 +43,12 @@ Views.channels = function(win, favs) {
 	win.add(channel_favorites);
 	win.add(view);
 	
-	Ti.App.addEventListener("reloadChannels", standardView);
+	Ti.App.addEventListener("channelViewLoadDone", standardView);
 	win.addEventListener("favs", toggleFavoriteMode);
 	if(favs) toggleFavoriteMode();
 	
 	function standardView() {
+		log("STANDARD VIEW");
 		Ti.App.fireEvent("hideEdit");
 		Ti.App.fireEvent("hideIndex");
 		editing = false;

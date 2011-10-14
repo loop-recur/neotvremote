@@ -1,6 +1,6 @@
 Layouts.application = function() {
-	var favs = false;
-	var tabGroup = Titanium.UI.createTabGroup();
+	var favs = false
+	, tabGroup = Titanium.UI.createTabGroup();
 
 	var win1 = Titanium.UI.createWindow({  
 	    backgroundImage:'images/remote_view/remote_bg.png',
@@ -33,7 +33,7 @@ Layouts.application = function() {
 			navBarHidden: true
 	});
 	win3.addEventListener('open', function(){ Views.channels(win3, favs); });
-	
+		
 	var tab3 = Titanium.UI.createTab({  
 	    icon:'images/channel_view/tab_icon_channels_inactive.png',
 	    title:'Channels',
