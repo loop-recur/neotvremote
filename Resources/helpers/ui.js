@@ -1,14 +1,11 @@
 Helpers.ui = {};
 
 Helpers.ui.progressBar = function(props) {
-	var max = Helpers.Application.isAndroid() ? 100 : 1;
+	var max = Helpers.Application.isAndroid() ? 1 : 1;
 	var bar = Titanium.UI.createProgressBar(merge({
-		width:240,
-		height:2,
 		min:0,
 		max: max,
-		value:0,
-		color:'black'
+		value:0
 	}, props));	
 	return bar;
 };
@@ -17,7 +14,7 @@ Helpers.ui.keyboard = function() {
 	var keyboard_field = Titanium.UI.createTextField({  
 	  width:0,
 	  height:0,
-		top:00,
+		top:0,
 		autocorrect:false,
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE
@@ -117,7 +114,7 @@ Helpers.ui.connecting = function() {
 		connected.visible = true;
 		imageView.visible = false;
 		imageView.stop();
-		setTimeout(ChannelUpdate.start, 2000);
+		setTimeout(ChannelUpdate.start, 6000);
 	}
 	
 	return function(win) {

@@ -14,14 +14,14 @@ App.loadHosts();
 // Globals
 ChannelList = null;
 FavoritesList = null;
-createChannelViews(Channels); // Default channels
+ChannelUpdate.getCurrentChannels(createChannelViews);
 
 Version = "1.0" // Default version
 Layouts.application();
 
 Xbmc.version(function(n){ Version = n; });
 
-// Bonjour.discoverNetworks(Hosts.findOrCreate);
+Bonjour.discoverNetworks(Hosts.findOrCreate);
 
 function reloadChannels(e) {
 	createChannelViews(e.channels);

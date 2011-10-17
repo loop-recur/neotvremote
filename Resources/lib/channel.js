@@ -3,7 +3,7 @@ var Channel = function() {
 	var has_downloaded = downloaded_path.exists();
 	
 	function imagePath(name) {
-		var base_path = has_downloaded ? downloaded_path.nativePath+"/channels/" : 'images/channels/';
+		var base_path = has_downloaded ? downloaded_path.nativePath+"/" : 'images/channels/';
 		return base_path+imageName(name);
 	}
 	
