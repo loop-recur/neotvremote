@@ -70,7 +70,7 @@ Helpers.ui.spinner = function(props) {
 
 
 Helpers.ui.connecting = function() {
-	Ti.App.addEventListener('connecting', startConnecting);
+	Ti.App.addEventListener('connecting', function(){try{startConnecting();}catch(e){}});
 	
 	var images = [];
 	for (var i=1;i<7;i++) { images.push('images/connecting/remote_connecting' + ((i<7)?'0'+i:i)+'.png');}
