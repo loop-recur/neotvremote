@@ -28,7 +28,7 @@ var ChannelUpdate = (function() {
 	}
 		
 	_shouldUpdateChannels = function(channels) {
-		// if(Channels.join("") == channels.join("")) return false;
+		if(Channels.join("") == channels.join("")) return false;
 		var allImages = ChannelDownload.getChannelImages();
 		var allNames = map(Channel.imageName, channels);
 		var _missingImage = function(n) { return allImages.indexOf(n) < 0; }

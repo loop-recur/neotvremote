@@ -15,7 +15,8 @@ Views.channel_list = function() {
 			showHorizontalScrollIndicator:false,
 			showVerticalScrollIndicator:true
 		});
-
+		
+		channels = select(function(c){return Ti.Filesystem.getFile(Channel.imagePath(c)).exists(); }, channels);
 		reduce(_makeChannel, {settings: default_settings, amount: 0}, channels);
 
 		function _makeChannel(config, name) {

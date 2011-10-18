@@ -1,8 +1,7 @@
 var ChannelDownload = (function(){	
-	var base_url = "http://looprecur.com";
+	var base_url = "http://www.netgear.com/ntv200/icons";
 	
 	function start(cb, progress_bar) {
-		Ti.API.info("\n\n\n========STARTING CHANNEL DOWNLOAD=======\n\n\n");
 		Helpers.Application.isAndroid() ? _getAndroid(cb, progress_bar) : _getIphone(cb, progress_bar);
 	}
 	
@@ -11,7 +10,6 @@ var ChannelDownload = (function(){
 		var dirItems = dir.getDirectoryListing();
 		var results = [];
 		
-		Ti.API.info("\n\n\n========GETTING ALL: =======\n\n\n");
 		for ( var i=0; i<dirItems.length; i++ ) { results.push(dirItems[i].toString()); }
 		return results;
 	}
@@ -20,7 +18,6 @@ var ChannelDownload = (function(){
 		var dirItems = file_proxy.getDirectoryListing();
 		var result = [];
 		
-		Ti.API.info("\n\n\n========DOWNLOADED: "+dirItems.length+" items=======\n\n\n");
 		for ( var i=0; i<dirItems.length; i++ ) {
 			result.push(file_proxy.nativePath + Ti.Filesystem.separator + dirItems[i].toString());
 		}
@@ -46,7 +43,6 @@ var ChannelDownload = (function(){
 		
 		var oldUrl = App.base_url;
 		App.base_url = base_url;
-		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
 		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}, progress_bar: progress_bar});
 		App.base_url = oldUrl;
 	}
@@ -67,7 +63,6 @@ var ChannelDownload = (function(){
 		
 		var oldUrl = App.base_url;
 		App.base_url = base_url;
-		Ti.API.info("\n\n\n========FROM "+App.base_url+url+"=======\n\n\n");
 		App.http_client.get(url, {success: _writeZip, error: function(e){Ti.API.info(e)}, progress_bar: progress_bar});
 		App.base_url = oldUrl;
 	}
