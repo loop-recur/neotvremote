@@ -1,5 +1,5 @@
 var ChannelDownload = (function(){	
-	var base_url = "http://www.netgear.com/ntv200/icons";
+	var base_url = "http://updates1.netgear.com/ntv200/us/mobile_icons";
 	
 	function start(cb, progress_bar) {
 		Helpers.Application.isAndroid() ? _getAndroid(cb, progress_bar) : _getIphone(cb, progress_bar);
@@ -49,7 +49,7 @@ var ChannelDownload = (function(){
 	
 	function _getIphone(cb, progress_bar) {
 		var zipfile = require("zipfile");
-		var url = "/channels.zip";
+		var url = "/iphone.zip";
 		
 		var _writeZip = function() {
 			var f = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,'channels.zip');
