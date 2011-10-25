@@ -31,9 +31,7 @@ var ChannelDownload = (function(){
 		var _writeZip = function() {
 			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'channels.zip');	  
 			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
-			
-			if(extractPath.exists()) extractPath.deleteDirectory();
-			
+				
 			extractPath.createDirectory();
 			
 		  zipPath.write(this.responseData);

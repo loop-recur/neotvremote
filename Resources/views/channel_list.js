@@ -1,7 +1,5 @@
 Views.channel_list = function() {
-	var mode
-	, clickFun
-	, addFun;
+	var mode;
 	 
 	function create(channels) {
 		var default_settings = {height: "77dp", width: "90dp", left: "12.5dp", column_separation: "12.5dp", top: "2dp", row_separation: "10dp", rows_built: 0}
@@ -22,8 +20,8 @@ Views.channel_list = function() {
 		function _makeChannel(config, name) {
 			var new_settings = _getNewSettings(config.settings, config.amount);
 			
-			var channel_button = Titanium.UI.createButton({
-				backgroundImage: Channel.imagePath(name),
+			var channel_button = Titanium.UI.createImageView({
+				image: Channel.imagePath(name),
 				height:new_settings.height,
 				width:new_settings.width,
 				top:new_settings.top,
@@ -75,9 +73,7 @@ Views.channel_list = function() {
 		mode = "launch";
 		
 		function _removeMasks() {
-			var removeFun = Helpers.Application.isAndroid() ? _removeBorder : _removeOpacity;
-
-			map(removeFun, buttons);
+			map(_removeOpacity, buttons);
 
 			function _removeOpacity(button) {
 				button.opacity = 1;
@@ -106,8 +102,7 @@ Views.channel_list = function() {
 		mode = "favorites";
 		
 		function _addMasks() {
-			addFun = Helpers.Application.isAndroid() ? _colorBorder : _addOpacity;
-			map(addFun, buttons);
+			map(_addOpacity, buttons);
 
 			function _addOpacity(button) {
 				button.opacity = _inFavorites(button.value) ? 1 : 0.2;
@@ -143,11 +138,7 @@ Views.channel_list = function() {
 		var index = Channels.indexOf(channel);
 		Favorites.toggleFavorite(index);
 
-		if(Helpers.Application.isAndroid()) {
-			e.source.borderColor = (e.source.borderColor == "black")  ? "#D3D22E" : "black";
-		} else {
-			e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
-		}
+		e.source.opacity = (e.source.opacity == 1) ? 0.5 : 1;
 	}
 	
 	return {create: create, launchMode: launchMode, favoritesMode: favoritesMode}

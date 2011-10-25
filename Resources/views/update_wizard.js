@@ -40,7 +40,6 @@ Views.updateWizard = function(channels, cb) {
 	});
 	
 	var progress_bar = Helpers.ui.progressBar({top: "115dp"});
-	modal.add(progress_bar);
 	
 	var activity = Helpers.ui.spinner();
 	modal.add(label);
@@ -51,6 +50,7 @@ Views.updateWizard = function(channels, cb) {
 	
 	var _nextStep = function() { 
 		Ti.App.fireEvent('PrechannelViewLoadDone', {});
+		modal.add(progress_bar);
 		progress_bar.show();
 		label.text = "Downloading channels...";
 		ChannelDownload.start(_finish, progress_bar);

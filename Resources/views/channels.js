@@ -48,7 +48,6 @@ Views.channels = function(win, favs) {
 	if(favs) toggleFavoriteMode();
 	
 	function standardView() {
-		log("STANDARD VIEW");
 		Ti.App.fireEvent("hideEdit");
 		Ti.App.fireEvent("hideIndex");
 		editing = false;
@@ -60,7 +59,7 @@ Views.channels = function(win, favs) {
 	}
 	
 	function favoritesView() {
-		editing = true
+		editing = true;
 		view.remove(ChannelList);
 		channel_favorites.backgroundImage = 'images/channel_view/channel_fav_on.png';
 		App.action(view,"favorites#index", {win : win});

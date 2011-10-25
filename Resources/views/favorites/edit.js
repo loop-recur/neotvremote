@@ -19,9 +19,19 @@ Views.favorites.edit = function(view, params, favorites) {
 	
 	function dealloc() {
 		win.remove(edit_button);
-		view.remove(FavoritesList);
+		if(FavoritesList) view.remove(FavoritesList);
+		FavoritesList = null;
 	}
 	
 	win.add(edit_button);
-	view.add(FavoritesList);
+	
+	if(!FavoritesList) {
+		Controllers.favorites.index(function(params, favs) {
+			FavoritesList = Views.channel_list.create(Channels, favs);
+			Views.channel_list.favoritesMode(FavoritesList.children, favs);
+			view.add(FavoritesList);
+		}, {});	
+	} else {
+		view.add(FavoritesList);
+	}
 }
