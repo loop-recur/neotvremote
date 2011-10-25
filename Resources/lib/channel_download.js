@@ -1,5 +1,5 @@
 var ChannelDownload = (function(){	
-	var base_url = "http://looprecur.com";
+	var base_url = "http://updates1.netgear.com/ntv200/us/mobile_icons";
 	
 	function start(cb, progress_bar) {
 		Helpers.Application.isAndroid() ? _getAndroid(cb, progress_bar) : _getIphone(cb, progress_bar);
@@ -11,8 +11,6 @@ var ChannelDownload = (function(){
 		var results = [];
 		
 		for ( var i=0; i<dirItems.length; i++ ) { results.push(dirItems[i].toString()); }
-		log("=============CHANNEL IMAGES==========");
-		log(results.join(", "));
 		return results;
 	}
 	
@@ -23,8 +21,6 @@ var ChannelDownload = (function(){
 		for ( var i=0; i<dirItems.length; i++ ) {
 			result.push(file_proxy.nativePath + Ti.Filesystem.separator + dirItems[i].toString());
 		}
-		log("=============DOWNLOADED CHANNEL IMAGES==========");
-		log(result.join(", "));
 		return result;
 	}
 	
