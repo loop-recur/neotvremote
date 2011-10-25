@@ -2,6 +2,7 @@ Views.channel_list = function() {
 	var mode;
 	 
 	function create(channels) {
+		if(!channels) return false;
 		var default_settings = {height: "77dp", width: "90dp", left: "12.5dp", column_separation: "12.5dp", top: "2dp", row_separation: "10dp", rows_built: 0}
 		
 		var scrollview = Titanium.UI.createScrollView({

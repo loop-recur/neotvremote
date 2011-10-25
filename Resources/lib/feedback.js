@@ -4,8 +4,16 @@ var Feedback = function() {
 	
 	function loadSettings() {
 		Controllers.feedback.index(function(s) {
+			log("=============SETTTING!!!!");
+			log(s.vibrate);
+			log(s.sound);
 			settings = s;
 		});
+	}
+	
+	function buttonPress() {
+		_click();
+		_vibrate();
 	}
 	
 	function _click() {
@@ -20,5 +28,5 @@ var Feedback = function() {
 		Helpers.Application.isAndroid() ? click_sound.play() : Titanium.Media.playClick();
 	}
 	
-	return {buttonPress: compose(_vibrate, _click), loadSettings: loadSettings}
+	return {buttonPress: buttonPress, loadSettings: loadSettings}
 }();
