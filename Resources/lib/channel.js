@@ -1,6 +1,10 @@
 var Channel = function() {
-	var downloaded_path = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
+	var downloaded_path = _getDownloadedPath();
 	var has_downloaded = downloaded_path.exists();
+	
+	function resetHasDownloaded() {
+		has_downloaded = downloaded_path.exists();
+	}
 	
 	function imagePath(name) {
 		var base_path = has_downloaded ? downloaded_path.nativePath+"/" : 'images/channels/';
@@ -12,5 +16,14 @@ var Channel = function() {
 		return 'channel_'+channel+'.png';
 	}
 	
-	return {imagePath : imagePath, imageName : imageName}
+	function _getDownloadedPath() {
+		if(Helpers.Application.isAndroid()) {
+			var name = (Ti.Platform.displayCaps.density == "medium") ? "android_med" : "android_high";
+		} else {
+			var name = "channels";
+		}
+		return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
+	}
+	
+	return { imagePath : imagePath, imageName : imageName, resetHasDownloaded: resetHasDownloaded }
 }();

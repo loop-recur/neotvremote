@@ -11,6 +11,8 @@ var ChannelDownload = (function(){
 		var results = [];
 		
 		for ( var i=0; i<dirItems.length; i++ ) { results.push(dirItems[i].toString()); }
+		log("=============CHANNEL IMAGES==========");
+		log(results.join(", "));
 		return results;
 	}
 	
@@ -21,22 +23,24 @@ var ChannelDownload = (function(){
 		for ( var i=0; i<dirItems.length; i++ ) {
 			result.push(file_proxy.nativePath + Ti.Filesystem.separator + dirItems[i].toString());
 		}
+		log("=============DOWNLOADED CHANNEL IMAGES==========");
+		log(result.join(", "));
 		return result;
 	}
 	
 	function _getAndroid(cb, progress_bar) {
 		var zipfile = require("com.websiteburo.androzip");
-		var url = (Ti.Platform.displayCaps.density == "medium") ? "/android_med.zip" : "/android_high.zip"
+		var name = (Ti.Platform.displayCaps.density == "medium") ? "android_med" : "android_high";
+		var url = "/"+name+".zip";
 		
 		var _writeZip = function() {
 			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'channels.zip');	  
-			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
-				
-			extractPath.createDirectory();
+			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory);
+			var finalPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
 			
 		  zipPath.write(this.responseData);
 			zipfile.extract(zipPath.nativePath, extractPath.nativePath);
-			cb(_getDownloadedChannels(extractPath));
+			cb(_getDownloadedChannels(finalPath));
 		}
 		
 		var oldUrl = App.base_url;

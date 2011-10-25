@@ -17,13 +17,14 @@ var ChannelUpdate = (function() {
 	_loadCache = function() {		
 		var data = _getCacheFile().read();
 		var channels = JSON.parse(data.toString());
-		_setGlobalChannels(channels);
+		if(channels) _setGlobalChannels(channels);
 		return channels;
 	}
 	
 	getCurrentChannels = function(cb) {
-		var channels = Channels;
+		var channels = null;
 		try{ channels = _loadCache(); } catch(e) { log(e); }
+		if(!channels) channels = Channels;
 		cb(channels);
 	}
 		

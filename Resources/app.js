@@ -28,6 +28,7 @@ function reloadChannels(e) {
 }
 
 function createChannelViews(channels) {
+	Channel.resetHasDownloaded();	
 	ChannelList = null;
 	FavoritesList = null;
 	ChannelList = Views.channel_list.create(channels);

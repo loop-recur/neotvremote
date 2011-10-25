@@ -4,24 +4,21 @@ var Feedback = function() {
 	
 	function loadSettings() {
 		Controllers.feedback.index(function(s) {
-			log("=============SETTTING!!!!");
-			log(s.vibrate);
-			log(s.sound);
 			settings = s;
 		});
 	}
 	
 	function buttonPress() {
-		_click();
-		_vibrate();
+		if(settings.sound == "true") _click();
+		if(settings.vibrate == "true") _vibrate();
 	}
 	
 	function _click() {
-		if(settings.sound) _playClick();
+		_playClick();
 	}
 	
 	function _vibrate() {
-		if(settings.vibrate) Ti.Media.vibrate();
+		Ti.Media.vibrate();
 	}
 	
 	function _playClick() {

@@ -9,7 +9,7 @@ Views.feedback.index = function(win, feedback) {
 	});
 	
 	var vibrate_switch = Ti.UI.createSwitch({
-		value:(feedback.vibrate ==  1),
+		value:(feedback.vibrate == 1),
 		right:10
 	});
 	
