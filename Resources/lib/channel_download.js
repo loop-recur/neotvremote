@@ -21,6 +21,7 @@ var ChannelDownload = (function(){
 		for ( var i=0; i<dirItems.length; i++ ) {
 			result.push(file_proxy.nativePath + Ti.Filesystem.separator + dirItems[i].toString());
 		}
+		
 		return result;
 	}
 	
@@ -31,12 +32,14 @@ var ChannelDownload = (function(){
 		
 		var _writeZip = function() {
 			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, 'channels.zip');	  
-			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory);
+			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
 			var finalPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
 			
+			if(!extractPath.exists()) extractPath.createDirectory();
+						
 		  zipPath.write(this.responseData);
 			zipfile.extract(zipPath.nativePath, extractPath.nativePath);
-			cb(_getDownloadedChannels(finalPath));
+			cb(_getDownloadedChannels(extractPath));
 		}
 		
 		var oldUrl = App.base_url;

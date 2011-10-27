@@ -17,13 +17,7 @@ var Channel = function() {
 	}
 	
 	function _getDownloadedPath() {
-		if(Helpers.Application.isAndroid()) {
-			var name = (Ti.Platform.displayCaps.density == "medium") ? "android_med" : "android_high";
-			return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
-		} else {
-			return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
-		}
-		
+		return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
 	}
 	
 	return { imagePath : imagePath, imageName : imageName, resetHasDownloaded: resetHasDownloaded }
