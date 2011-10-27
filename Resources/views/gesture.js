@@ -237,47 +237,54 @@ Views.gesture = function(win) {
 	}
 	
 	function doGesture () {
-		Feedback.buttonPress();
 		
 		var x_diff = touch_x_stop - touch_x_start;
 		var y_diff = touch_y_stop - touch_y_start;
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && shortSwipe(x_diff)) {
+			Feedback.buttonPress();
 			animateGesture(left_arrow_mask);
 			setTimeout(Xbmc.action("left"), 0);
 		}
 		
 		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
+			Feedback.buttonPress();
 			animateGesture(left_arrow_mask);
 			nTimes(3, Xbmc.action("left"));
 		}
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
+			Feedback.buttonPress();
 			animateGesture(right_arrow_mask);
 			setTimeout(Xbmc.action("right"), 0);
 		}		
 		
 		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
+			Feedback.buttonPress();
 			animateGesture(right_arrow_mask);
 			nTimes(3, Xbmc.action("right"));
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
+			Feedback.buttonPress();
 			animateGesture(up_arrow_mask);
 			setTimeout(Xbmc.action("up"), 0);
 		}
 		
 		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
+			Feedback.buttonPress();
 			animateGesture(up_arrow_mask);
 			nTimes(3, Xbmc.action("up"));
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
+			Feedback.buttonPress();
 			animateGesture(down_arrow_mask);
 			setTimeout(Xbmc.action("down"), 0);
 		}
 		
 		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
+			Feedback.buttonPress();
       animateGesture(down_arrow_mask);
 			nTimes(3, Xbmc.action("down"));
 		}

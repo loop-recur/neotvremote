@@ -1,6 +1,7 @@
 var Channel = function() {
 	var downloaded_path = _getDownloadedPath();
 	var has_downloaded = downloaded_path.exists();
+	log(has_downloaded);
 	
 	function resetHasDownloaded() {
 		has_downloaded = downloaded_path.exists();
@@ -19,10 +20,11 @@ var Channel = function() {
 	function _getDownloadedPath() {
 		if(Helpers.Application.isAndroid()) {
 			var name = (Ti.Platform.displayCaps.density == "medium") ? "android_med" : "android_high";
+			return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
 		} else {
-			var name = "channels";
+			return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
 		}
-		return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, name);
+		
 	}
 	
 	return { imagePath : imagePath, imageName : imageName, resetHasDownloaded: resetHasDownloaded }

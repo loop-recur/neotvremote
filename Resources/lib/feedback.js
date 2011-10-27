@@ -1,4 +1,5 @@
 var Feedback = function() {
+	var isAndroid = Helpers.Application.isAndroid();
 	var settings;
 	var click_sound = Ti.Media.createSound({url:"sounds/click.mp3", preload: true});
 	
@@ -9,8 +10,13 @@ var Feedback = function() {
 	}
 	
 	function buttonPress() {
-		if(settings.sound == "true") _click();
-		if(settings.vibrate == "true") _vibrate();
+		if(isAndroid) {
+			if(settings.sound == "true") _click();
+			if(settings.vibrate == "true") _vibrate();
+		} else {
+			if(settings.sound) _click();
+			if(settings.vibrate) _vibrate();
+		}
 	}
 	
 	function _click() {
@@ -22,7 +28,7 @@ var Feedback = function() {
 	}
 	
 	function _playClick() {
-		Helpers.Application.isAndroid() ? click_sound.play() : Titanium.Media.playClick();
+		isAndroid ? click_sound.play() : Titanium.Media.playClick();
 	}
 	
 	return {buttonPress: buttonPress, loadSettings: loadSettings}

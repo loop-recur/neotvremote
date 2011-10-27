@@ -20,12 +20,12 @@ Views.favorites.edit = function(view, params, favorites) {
 	function dealloc() {
 		win.remove(edit_button);
 		if(FavoritesList) view.remove(FavoritesList);
-		FavoritesList = null;
+		if(Helpers.Application.isAndroid()) FavoritesList = null;
 	}
 	
 	win.add(edit_button);
 	
-	if(!FavoritesList) {
+	if(Helpers.Application.isAndroid() && !FavoritesList) {
 		Controllers.favorites.index(function(params, favs) {
 			FavoritesList = Views.channel_list.create(Channels, favs);
 			Views.channel_list.favoritesMode(FavoritesList.children, favs);

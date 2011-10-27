@@ -46,6 +46,7 @@ Layouts.application = function() {
 		win3.fireEvent("favs");
 	};
 	
+	
 	var firstTime = true;
 	Layouts.application.setChannelBlurEvent = function(fun) {
 		var run = false;

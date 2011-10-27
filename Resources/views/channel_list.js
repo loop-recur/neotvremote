@@ -78,11 +78,6 @@ Views.channel_list = function() {
 			function _removeOpacity(button) {
 				button.opacity = 1;
 			}
-
-			function _removeBorder(button) {
-				button.borderWidth = 0;
-				button.borderRadius = 0;
-			}
 		}
 		
 		function _addListeners() {
@@ -106,12 +101,6 @@ Views.channel_list = function() {
 
 			function _addOpacity(button) {
 				button.opacity = _inFavorites(button.value) ? 1 : 0.2;
-			}
-			
-			function _colorBorder(button) {
-				button.borderWidth = 5;
-				button.borderRadius = 5;
-				button.borderColor = _inFavorites(button.value) ? "#D3D22E" : "black";
 			}
 
 			function _inFavorites(name) {

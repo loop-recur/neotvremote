@@ -50,13 +50,17 @@ var ChannelDownload = (function(){
 		var url = "/iphone.zip";
 		
 		var _writeZip = function() {
-			var f = Ti.Filesystem.getFile(Ti.Filesystem.resourcesDirectory,'channels.zip');
-		  f.write(this.responseData);
+			var zipPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory,'channels.zip');
+			var appDirPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory);
+			var extractPath = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
+			var fixedAppDirPath = appDirPath.nativePath.slice(0,appDirPath.nativePath.length - 1).replace('file://localhost','').replace(/%20/g,' ');
+			
+			if(!extractPath.exists()) extractPath.createDirectory();
 
-			var dataDir = Ti.Filesystem.resourcesDirectory.slice(0,Ti.Filesystem.resourcesDirectory.length - 1).replace('file://localhost','').replace(/%20/g,'\\ ');
-			var extract_path = Ti.Filesystem.getFile(dataDir+"/images/channels");
-			zipfile.extract(dataDir+"/channels.zip", dataDir+"/images/channels");
-			cb(_getDownloadedChannels(extract_path));
+		  zipPath.write(this.responseData);
+
+			zipfile.extract(fixedAppDirPath+"/channels.zip", fixedAppDirPath+"/channels");
+			cb(_getDownloadedChannels(extractPath));
 		}
 		
 		var oldUrl = App.base_url;

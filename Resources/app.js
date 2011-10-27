@@ -18,7 +18,7 @@ ChannelUpdate.getCurrentChannels(createChannelViews);
 
 Version = "1.0" // Default version
 Layouts.application();
-
+Ti.App.addEventListener("channelViewLoadDone", function(){});
 Xbmc.version(function(n){ Version = n; });
 
 Bonjour.discoverNetworks(Hosts.findOrCreate);
