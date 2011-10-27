@@ -61,7 +61,8 @@ Views.feedback.index = function(win, feedback) {
 
 	
 	function save(type, feedback, e) {
-		feedback[type] = e.value;
+		var v = e.value ? 1.0 : 0.0;
+		feedback[type] = v;
 		Controllers.feedback.save(feedback);
 	}
 

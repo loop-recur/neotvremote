@@ -10,13 +10,8 @@ var Feedback = function() {
 	}
 	
 	function buttonPress() {
-		if(isAndroid) {
-			if(settings.sound == "true" || settings.sound ==  1) _click();
-			if(settings.vibrate == "true" || settings.vibrate == 1) _vibrate();
-		} else {
-			if(settings.sound) _click();
-			if(settings.vibrate) _vibrate();
-		}
+		if(settings.sound) _click();
+		if(settings.vibrate) _vibrate();
 	}
 	
 	function _click() {
