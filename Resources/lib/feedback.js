@@ -6,6 +6,9 @@ var Feedback = function() {
 	function loadSettings() {
 		Controllers.feedback.index(function(s) {
 			settings = s;
+			log("=========SETTING S===========");
+			log(settings.sound);
+			log(settings.vibrate);
 		});
 	}
 	
