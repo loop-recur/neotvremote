@@ -1,7 +1,6 @@
 var Channel = function() {
 	var downloaded_path = _getDownloadedPath();
 	var has_downloaded = downloaded_path.exists();
-	log(has_downloaded);
 	
 	function resetHasDownloaded() {
 		has_downloaded = downloaded_path.exists();
