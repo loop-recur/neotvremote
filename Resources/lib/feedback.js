@@ -3,13 +3,14 @@ var Feedback = function() {
 	var settings;
 	var click_sound = Ti.Media.createSound({url:"sounds/click.mp3", preload: true});
 	
-	function loadSettings() {
-		Controllers.feedback.index(function(s) {
-			settings = s;
-			log("=========SETTING S===========");
-			log(settings.sound);
-			log(settings.vibrate);
-		});
+	function loadSettings(new_settings) {
+		if(new_settings) {
+			settings = new_settings;
+		} else {
+			Controllers.feedback.index(function(s) {
+				settings = s;
+			});
+		}
 	}
 	
 	function buttonPress() {

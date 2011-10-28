@@ -10,7 +10,8 @@ Controllers.feedback = function() {
 	}
 	
 	function save(feedback) {
-		compose(Feedback.loadSettings, App.db.save.partial(name))(feedback);
+		App.db.save(name, feedback);
+		Feedback.loadSettings(feedback);
 	}
 		
 	return {index : index, save : save}

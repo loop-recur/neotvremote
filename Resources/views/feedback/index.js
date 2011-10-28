@@ -61,11 +61,7 @@ Views.feedback.index = function(win, feedback) {
 
 	
 	function save(type, feedback, e) {
-		log("=====e.value========");
-		log(e.value);
 		var v = e.value ? 1.0 : 0.0;
-		log("So we chose:");
-		log(v);
 		feedback[type] = v;
 		Controllers.feedback.save(feedback);
 	}
