@@ -1,7 +1,8 @@
 Views.channel_list = function() {
 	var mode;
 	 
-	function create(channels) {
+	function create(channels, favs) {
+		var the_buttons = [];
 		var default_settings = {height: "77dp", width: "90dp", left: "12.5dp", column_separation: "12.5dp", top: "2dp", row_separation: "10dp", rows_built: 0}
 		
 		var scrollview = Titanium.UI.createScrollView({
@@ -29,6 +30,8 @@ Views.channel_list = function() {
 				id:name,
 				value:name
 			});
+			
+			the_buttons.push(channel_button);
 						
 			scrollview.add(channel_button);
 
@@ -59,50 +62,25 @@ Views.channel_list = function() {
 			};
 		}
 			
+		favs ? favoritesMode(the_buttons, favs) : launchMode(the_buttons);
 		return scrollview;
 	}
 	
-	function launchMode(buttons, force) {
-		if(mode === "launch" && !force) return;
-		
-		if(mode === "favorites") {
-			_removeListeners();
-			_removeMasks();
-		}
-		_addListeners();
-		mode = "launch";
-		
-		function _removeMasks() {
-			map(_removeOpacity, buttons);
-
-			function _removeOpacity(button) {
-				button.opacity = 1;
-			}
-		}
-		
-		function _addListeners() {
-			map(function(b){ b.addEventListener('click', _launchChannel); }, buttons);
-		}
-		
-		function _removeListeners() {
-			map(function(b){ b.removeEventListener('click', _toggleFav); }, buttons);
-		}
+	function launchMode(buttons) {
+		map(function(b){ b.addEventListener('click', _launchChannel); }, buttons);
 	}
 	
 	function favoritesMode(buttons, favorites) {
-		if(mode === "favorites") return;
-		if(mode === "launch") _removeListeners();
 		_addMasks();
 		_addListeners();
-		mode = "favorites";
 		
 		function _addMasks() {
 			map(_addOpacity, buttons);
-
+		
 			function _addOpacity(button) {
 				button.opacity = _inFavorites(button.value) ? 1 : 0.2;
 			}
-
+		
 			function _inFavorites(name) {
 				return (favorites.indexOf(name) !== -1);
 			}
@@ -110,10 +88,6 @@ Views.channel_list = function() {
 		
 		function _addListeners() {
 			map(function(b){ b.addEventListener('click', _toggleFav); }, buttons);
-		}
-		
-		function _removeListeners() {
-			map(function(b){ b.removeEventListener('click', _launchChannel); }, buttons);
 		}
 	}
 	

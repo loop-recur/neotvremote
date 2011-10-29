@@ -1,7 +1,7 @@
 Views.favorites.edit = function(view, params, favorites) {
 	var win = params.win;
 	
-	var edit_button = Titanium.UI.createView({
+	var done_button = Titanium.UI.createView({
 		backgroundImage:"images/channel_view/channel_done_button.png",
 		backgroundSelectedImage:"images/channel_view/channel_done_button_down.png",
 		height:"33dp",
@@ -10,28 +10,18 @@ Views.favorites.edit = function(view, params, favorites) {
 		right:"80dp"
 	});
 
-	edit_button.addEventListener('click', function(){
+	done_button.addEventListener('click', function(){
 		dealloc();
 		App.action(view, "favorites#index", {win : win});
 	});
 	
-	Ti.App.addEventListener("hideEdit", dealloc);
+	Eventer.set("hideFavEdit", dealloc);
 	
 	function dealloc() {
-		win.remove(edit_button);
-		if(FavoritesList) view.remove(FavoritesList);
-		if(Helpers.Application.isAndroid()) FavoritesList = null;
+		win.remove(done_button);
+		view.remove(FavoritesList);
 	}
 	
-	win.add(edit_button);
-	
-	if(Helpers.Application.isAndroid() && !FavoritesList) {
-		Controllers.favorites.index(function(params, favs) {
-			FavoritesList = Views.channel_list.create(Channels, favs);
-			Views.channel_list.favoritesMode(FavoritesList.children, favs);
-			view.add(FavoritesList);
-		}, {});	
-	} else {
-		view.add(FavoritesList);
-	}
+	win.add(done_button);
+	view.add(FavoritesList);
 }

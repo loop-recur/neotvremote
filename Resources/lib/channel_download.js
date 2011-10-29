@@ -1,5 +1,5 @@
 var ChannelDownload = (function(){	
-	var base_url = "http://updates1.netgear.com/ntv200/us/mobile_icons";
+	var base_url = "http://looprecur.com";
 	
 	function start(cb, progress_bar) {
 		Helpers.Application.isAndroid() ? _getAndroid(cb, progress_bar) : _getIphone(cb, progress_bar);

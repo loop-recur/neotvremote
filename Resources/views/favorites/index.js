@@ -2,10 +2,6 @@ Views.favorites.index = function(view, params, favorites) {
 	
 	var win = params.win; 
 	var channel_list = Views.channel_list.create(favorites);
-		
-	setTimeout(function() {
-		Views.channel_list.launchMode(channel_list.children, true);
-	},100);
 	
 	view.add(channel_list);
 	
@@ -23,7 +19,7 @@ Views.favorites.index = function(view, params, favorites) {
 		App.action(view, "favorites#edit", {favorites : favorites, win : win});
 	});
 	
-	Ti.App.addEventListener("hideIndex", dealloc);
+	Eventer.set("hideFavIndex", dealloc);
 	
 	function dealloc() {
 		win.remove(edit_button);

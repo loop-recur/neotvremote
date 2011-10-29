@@ -49,7 +49,6 @@ Views.updateWizard = function(channels, cb) {
 	
 	
 	var _nextStep = function() { 
-		Ti.App.fireEvent('PrechannelViewLoadDone', {});
 		modal.add(progress_bar);
 		progress_bar.show();
 		label.text = "Downloading channels...";
@@ -69,11 +68,11 @@ Views.updateWizard = function(channels, cb) {
 		progress_bar.hide();
 		label.text = "Finishing...";
 		activity.show();
-		Ti.App.fireEvent('channelUpdateFinish', { channels: channels });
+		Eventer.reloadChannels(channels);
 		cb();
 	}
 	
-	Ti.App.addEventListener('channelViewLoadDone', _close);
+	Eventer.set("closeModal", _close);
 	ok.addEventListener('click', _nextStep);
 	cancel.addEventListener('click', _close);
 	

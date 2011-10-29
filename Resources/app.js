@@ -1,3 +1,14 @@
+// Object.prototype.clone = function() {
+//   var newObj = (this instanceof Array) ? [] : {};
+//   for (i in this) {
+//     if (i == 'clone') continue;
+//     if (this[i] && typeof this[i] == "object") {
+//       newObj[i] = this[i].clone();
+//     } else newObj[i] = this[i]
+//   } return newObj;
+// };
+
+
 Titanium.include('initializers/init.js');
 try { App.run(); } catch(E) { alert("Failed with "+E); }
 
@@ -6,38 +17,46 @@ Titanium.UI.setBackgroundColor('#000');
 Titanium.Facebook.appid = "159867857428871";
 Titanium.Facebook.permissions = ['publish_stream', "offline_access"];
 
-Ti.App.addEventListener('channelUpdateFinish', reloadChannels);
 setupDb();
 Feedback.loadSettings();
 App.loadHosts();
 
 // Globals
+Eventer = { set: function(name, fun) {
+	Eventer[name] = function() {
+		log("CALLING EVENTER FUN: "+name);
+		fun.apply(null, arguments);
+		Eventer[name] = null;
+	};
+}};
+
 ChannelList = null;
 FavoritesList = null;
 ChannelUpdate.getCurrentChannels(createChannelViews);
 
 Version = "1.0" // Default version
 Layouts.application();
-Ti.App.addEventListener("channelViewLoadDone", function(){});
 Xbmc.version(function(n){ Version = n; });
 
 Bonjour.discoverNetworks(Hosts.findOrCreate);
 
-function reloadChannels(e) {
-	createChannelViews(e.channels);
+
+Eventer.set("reloadChannels", reloadChannels);
+function reloadChannels(channels) {
+	createChannelViews(channels);
 }
 
 function createChannelViews(channels) {
 	Channel.resetHasDownloaded();	
 	ChannelList = null;
 	FavoritesList = null;
+	
 	ChannelList = Views.channel_list.create(channels);
-	Views.channel_list.launchMode(ChannelList.children);
 	
 	Controllers.favorites.index(function(params, favs) {
 		FavoritesList = Views.channel_list.create(channels, favs);
-		Views.channel_list.favoritesMode(FavoritesList.children, favs);
-		Ti.App.fireEvent('channelViewLoadDone', {});
+		if(Eventer.reloadStandardView) Eventer.reloadStandardView();
+		if(Eventer.closeModal) Eventer.closeModal();
 	}, {});
 }
 

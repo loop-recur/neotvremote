@@ -58,7 +58,6 @@ Views.searches.index = function(win) {
 		results.add(new_view);
 		results.remove(result_view);
 		result_view = new_view;
-		if(result_view.children) Views.channel_list.launchMode(result_view.children, true);
 	}
 	
 	function foundChannels(val, channels) {

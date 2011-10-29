@@ -43,13 +43,13 @@ Views.channels = function(win, favs) {
 	win.add(channel_favorites);
 	win.add(view);
 	
-	Ti.App.addEventListener("channelViewLoadDone", standardView);
+	Eventer.set("reloadStandardView", standardView);
 	win.addEventListener("favs", toggleFavoriteMode);
 	if(favs) toggleFavoriteMode();
 	
 	function standardView() {
-		Ti.App.fireEvent("hideEdit");
-		Ti.App.fireEvent("hideIndex");
+		if(Eventer.hideFavIndex) Eventer.hideFavIndex();
+		if(Eventer.hideFavEdit) Eventer.hideFavEdit();
 		editing = false;
 		win.remove(view);
 		view = Titanium.UI.createView({top: "30dp"});
