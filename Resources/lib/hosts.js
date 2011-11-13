@@ -54,6 +54,7 @@ var Hosts = function() {
 	}
 	
 	function _url(hosts) {
+		if(!hosts.port) hosts.port = "8080";
 		return [hosts.host, hosts.port].join(":");
 	}
 	

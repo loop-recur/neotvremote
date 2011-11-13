@@ -17,6 +17,7 @@ Helpers.ui.keyboard = function() {
 		top:0,
 		autocorrect:false,
 	  keyboardType:Titanium.UI.KEYBOARD_DEFAULT,
+		autocapitalization: Titanium.UI.TEXT_AUTOCAPITALIZATION_NONE,
 	  returnKeyType:Titanium.UI.RETURNKEY_DONE
 	});
 	

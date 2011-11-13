@@ -6,7 +6,6 @@ var Bonjour = function() {
 
 	function _discoverAndroid(callback) {
 		var jmdns = require('com.looprecur.jmdns');
-
 		jmdns.discover(function(name, port, host) {
 			callback({name : _fixName(name), port : port, host : host});
 		});

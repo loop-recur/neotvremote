@@ -111,7 +111,7 @@ var Xbmc = function() {
 		}
 		
 		function _setChannel(text) {
-			var channel = text.match(/Filename:(\w+)/)[1];
+			var channel = text.match(/Filename:(.*)/)[1];
 			if(channel) {
 				tries = max;
 				fun(channel);

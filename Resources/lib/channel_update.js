@@ -29,7 +29,7 @@ var ChannelUpdate = (function() {
 	}
 		
 	_shouldUpdateChannels = function(channels) {
-		// if(Channels.join("") == channels.join("")) return false;
+		if(Channels.join("") == channels.join("")) return false;
 		var allImages = ChannelDownload.getChannelImages();
 		var allNames = map(Channel.imageName, channels);
 		var _missingImage = function(n) { return allImages.indexOf(n) < 0; }
@@ -45,11 +45,17 @@ var ChannelUpdate = (function() {
 	}
 	
 	function getChannelsAndUpdate(cb) {
+		if(Helpers.Application.isAndroid()) {
+			Layouts.application.setChannelView();
+			var activity = Helpers.ui.spinner();
+			activity.show();
+		}
 		Xbmc.getAllChannels(function(channels) {
 			if(!channels) return;
 			_cache(channels);
 			if(_shouldUpdateChannels(channels)) {
 				_setGlobalChannels(channels);
+				if(activity) activity.hide();
 				Views.updateWizard(channels, cb);
 			}			  
 		});

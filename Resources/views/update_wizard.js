@@ -64,12 +64,28 @@ Views.updateWizard = function(channels, cb) {
 		modal.close();
 	}
 	
+	function restart() {
+		var win = Ti.UI.createWindow();
+		var view = Ti.UI.createView();
+		win.add(view);
+		Views.channels(win);
+		App.action(view, "favorites#edit", {favorites : [], win : win});
+		App.action(view, "favorites#index", {favorites : [], win : win});
+		win.open();
+	}
+	
 	function _finish(downloaded_images) {
 		progress_bar.hide();
-		label.text = "Finishing...";
 		activity.show();
-		Eventer.reloadChannels(channels);
-		cb();
+		
+		if(Helpers.Application.isAndroid()) {
+			label.text = "Restarting...";
+			restart();
+		} else {
+			label.text = "Finishing...";
+			Eventer.reloadChannels(channels);
+			cb();
+		}
 	}
 	
 	Eventer.set("closeModal", _close);
@@ -89,4 +105,5 @@ Views.updateWizard = function(channels, cb) {
 	}
 	
 	modal.open(options);
+
 }

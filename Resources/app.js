@@ -1,14 +1,3 @@
-// Object.prototype.clone = function() {
-//   var newObj = (this instanceof Array) ? [] : {};
-//   for (i in this) {
-//     if (i == 'clone') continue;
-//     if (this[i] && typeof this[i] == "object") {
-//       newObj[i] = this[i].clone();
-//     } else newObj[i] = this[i]
-//   } return newObj;
-// };
-
-
 Titanium.include('initializers/init.js');
 try { App.run(); } catch(E) { alert("Failed with "+E); }
 
@@ -24,7 +13,6 @@ App.loadHosts();
 // Globals
 Eventer = { set: function(name, fun) {
 	Eventer[name] = function() {
-		log("CALLING EVENTER FUN: "+name);
 		fun.apply(null, arguments);
 		Eventer[name] = null;
 	};
@@ -34,11 +22,11 @@ ChannelList = null;
 FavoritesList = null;
 ChannelUpdate.getCurrentChannels(createChannelViews);
 
-Version = "1.0" // Default version
+Version = "1.5" // Default version
 Layouts.application();
 Xbmc.version(function(n){ Version = n; });
 
-Bonjour.discoverNetworks(Hosts.findOrCreate);
+setTimeout(Bonjour.discoverNetworks.curry(Hosts.findOrCreate), 4000);
 
 
 Eventer.set("reloadChannels", reloadChannels);
@@ -50,7 +38,7 @@ function createChannelViews(channels) {
 	Channel.resetHasDownloaded();	
 	ChannelList = null;
 	FavoritesList = null;
-	
+
 	ChannelList = Views.channel_list.create(channels);
 	
 	Controllers.favorites.index(function(params, favs) {

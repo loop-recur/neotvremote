@@ -7,7 +7,6 @@ Views.channel_list = function() {
 		
 		var scrollview = Titanium.UI.createScrollView({
 			top: "10dp",
-			height:"365dp",
 			width:"320dp",
 			contentWidth:"auto",
 			contentHeight:'auto',
@@ -61,7 +60,7 @@ Views.channel_list = function() {
 				rows_built: settings.rows_built
 			};
 		}
-			
+		
 		favs ? favoritesMode(the_buttons, favs) : launchMode(the_buttons);
 		return scrollview;
 	}

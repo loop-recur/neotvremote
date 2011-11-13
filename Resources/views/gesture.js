@@ -178,8 +178,7 @@ Views.gesture = function(win) {
 	}
 	
 	function underThreshold(diff) {
-		var difference_threshold = 20;
-		return Math.abs(diff) < difference_threshold;
+		return Math.abs(diff) < 10;
 	}
 	
 	function shortSwipe(diff) {
@@ -199,6 +198,12 @@ Views.gesture = function(win) {
 	if(!Helpers.Application.isAndroid()) {
 
 		arrows.addEventListener('touchstart', function(e)
+		{
+			touch_x_start = e.x;
+			touch_y_start = e.y;
+		});
+		
+		arrows.addEventListener('touchmove', function(e)
 		{
 			touch_x_start = e.x;
 			touch_y_start = e.y;
