@@ -130,7 +130,6 @@ Views.gesture = function(win) {
 	
 	win.add(arrows);
 	
-	
 	if(Helpers.Application.isAndroid()) {
 		var gestures = require('com.looprecur.gestures');
 
@@ -178,7 +177,7 @@ Views.gesture = function(win) {
 	}
 	
 	function underThreshold(diff) {
-		return Math.abs(diff) < 10;
+		return Math.abs(diff) < 50;
 	}
 	
 	function shortSwipe(diff) {
@@ -196,21 +195,30 @@ Views.gesture = function(win) {
 
 	
 	if(!Helpers.Application.isAndroid()) {
+		var Masks = {left : left_arrow_mask, right: right_arrow_mask, up: up_arrow_mask, down: down_arrow_mask}
 
 		arrows.addEventListener('touchstart', function(e)
 		{
+			log("start");
 			touch_x_start = e.x;
 			touch_y_start = e.y;
 		});
 		
+		arrows.addEventListener('swipe', function(e)
+		{
+			log("swipe");
+			animateGesture(Masks[e.direction]);
+			setTimeout(Xbmc.action(e.direction), 0);
+		});
+		
 		arrows.addEventListener('touchmove', function(e)
 		{
-			touch_x_start = e.x;
-			touch_y_start = e.y;
+			log("move");
 		});
 	
 		arrows.addEventListener('touchend', function(e)
 		{
+			log("end");
 			touch_x_stop = e.x;
 			touch_y_stop = e.y;
 		
@@ -252,46 +260,58 @@ Views.gesture = function(win) {
 			setTimeout(Xbmc.action("left"), 0);
 		}
 		
-		if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
+		else if (underThreshold(y_diff) && !diffPositive(x_diff) && !shortSwipe(x_diff)) {
 			Feedback.buttonPress();
 			animateGesture(left_arrow_mask);
 			nTimes(3, Xbmc.action("left"));
 		}
 		
-		if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
+		else if (underThreshold(y_diff) && diffPositive(x_diff) && shortSwipe(x_diff)) {
 			Feedback.buttonPress();
 			animateGesture(right_arrow_mask);
 			setTimeout(Xbmc.action("right"), 0);
 		}		
 		
-		if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
+		else if (underThreshold(y_diff) && diffPositive(x_diff) && !shortSwipe(x_diff)) {
 			Feedback.buttonPress();
 			animateGesture(right_arrow_mask);
 			nTimes(3, Xbmc.action("right"));
 		}
 		
-		if (underThreshold(x_diff) && !diffPositive(y_diff) && shortSwipe(y_diff)) {
+		else if (!diffPositive(y_diff) && shortSwipe(y_diff)) {
 			Feedback.buttonPress();
 			animateGesture(up_arrow_mask);
 			setTimeout(Xbmc.action("up"), 0);
 		}
 		
-		if (underThreshold(x_diff) && !diffPositive(y_diff) && !shortSwipe(y_diff)) {
+		else if (!diffPositive(y_diff) && !shortSwipe(y_diff)) {
 			Feedback.buttonPress();
 			animateGesture(up_arrow_mask);
 			nTimes(3, Xbmc.action("up"));
 		}
 		
-		if (underThreshold(x_diff) && diffPositive(y_diff) && shortSwipe(y_diff)) {
+		else if (diffPositive(y_diff) && shortSwipe(y_diff)) {
 			Feedback.buttonPress();
 			animateGesture(down_arrow_mask);
 			setTimeout(Xbmc.action("down"), 0);
 		}
 		
-		if (underThreshold(x_diff) && diffPositive(y_diff) && !shortSwipe(y_diff)) {
+		else if (diffPositive(y_diff) && !shortSwipe(y_diff)) {
 			Feedback.buttonPress();
       animateGesture(down_arrow_mask);
 			nTimes(3, Xbmc.action("down"));
+		}
+		
+		else {
+			log("NOTHING FOUND FOR: ");
+			log("Start X:" + touch_x_start);
+			log("Stop X:" + touch_x_stop);
+			log("Start Y:" + touch_y_start);
+			log("Stop Y:" + touch_y_stop);
+			log("X Diff: "+ x_diff);
+			log("Y Diff: "+ y_diff);
+			log("Under? X: "+ underThreshold(x_diff));
+			log("Under? Y: "+ underThreshold(y_diff));
 		}
 	};
 	
