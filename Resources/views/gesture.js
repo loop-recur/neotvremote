@@ -199,26 +199,18 @@ Views.gesture = function(win) {
 
 		arrows.addEventListener('touchstart', function(e)
 		{
-			log("start");
 			touch_x_start = e.x;
 			touch_y_start = e.y;
 		});
 		
 		arrows.addEventListener('swipe', function(e)
 		{
-			log("swipe");
 			animateGesture(Masks[e.direction]);
 			setTimeout(Xbmc.action(e.direction), 0);
-		});
-		
-		arrows.addEventListener('touchmove', function(e)
-		{
-			log("move");
 		});
 	
 		arrows.addEventListener('touchend', function(e)
 		{
-			log("end");
 			touch_x_stop = e.x;
 			touch_y_stop = e.y;
 		
