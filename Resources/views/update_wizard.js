@@ -65,13 +65,8 @@ Views.updateWizard = function(channels, cb) {
 	}
 	
 	function restart() {
-		var win = Ti.UI.createWindow();
-		var view = Ti.UI.createView();
-		win.add(view);
-		Views.channels(win);
-		App.action(view, "favorites#edit", {favorites : [], win : win});
-		App.action(view, "favorites#index", {favorites : [], win : win});
-		win.open();
+		var restartModule = require('com.looprecur.restart');
+		restartModule.restart();
 	}
 	
 	function _finish(downloaded_images) {

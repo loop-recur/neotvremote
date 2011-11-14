@@ -44,25 +44,13 @@ var ChannelUpdate = (function() {
 		getChannelsAndUpdate(function(){ updating = false; });
 	}
 	
-	function _alreadyDownloaded() {
-		return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels").exists();
-	}
-	
 	function getChannelsAndUpdate(cb) {
-		if(Helpers.Application.isAndroid() && !_alreadyDownloaded()) {
-			Layouts.application.setChannelView();
-			var activity = Helpers.ui.spinner();
-			activity.show();
-		}
 		Xbmc.getAllChannels(function(channels) {
 			if(!channels) return;
 			_cache(channels);
 			if(_shouldUpdateChannels(channels)) {
 				_setGlobalChannels(channels);
-				if(activity) activity.hide();
 				Views.updateWizard(channels, cb);
-			} else {
-				if(activity) activity.hide();
 			} 
 		});
 	}
