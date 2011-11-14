@@ -195,22 +195,17 @@ Views.gesture = function(win) {
 
 	
 	if(!Helpers.Application.isAndroid()) {
-		var Masks = {left : left_arrow_mask, right: right_arrow_mask, up: up_arrow_mask, down: down_arrow_mask}
-
+		
 		arrows.addEventListener('touchstart', function(e)
 		{
+			log("START");
 			touch_x_start = e.x;
 			touch_y_start = e.y;
-		});
-		
-		arrows.addEventListener('swipe', function(e)
-		{
-			animateGesture(Masks[e.direction]);
-			setTimeout(Xbmc.action(e.direction), 0);
 		});
 	
 		arrows.addEventListener('touchend', function(e)
 		{
+			log("END");
 			touch_x_stop = e.x;
 			touch_y_stop = e.y;
 		
