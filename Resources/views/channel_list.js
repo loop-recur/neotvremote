@@ -15,7 +15,13 @@ Views.channel_list = function() {
 		});
 		
 		channels = select(function(c){return Ti.Filesystem.getFile(Channel.imagePath(c)).exists(); }, channels);
-		if(!channels.length) Channel.forceOldPath();
+		if(channels.length <= 1) {
+			Channel.forceOldPath();
+			alert("FORCING OLD PATH");
+		}
+		
+		alert(Channel.imagePath("Netflix"));
+		
 		reduce(_makeChannel, {settings: default_settings, amount: 0}, channels);
 
 		function _makeChannel(config, name) {
