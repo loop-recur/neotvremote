@@ -6,6 +6,10 @@ var Channel = function() {
 		has_downloaded = downloaded_path.exists();
 	}
 	
+	function forceOldPath() {
+		has_downloaded = false;
+	}
+	
 	function imagePath(name) {
 		var base_path = has_downloaded ? downloaded_path.nativePath+"/" : 'images/channels/';
 		return base_path+imageName(name);
@@ -20,5 +24,5 @@ var Channel = function() {
 		return Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, "channels");
 	}
 	
-	return { imagePath : imagePath, imageName : imageName, resetHasDownloaded: resetHasDownloaded }
+	return { imagePath : imagePath, imageName : imageName, resetHasDownloaded: resetHasDownloaded, forceOldPath: forceOldPath }
 }();

@@ -15,6 +15,7 @@ Views.channel_list = function() {
 		});
 		
 		channels = select(function(c){return Ti.Filesystem.getFile(Channel.imagePath(c)).exists(); }, channels);
+		if(!channels.length) Channel.forceOldPath();
 		reduce(_makeChannel, {settings: default_settings, amount: 0}, channels);
 
 		function _makeChannel(config, name) {

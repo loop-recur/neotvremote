@@ -33,7 +33,7 @@
         <module platform="iphone" version="0.1.21">zipfile</module>
         <module platform="android" version="0.1">com.looprecur.jmdns</module>
         <module platform="android" version="0.1">com.looprecur.gestures</module>
-				<module platform="android" version="0.1">com.looprecur.restart</module>
+		<module platform="android" version="0.1">com.looprecur.restart</module>
         <module platform="android" version="0.1">com.websiteburo.androzip</module>
     </modules>
 </ti:app>
