@@ -14,13 +14,13 @@ Views.channel_list = function() {
 			showVerticalScrollIndicator:true
 		});
 		
-		channels = select(function(c){return Ti.Filesystem.getFile(Channel.imagePath(c)).exists(); }, channels);
-		if(channels.length <= 1) {
-			Channel.forceOldPath();
-			alert("FORCING OLD PATH");
-		}
+		exisiting_channels = select(function(c){return Ti.Filesystem.getFile(Channel.imagePath(c)).exists(); }, channels);
 		
-		alert(Channel.imagePath("Netflix"));
+		if(exisiting_channels.length <= 1) {
+			Channel.forceOldPath();
+		} else {
+			channels = exisiting_channels;
+		}
 		
 		reduce(_makeChannel, {settings: default_settings, amount: 0}, channels);
 
