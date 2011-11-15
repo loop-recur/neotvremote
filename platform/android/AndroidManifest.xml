@@ -4,7 +4,7 @@
       android:versionCode="1"
       android:versionName="1"
 >
-	<supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" android:smallScreens="false"/>
+	<supports-screens android:anyDensity="true" />
 	<uses-sdk android:minSdkVersion="7" />
 
 	<!-- TI_MANIFEST -->
