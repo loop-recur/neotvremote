@@ -28,12 +28,20 @@
             <orientation>Ti.UI.PORTRAIT</orientation>
         </orientations>
     </iphone>
-    <android xmlns:android="http://schemas.android.com/apk/res/android"/>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+			<manifest>
+				<supports-screens android:smallScreens="false"
+	                   android:normalScreens="true"
+	                   android:largeScreens="true"
+	                   android:anyDensity="true"
+	       />
+			</manifest>	
+		</android>
     <modules>
         <module platform="iphone" version="0.1.21">zipfile</module>
         <module platform="android" version="0.1">com.looprecur.jmdns</module>
         <module platform="android" version="0.1">com.looprecur.gestures</module>
-		<module platform="android" version="0.1">com.looprecur.restart</module>
+				<module platform="android" version="0.1">com.looprecur.restart</module>
         <module platform="android" version="0.1">com.websiteburo.androzip</module>
     </modules>
 </ti:app>
